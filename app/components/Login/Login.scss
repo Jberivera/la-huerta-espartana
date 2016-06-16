@@ -1,0 +1,71 @@
+.login {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
+  min-width: 150px;
+  max-width: 150px;
+  float: right;
+  text-align: center;
+}
+
+.status-check {
+  display: none;
+
+  &:checked ~ .social-menu {
+    display: block;
+  }
+}
+
+.status {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+}
+
+.account-circle {
+  position: relative;
+  font-size: 44px;
+  overflow: hidden;
+  z-index: 0;
+  background-size: 44px 44px;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  -webkit-user-select: none;
+          user-select: none;
+}
+
+.social-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 14;
+  width: 100%;
+  min-height: 70px;
+  background: #fff;
+  padding: 30px 10px 20px 10px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  box-shadow: -3px 5px 6px -3px rgba(0,0,0,.2);
+}
+
+.fb-btn {
+  padding: 5px;
+  background: #3b5998;
+  color: #ffffff;
+  font-family: helvetica;
+  cursor: pointer;
+}
+
+.fb-logout {
+  padding: 5px;
+  font-family: helvetica;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 14px;
+}
