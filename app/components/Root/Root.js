@@ -10,7 +10,7 @@ class Root extends Component {
   render () {
     return (
       <div className="main-container">
-        
+        <Nav />
         <div className="container">
           { this.props.children }
         </div>

@@ -1,4 +1,4 @@
-// import { auth, facebook, database } from '../js/api';
+import { auth, facebook, database } from '../js/api';
 
 export const GET_USER = 'GET_USER';
 

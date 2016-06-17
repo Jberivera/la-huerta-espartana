@@ -2,6 +2,13 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 
+const config = {
+  apiKey: "AIzaSyBCvQaUEZxgdxNykfYuTScEU-u4N1SqD8U",
+  authDomain: "la-huerta-espartana.firebaseapp.com",
+  databaseURL: "https://la-huerta-espartana.firebaseio.com",
+  storageBucket: "",
+};
+
 const firebaseApp = firebase.initializeApp(config);
 
 const auth = firebase.auth();
