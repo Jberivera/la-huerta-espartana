@@ -8,6 +8,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import createLogger from 'redux-logger';
+import firebaseMiddleware from './js/api';
 
 // reducers
 import reducers from './reducers';
@@ -20,6 +21,7 @@ const store = createStore(
   reducer,
   applyMiddleware(
     thunk,
+    firebaseMiddleware,
     createLogger()
   )
 );

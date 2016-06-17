@@ -59,7 +59,7 @@ class Login extends Component {
                 userName={ this.userNameFixed(user.res.name)}
                 onFacebookOut={ this.onFacebookOut } /> :
               <Social
-                onFacebookLogin={this.onFacebookLogin}
+                onFacebookLogin={ this.onFacebookLogin }
                 onFacebookOut={ this.onFacebookOut } />
           }
         </div>
