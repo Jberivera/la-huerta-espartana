@@ -16,6 +16,13 @@ $on-dropdown: #fff;
   display: inline-block;
   height: 100%;
   max-width: 202px;
+
+  .logo-img {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70%;
+  }
 }
 
 .nav-title {
@@ -25,12 +32,7 @@ $on-dropdown: #fff;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-
-  .span-1, .span-2 {
-    font-family: inherit;
-    font-size: 20px;
-    line-height: 1;
-  }
+  font-size: 0;
 }
 
 .menu {

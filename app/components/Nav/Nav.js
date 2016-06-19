@@ -25,8 +25,9 @@ const Nav = ({ pathname }) => {
     <div className={ css('nav') } onClick={ unCheckRadios }>
       <div className={ css('nav-logo') }>
         <h1 className={ css('nav-title') }>
-          <div className={ css('span-1') }>La Huerta</div><div className={ css('span-2') }>Espartana</div>
+          La Huerta Espartana
         </h1>
+        <img src="/app/assets/img/logo.png" className={ css('logo-img') }></img>
       </div>
       <ul className={ css('menu') } >
         {
