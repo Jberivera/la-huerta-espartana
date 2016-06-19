@@ -20,12 +20,17 @@ $on-dropdown: #fff;
 
 .nav-title {
   color: #10346b;
-  font-family: 'Poiret One';
   display: inline-block;
   vertical-align: top;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+
+  .span-1, .span-2 {
+    font-family: inherit;
+    font-size: 20px;
+    line-height: 1;
+  }
 }
 
 .menu {

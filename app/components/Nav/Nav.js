@@ -25,7 +25,7 @@ const Nav = ({ pathname }) => {
     <div className={ css('nav') } onClick={ unCheckRadios }>
       <div className={ css('nav-logo') }>
         <h1 className={ css('nav-title') }>
-          Pandora’s Wall
+          <div className={ css('span-1') }>La Huerta</div><div className={ css('span-2') }>Espartana</div>
         </h1>
       </div>
       <ul className={ css('menu') } >
