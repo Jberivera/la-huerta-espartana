@@ -9,6 +9,8 @@ import { Login } from '../';
 import Dropdown from './Dropdown';
 import NavBtn from './NavBtn';
 
+import affix from '../../js/affix';
+
 const items = [
   {
     label: 'Wall',
@@ -22,7 +24,7 @@ const items = [
 
 const Nav = ({ pathname }) => {
   return (
-    <div className={ css('nav') } onClick={ unCheckRadios }>
+    <div className={ css('nav', 'g-nav') } onClick={ unCheckRadios } ref={(elem) => { affix(elem) }}>
       <div className={ css('nav-logo') }>
         <h1 className={ css('nav-title') }>
           La Huerta Espartana

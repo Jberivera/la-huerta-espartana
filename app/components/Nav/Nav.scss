@@ -1,14 +1,43 @@
 $on-dropdown: #fff;
+$nav-height: 60px;
+
+@-webkit-keyframes :global(affixNav) {
+  0% { transform: translate3d(0, 0, 0); }
+  0% { transform: translate3d(0, -100%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes :global(affixNav) {
+  0% { transform: translate3d(0, 0, 0); }
+  0% { transform: translate3d(0, -100%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
 
 .nav {
   position: relative;
-  height: 60px;
+  height: $nav-height;
+  width: 100%;
+  color: #555;
   white-space: nowrap;
   padding: 0 20px 0 20px;
+  z-index: 10;
 
   *, *::before, *::after {
     -webkit-user-select: none;
             user-select: none;
+  }
+}
+
+:global .g-nav {
+
+  &.affix {
+    background: #555;
+    color: #fff;
+    animation: affixNav forwards .3s;
+
+    + .container {
+      margin-top: $nav-height;
+    }
   }
 }
 
@@ -113,7 +142,7 @@ $on-dropdown: #fff;
   display: inline-block;
   padding: 10px;
   border: 1px solid #999;
-  color: #555;
+  color: inherit;
   font-weight: bold;
   border-radius: 5px;
 }
