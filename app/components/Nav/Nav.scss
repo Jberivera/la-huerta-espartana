@@ -82,22 +82,8 @@ $nav-height: 60px;
 
 .active {
 
-  & .menu-label.drp {
-    background: $on-dropdown;
-    box-shadow: -3px 5px 6px -3px rgba(0,0,0,.2);
-  }
-
-  & .menu-label .menu-label-dropdown {
-    background: $on-dropdown;
-    border-color: $on-dropdown;
-  }
-
   & .menu-label .menu-label-btn {
     background: #eee;
-  }
-
-  & .dropdown {
-    display: block;
   }
 }
 
@@ -164,6 +150,7 @@ $nav-height: 60px;
   color: inherit;
   font-weight: bold;
   border-radius: 5px;
+  text-decoration: none;
 }
 
 .menu-label-dropdown {
