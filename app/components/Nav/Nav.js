@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import style from './Nav.scss';
 import classNames from 'classnames/bind';
+import { Link } from 'react-router';
 
 const css = classNames.bind(style);
 
@@ -11,7 +12,7 @@ import NavBtn from './NavBtn';
 
 import affix from '../../js/affix';
 
-const items = [
+const menu = [
   {
     label: 'Wall',
     to: '/wall'
@@ -19,6 +20,15 @@ const items = [
   {
     label: 'Edit Mode',
     to: '/edit-mode'
+  },
+  {
+    label: 'comprar',
+    children: [
+      {
+        to: '/',
+        label: 'al principal'
+      }
+    ]
   }
 ];
 
@@ -33,7 +43,23 @@ const Nav = ({ pathname }) => {
       </div>
       <ul className={ css('menu') } >
         {
-          items.map((item, i) => <NavBtn key={ i } label={ item.label } to={ item.to } pathname={ pathname === item.to } />)
+          menu.map((item, i) => {
+            return (
+              item.to ?
+              <NavBtn key={ i } label={ item.label } to={ item.to } pathname={ pathname === item.to } /> :
+              <Dropdown key={ i } label={ item.label } >
+                <ul>
+                  {
+                    item.children.map(({ to, label }, i) => (
+                      <li key={ i }>
+                        <Link to={ to }>{ label }</Link>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </Dropdown>
+            )
+          })
         }
       </ul>
       <Login />
@@ -42,7 +68,9 @@ const Nav = ({ pathname }) => {
 };
 
 function unCheckRadios(e) {
+  console.log('vea');
   if (e.target.getAttribute('data-uncheck')) {
+    console.log('melo');
     const radio = e.target.parentNode.querySelector('input');
 
     if (radio.checked) {
