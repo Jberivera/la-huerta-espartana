@@ -70,8 +70,8 @@ function addToCache (cacheKey, request, response) {
     caches.open(cacheKey).then(function(cache) {
       cache.put(request, copy);
     });
-    return response;
   }
+  return response;
 }
 
 function fetchFromCache (event) {
