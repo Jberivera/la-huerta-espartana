@@ -21,6 +21,7 @@ $nav-height: 60px;
   white-space: nowrap;
   padding: 0 20px 0 20px;
   z-index: 10;
+  background: #fff;
 
   *, *::before, *::after {
     -webkit-user-select: none;
@@ -28,12 +29,13 @@ $nav-height: 60px;
   }
 
   &:global(.affix) {
-    background: #555;
-    color: #fff;
+    // background: #555;
+    // color: #fff;
+    box-shadow: 0px 5px 6px -3px rgba(0,0,0,.2);
     animation: affixNav forwards .3s;
 
     .btn-slide {
-      background: #555;
+      // background: #555;
     }
 
     + :global(.container) {
@@ -206,6 +208,7 @@ $nav-height: 60px;
   top: 0;
   left: 0;
   background: #4298B5;
+  object-fit: cover;
 }
 
 .label-name {

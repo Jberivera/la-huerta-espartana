@@ -15,13 +15,14 @@ import affix from '../../js/affix';
 const menu = [
   {
     label: 'Mercado',
-    to: '/mercado'
+    to: '/mercado',
+    btnBackground: '/app/assets/img/mercado.jpg'
   }
 ];
 
 const Nav = ({ pathname }) => {
   return (
-    <div className={ css('nav') } onClick={ unCheckRadios } ref={(elem) => { affix(elem, 5) }}>
+    <div className={ css('nav') } onClick={ unCheckRadios } ref={(elem) => { affix(elem, 1) }}>
       <div className={ css('nav-logo') }>
         <h1 className={ css('nav-title') }>
           La Huerta Espartana
@@ -33,7 +34,12 @@ const Nav = ({ pathname }) => {
           menu.map((item, i) => {
             return (
               item.to ?
-              <NavBtn key={ i } label={ item.label } to={ item.to } pathname={ pathname === item.to } /> :
+              <NavBtn
+                key={ i }
+                label={ item.label }
+                to={ item.to }
+                btnBackground={ item.btnBackground }
+                pathname={ pathname === item.to } /> :
               <Dropdown key={ i } label={ item.label } >
                 <ul>
                   {

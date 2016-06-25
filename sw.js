@@ -6,7 +6,7 @@ var config = {
     '/dist/js/main.js',
     ],
   offlinePage: '/offline/',
-  cachePathPattern: /^\/(?:(20[0-9]{2}|dist|)\/(.+)?)?$/
+  cachePathPattern: /^\/(?:(20[0-9]{2}|dist|app|)\/(.+)?)?$/
 };
 
 var CACHE_NAME = 'static-adventure-' + config.version;
