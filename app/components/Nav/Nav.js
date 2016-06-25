@@ -68,9 +68,9 @@ const Nav = ({ pathname }) => {
 };
 
 function unCheckRadios(e) {
-  console.log('vea');
+
   if (e.target.getAttribute('data-uncheck')) {
-    console.log('melo');
+
     const radio = e.target.parentNode.querySelector('input');
 
     if (radio.checked) {
