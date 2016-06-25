@@ -3,10 +3,10 @@ var config = {
   version: 'v1',
   staticCacheItems: [
     '/',
-    '/bundle.js',
+    '/dist/js/main.js',
     ],
   offlinePage: '/offline/',
-  cachePathPattern: /^\//
+  cachePathPattern: /^\/(?:(20[0-9]{2}|dist|app|)\/(.+)?)?$/
 };
 
 var CACHE_NAME = 'static-adventure-' + config.version;

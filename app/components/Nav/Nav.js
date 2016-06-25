@@ -14,27 +14,15 @@ import affix from '../../js/affix';
 
 const menu = [
   {
-    label: 'Wall',
-    to: '/wall'
-  },
-  {
-    label: 'Edit Mode',
-    to: '/edit-mode'
-  },
-  {
-    label: 'comprar',
-    children: [
-      {
-        to: '/',
-        label: 'al principal'
-      }
-    ]
+    label: 'Mercado',
+    to: '/mercado',
+    btnBackground: '/app/assets/img/mercado.jpg'
   }
 ];
 
 const Nav = ({ pathname }) => {
   return (
-    <div className={ css('nav') } onClick={ unCheckRadios } ref={(elem) => { affix(elem, 5) }}>
+    <div className={ css('nav') } onClick={ unCheckRadios } ref={(elem) => { affix(elem, 1) }}>
       <div className={ css('nav-logo') }>
         <h1 className={ css('nav-title') }>
           La Huerta Espartana
@@ -46,7 +34,12 @@ const Nav = ({ pathname }) => {
           menu.map((item, i) => {
             return (
               item.to ?
-              <NavBtn key={ i } label={ item.label } to={ item.to } pathname={ pathname === item.to } /> :
+              <NavBtn
+                key={ i }
+                label={ item.label }
+                to={ item.to }
+                btnBackground={ item.btnBackground }
+                pathname={ pathname === item.to } /> :
               <Dropdown key={ i } label={ item.label } >
                 <ul>
                   {
@@ -68,9 +61,9 @@ const Nav = ({ pathname }) => {
 };
 
 function unCheckRadios(e) {
-  console.log('vea');
+
   if (e.target.getAttribute('data-uncheck')) {
-    console.log('melo');
+
     const radio = e.target.parentNode.querySelector('input');
 
     if (radio.checked) {
