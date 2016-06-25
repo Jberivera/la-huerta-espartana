@@ -9,7 +9,11 @@ function NavBtn({ label, checked, to, pathname }) {
   return (
     <li className={ css('menu-item', pathname ? 'active' : null) }>
       <label className={ css('menu-label', 'btn') }>
-        <Link to={ to } className={ css('menu-label-btn') }>{ label }</Link>
+        <Link to={ to } className={ css('menu-label-btn') }>
+          <div className={ css('btn-background') }></div>
+          <div className={ css('btn-slide') }></div>
+          <p className={ css('label-name') }>{ label }</p>
+        </Link>
       </label>
     </li>
   );

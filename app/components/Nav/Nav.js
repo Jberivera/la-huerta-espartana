@@ -14,21 +14,8 @@ import affix from '../../js/affix';
 
 const menu = [
   {
-    label: 'Wall',
-    to: '/wall'
-  },
-  {
-    label: 'Edit Mode',
-    to: '/edit-mode'
-  },
-  {
-    label: 'comprar',
-    children: [
-      {
-        to: '/',
-        label: 'al principal'
-      }
-    ]
+    label: 'Mercado',
+    to: '/mercado'
   }
 ];
 
