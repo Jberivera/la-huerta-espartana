@@ -16,7 +16,7 @@ const menu = [
   {
     label: 'Mercado',
     to: '/mercado',
-    btnBackground: '/app/assets/img/mercado.jpg'
+    btnBackground: '/app/assets/img/aqua.gif'
   }
 ];
 
