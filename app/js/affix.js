@@ -8,7 +8,9 @@ import resetInlineStyles from './resetInlineStyles';
  * @return {void}
  */
 export default function affix(element, topReset, top) {
-  var toggle = true,
+  if (!element) { return };
+
+  let toggle = true,
     offsetTop = getOffsetTop(element);
 
   top = top || offsetTop;

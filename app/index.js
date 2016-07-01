@@ -29,13 +29,14 @@ const store = createStore(
 const history = syncHistoryWithStore(browserHistory, store);
 
 // react components
-import { Root, Home, Note } from './components';
+import { Root, Home, Market } from './components';
 
 const App = (props) => (
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={Root}>
         <IndexRoute component={Home} />
+        <Route path="/mercado" component={Market} />
       </Route>
     </Router>
   </Provider>
