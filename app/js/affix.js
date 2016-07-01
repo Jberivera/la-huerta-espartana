@@ -12,7 +12,6 @@ export default function affix(element, topReset, top) {
 
   let toggle = true,
     offsetTop = getOffsetTop(element);
-  console.log('=======La puta======');
 
   top = top || offsetTop;
   topReset = topReset || top;
