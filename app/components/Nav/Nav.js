@@ -27,7 +27,9 @@ const Nav = ({ pathname }) => {
         <h1 className={ css('nav-title') }>
           La Huerta Espartana
         </h1>
-        <img src="/app/assets/img/logo.png" className={ css('logo-img') }></img>
+        <Link to="/">
+          <img src="/app/assets/img/logo.png" className={ css('logo-img') }></img>
+        </Link>
       </div>
       <ul className={ css('menu') } >
         {
