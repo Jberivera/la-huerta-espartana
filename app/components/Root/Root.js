@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import { connect } from 'react-redux';
 
-import { Nav } from '../';
+import { Nav, Footer } from '../';
 
 class Root extends Component {
 
@@ -14,6 +14,7 @@ class Root extends Component {
         <div className="container">
           { this.props.children }
         </div>
+        <Footer />
       </div>
     );
   }
