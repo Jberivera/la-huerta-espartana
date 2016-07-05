@@ -37,6 +37,7 @@ const App = (props) => (
       <Route path="/" component={Root}>
         <IndexRoute component={Home} />
         <Route path="/mercado" component={Market} />
+        <Route path="/carrito" component={Market} />
       </Route>
     </Router>
   </Provider>
