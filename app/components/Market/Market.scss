@@ -1,4 +1,11 @@
-.counter {
-  display: inline-block;
-  color: #10346B;
+.market-container {
+  width: 90%;
+  margin: 20px auto;
+  list-style: none;
+
+  .market-item {
+    display: inline-block;
+    width: 33%;
+    height: 300px;
+  }
 }
