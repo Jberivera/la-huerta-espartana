@@ -7,22 +7,31 @@ const css = classNames.bind(style);
 
 import Hero from '../Hero/Hero';
 
-const Market = ({ count, onClick }) => {
+const Market = ({ count, onClick, inventory }) => {
   return (
     <div className={ css('market') }>
       <Hero backgroundUrl="url(http://artelista.s3.amazonaws.com/obras/big/0/9/7/5913365016626755.jpg)" />
-      <h1 className={css('counter')} onClick={(e) =>{
-        onClick();
-      }}>
-        Ready for start to apply react, redux using webpack { count }
-      </h1>
+      <ul className={ css('market-container') }>
+        {
+          inventory.map((item, i) => {
+            return (
+              <li key={i} className={ css('market-item') }>
+                <p>{item.productName}</p>
+                <p>{`${item.price} ${item.units}`}</p>
+              </li>
+            );
+          })
+        }
+      </ul>
     </div>
 
   );
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return Object.assign({}, state.myApp);
+  return {
+    inventory: [ ...state.inventory ]
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

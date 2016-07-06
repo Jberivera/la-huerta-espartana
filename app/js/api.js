@@ -24,17 +24,23 @@ const api = {
         auth.onAuthStateChanged(function(result) {
           if (result) {
             const { providerData } = result;
-            const user = database.ref(`users/${result.uid}`);
+            // const user = database.ref(`users/${result.uid}`);
+            const inventory = database.ref('inventory');
             isLoged = true;
 
-            user.child('cart').once('value').then(function(snapshot) {
-              let newAction = Object.assign({}, action, {
-                response: {
-                  name: providerData[0].displayName,
-                  url: providerData[0].photoURL,
-                  uid: result.uid
-                }
-              });
+            let newAction = Object.assign({}, action, {
+              response: {
+                name: providerData[0].displayName,
+                url: providerData[0].photoURL,
+                uid: result.uid
+              }
+            });
+
+            inventory.once('value').then(function(snapshot) {
+
+              if (snapshot.val()) {
+                newAction.inventory = snapshot.val();
+              }
               next(newAction);
             });
           } else {
