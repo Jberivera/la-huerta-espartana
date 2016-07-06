@@ -27,7 +27,7 @@ const api = {
             const user = database.ref(`users/${result.uid}`);
             isLoged = true;
 
-            user.child('tasks').once('value').then(function(snapshot) {
+            user.child('cart').once('value').then(function(snapshot) {
               let newAction = Object.assign({}, action, {
                 response: {
                   name: providerData[0].displayName,
@@ -35,23 +35,6 @@ const api = {
                   uid: result.uid
                 }
               });
-              if (snapshot.val()) {
-                newAction.tasks = snapshot.val().reduce((a, b) => {
-                  return a[b.name] = b.data || [], a;
-                }, {});
-              } else {
-                user.child('tasks').set([
-                  {
-                    name: 'toDo'
-                  },
-                  {
-                    name: 'inProgress'
-                  },
-                  {
-                    name: 'Done'
-                  }
-                ]);
-              }
               next(newAction);
             });
           } else {
@@ -63,13 +46,7 @@ const api = {
         next(action);
       }
     }
-  }()),
-  'ADD_TODO': setFireBaseTasks,
-  'EDIT_TASK': setFireBaseTasks,
-  'MOVE_FROM_TO': setFireBaseTasks,
-  'RE_ORDER': setFireBaseTasks,
-  'ADD_GROUP': setFireBaseTasks,
-  'EDIT_GROUP_NAME': setFireBaseTasks
+  }())
 };
 
 function setFireBaseTasks(next, action, store) {

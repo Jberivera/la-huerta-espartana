@@ -17,7 +17,7 @@ export function facebookLoginAsync() {
   return (dispatch) => {
     auth.signInWithPopup(facebook).then(function(result) {
       const { providerData } = result.user;
-      const user = database.ref(`users/${result.uid}`);
+      const user = database.ref(`users/${result.user.uid}`);
 
       user.once('value').then(function(snapshot) {
         if (!snapshot.val()) {

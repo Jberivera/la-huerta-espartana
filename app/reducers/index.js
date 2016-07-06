@@ -1,7 +1,7 @@
-import myApp from './myApp';
+import cart from './cart';
 import user from './user';
 
 export default {
-  myApp,
+  cart,
   user
 };
