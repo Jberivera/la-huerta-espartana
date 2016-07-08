@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import style from './Nav.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router';
+import { bindActionCreators } from 'redux';
+
+import {
+  getInventoryAsync
+} from '../../actions/inventory-action-creators';
 
 const css = classNames.bind(style);
 
@@ -20,7 +25,7 @@ const menu = [
   }
 ];
 
-const Nav = ({ pathname }) => {
+const Nav = ({ pathname, getInventoryAsync }) => {
   return (
     <div className={ css('nav') } onClick={ unCheckRadios } ref={(elem) => { affix(elem, 1) }}>
       <div className={ css('nav-logo') }>
@@ -32,30 +37,7 @@ const Nav = ({ pathname }) => {
         </Link>
       </div>
       <ul className={ css('menu') } >
-        {
-          menu.map((item, i) => {
-            return (
-              item.to ?
-              <NavBtn
-                key={ i }
-                label={ item.label }
-                to={ item.to }
-                btnBackground={ item.btnBackground }
-                pathname={ pathname === item.to } /> :
-              <Dropdown key={ i } label={ item.label } >
-                <ul>
-                  {
-                    item.children.map(({ to, label }, i) => (
-                      <li key={ i }>
-                        <Link to={ to }>{ label }</Link>
-                      </li>
-                    ))
-                  }
-                </ul>
-              </Dropdown>
-            )
-          })
-        }
+        <NavBtn label="Mercado" to="/mercado" btnBackground="/app/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
       </ul>
       <Login />
     </div>
@@ -81,5 +63,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+const mapDispatchToProps = (dispatch, ownProps) => bindActionCreators({
+  getInventoryAsync
+}, dispatch);
+
 export { Nav };
-export default connect(mapStateToProps, null)(Nav);
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

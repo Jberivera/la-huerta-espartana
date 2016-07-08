@@ -25,7 +25,6 @@ const api = {
           if (result) {
             const { providerData } = result;
             // const user = database.ref(`users/${result.uid}`);
-            const inventory = database.ref('inventory');
             isLoged = true;
 
             let newAction = Object.assign({}, action, {
@@ -35,14 +34,7 @@ const api = {
                 uid: result.uid
               }
             });
-
-            inventory.once('value').then(function(snapshot) {
-
-              if (snapshot.val()) {
-                newAction.inventory = snapshot.val();
-              }
-              next(newAction);
-            });
+            next(newAction);
           } else {
             isLoged = false;
             next(Object.assign({}, action, { response: null }));
