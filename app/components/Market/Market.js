@@ -17,7 +17,7 @@ const Market = ({ count, onClick, inventory }) => {
             return (
               <li key={i} className={ css('market-item') }>
                 <p>{item.productName}</p>
-                <p>{`${item.price} ${item.units}`}</p>
+                <p>{`$${item.price.toString().replace(/(\d{3})$/g, '.$1')} ${item.units}`}</p>
               </li>
             );
           })
