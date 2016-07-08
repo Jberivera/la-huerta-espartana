@@ -8,6 +8,9 @@ const initialState = [];
 const actionHandlers = {
   [GET_INVENTORY]: (state, action) => {
     return action.inventory ? [ ...action.inventory ] : state;
+  },
+  '@@router/LOCATION_CHANGE': (state, action) => {
+    return action.inventory ? [ ...action.inventory ] : state;
   }
 };
 

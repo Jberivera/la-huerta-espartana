@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
+import routerLocationChange from './routerLocationChange';
 
 const config = {
   apiKey: "AIzaSyBCvQaUEZxgdxNykfYuTScEU-u4N1SqD8U",
@@ -17,34 +18,7 @@ const facebook = new firebase.auth.FacebookAuthProvider();
 const database = firebase.database();
 
 const api = {
-  '@@router/LOCATION_CHANGE': (function () {
-    let isLoged = false;
-    return function (next, action, state) {
-      if (!isLoged) {
-        auth.onAuthStateChanged(function(result) {
-          if (result) {
-            const { providerData } = result;
-            // const user = database.ref(`users/${result.uid}`);
-            isLoged = true;
-
-            let newAction = Object.assign({}, action, {
-              response: {
-                name: providerData[0].displayName,
-                url: providerData[0].photoURL,
-                uid: result.uid
-              }
-            });
-            next(newAction);
-          } else {
-            isLoged = false;
-            next(Object.assign({}, action, { response: null }));
-          }
-        });
-      } else {
-        next(action);
-      }
-    }
-  }())
+  '@@router/LOCATION_CHANGE': routerLocationChange(database, auth)
 };
 
 function setFireBaseTasks(next, action, store) {
