@@ -1,5 +1,5 @@
 function getPosition(element) {
-  return element.style.position || 'static';
+  return element.style.position || window.getComputedStyle(element).position || 'static';
 }
 
 export function getOffsetTop(element, offset = 0) {

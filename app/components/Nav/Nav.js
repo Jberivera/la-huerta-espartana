@@ -27,7 +27,7 @@ const menu = [
 
 const Nav = ({ pathname, getInventoryAsync }) => {
   return (
-    <div className={ css('nav') } onClick={ unCheckRadios } ref={(elem) => { affix(elem, 1) }}>
+    <div className={ css('nav') } onClick={ unCheckRadios } ref={(elem) => { affix(elem, 1, 63) }}>
       <div className={ css('nav-logo') }>
         <h1 className={ css('nav-title') }>
           La Huerta Espartana
