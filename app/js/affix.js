@@ -11,13 +11,12 @@ export default function affix(element, topReset, top) {
   if (!element) { return };
 
   let toggle = true,
-    offsetTop = getOffsetTop(element);
+    offsetTop = top || getOffsetTop(element);
 
-  top = top || offsetTop;
-  topReset = topReset || top;
+  topReset = topReset || offsetTop;
 
   window.addEventListener('scroll', function() {
-    if (document.body.scrollTop >= top && toggle) {
+    if (document.body.scrollTop >= offsetTop && toggle) {
       toggle = false;
       element.style.position = 'fixed';
       element.style.top = 0;
