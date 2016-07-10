@@ -16,8 +16,12 @@ const Market = ({ count, onClick, inventory }) => {
           inventory.map((item, i) => {
             return (
               <li key={i} className={ css('market-item') }>
-                <p>{item.productName}</p>
-                <p>{`$${item.price.toString().replace(/(\d{3})$/g, '.$1')} ${item.units}`}</p>
+                <div className={ css('item-container') }>
+                  <img src={item.imgUrl} className={ css('item-image') } />
+                  <p className={ css('item-name') }>{item.productName}</p>
+                  <p className={ css('item-price') }>{`$${item.price.toString().replace(/(\d{3})$/g, '.$1')} ${item.units}`}</p>
+                  <div className={ css('add-btn') }>Agregar Producto</div>
+                </div>
               </li>
             );
           })
