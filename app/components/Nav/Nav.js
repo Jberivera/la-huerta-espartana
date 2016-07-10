@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import style from './Nav.scss';
 import classNames from 'classnames/bind';
@@ -25,24 +25,38 @@ const menu = [
   }
 ];
 
-const Nav = ({ pathname, getInventoryAsync }) => {
-  return (
-    <div className={ css('nav') } onClick={ unCheckRadios } ref={(elem) => { affix(elem, 1, 63) }}>
-      <div className={ css('nav-logo') }>
-        <h1 className={ css('nav-title') }>
-          La Huerta Espartana
-        </h1>
-        <Link to="/">
-          <img src="/app/assets/img/logo.png" className={ css('logo-img') }></img>
-        </Link>
+class Nav extends Component {
+  constructor (props) {
+    super(props);
+  }
+
+  affixNav (nav) {
+    if (nav) {
+      affix(nav, 1, 63);
+    }
+  }
+
+  render () {
+    const { pathname, getInventoryAsync } = this.props;
+
+    return (
+      <div className={ css('nav') } onClick={ unCheckRadios } ref={ this.affixNav } >
+        <div className={ css('nav-logo') }>
+          <h1 className={ css('nav-title') }>
+            La Huerta Espartana
+          </h1>
+          <Link to="/">
+            <img src="/app/assets/img/logo.png" className={ css('logo-img') }></img>
+          </Link>
+        </div>
+        <ul className={ css('menu') } >
+          <NavBtn label="Mercado" to="/mercado" btnBackground="/app/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
+        </ul>
+        <Login />
       </div>
-      <ul className={ css('menu') } >
-        <NavBtn label="Mercado" to="/mercado" btnBackground="/app/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
-      </ul>
-      <Login />
-    </div>
-  );
-};
+    );
+  }
+}
 
 function unCheckRadios(e) {
 
