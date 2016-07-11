@@ -32,7 +32,7 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
 
         next(newAction);
       } else {
-        next(Object.assign({}, action, { response: null }));
+        next(Object.assign({}, action, { response: null, inventory: snapshot.val() }));
       }
     });
   });
