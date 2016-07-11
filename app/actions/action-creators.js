@@ -7,9 +7,9 @@ export const addToCar = (item) => (
 );
 
 export const REMOVE_FROM_CAR = 'REMOVE_FROM_CAR';
-export const removeFromCar = (index) => (
+export const removeFromCar = (item) => (
   {
-    type: ADD_TO_CAR,
-    index
+    type: REMOVE_FROM_CAR,
+    item
   }
 );

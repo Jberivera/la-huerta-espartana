@@ -17,16 +17,45 @@ class Market extends Component {
   constructor (props) {
     super(props);
     this.addToCarHandler = this.addToCarHandler.bind(this);
+    this.removeFromCarHandler = this.removeFromCarHandler.bind(this);
   }
 
   addToCarHandler (e) {
-    let item = e.currentTarget.parentNode.getAttribute('data-Item');
+    const oneBtn = e.currentTarget.classList.contains(css('add-one-btn'));
+    let itemContainer, count = 1;
+
+    if (oneBtn) {
+      itemContainer = e.currentTarget.parentNode;
+      itemContainer.classList.add('added');
+    } else {
+      itemContainer = e.currentTarget.parentNode.parentNode;
+    }
+
+    let item = itemContainer.getAttribute('data-item');
     item = JSON.parse(item);
+
+    item.count = oneBtn ? 1: findCount(this.props.cart, item.id) + 1;
+
     this.props.addToCar(item);
   }
 
+  removeFromCarHandler (e) {
+    const itemContainer = e.currentTarget.parentNode.parentNode;
+    let item = itemContainer.getAttribute('data-item');
+    item = JSON.parse(item);
+
+    item.count = findCount(this.props.cart, item.id) - 1;
+
+    if (item.count === 0) {
+      this.props.removeFromCar(item);
+      itemContainer.classList.remove('added');
+    } else {
+      this.props.addToCar(item);
+    }
+  }
+
   render () {
-    const { count, onClick, inventory } = this.props;
+    const { onClick, inventory, cart } = this.props;
 
     return (
       <div className={ css('market') }>
@@ -36,15 +65,20 @@ class Market extends Component {
             inventory.map((item, i) => {
               return (
                 <li key={i} className={ css('market-item') }>
-                  <div className={ css('item-container') }
-                    data-Item={ JSON.stringify({
+                  <div className={ css('item-container', cart.some((cartItem) => cartItem.id === i) ? 'added' : '' ) }
+                    data-item={ JSON.stringify({
                       productName: item.productName,
                       id: i
                     }) }>
                     <img src={item.imgUrl} className={ css('item-image') } />
                     <p className={ css('item-name') }>{item.productName}</p>
                     <p className={ css('item-price') }>{`$${item.price.toString().replace(/(\d{3})$/g, '.$1')} ${item.units}`}</p>
-                    <div className={ css('add-btn') } onClick={ this.addToCarHandler } >Agregar Producto</div>
+                    <div className={ css('add-one-btn') } onClick={ this.addToCarHandler } >Agregar Producto</div>
+                    <div className={ css('add-remove-container') }>
+                      <i className={ css('material-icons', 'cart-btn') } onClick={ this.removeFromCarHandler } >remove_shopping_cart</i>
+                      <span className={ css('cart-count') }>{ findCount(cart, i) }</span>
+                      <i className={ css('material-icons', 'cart-btn') } onClick={ this.addToCarHandler }>add_shopping_cart</i>
+                    </div>
                   </div>
                 </li>
               );
@@ -56,9 +90,16 @@ class Market extends Component {
   }
 }
 
+function findCount(cart, i) {
+  const cartItem = cart.find((cartItem) => cartItem.id === i);
+
+  return cartItem ? cartItem.count : 1;
+}
+
 const mapStateToProps = (state, ownProps) => {
   return {
-    inventory: [ ...state.inventory ]
+    inventory: [ ...state.inventory ],
+    cart: [ ...state.cart ]
   };
 };
 
