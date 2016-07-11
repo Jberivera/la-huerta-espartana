@@ -9,6 +9,7 @@
     height: 260px;
     background: #fff;
     border: 5px solid #F7F7F4;
+    vertical-align: top;
   }
 }
 
@@ -16,6 +17,17 @@
   width: 90%;
   margin: 10px auto 0;
   text-align: center;
+}
+
+.item-container:global(.added) {
+
+  .add-one-btn {
+    display: none;
+  }
+
+  .add-remove-container {
+    display: block;
+  }
 }
 
 .item-image {
@@ -32,8 +44,25 @@
   padding: 5px 0 10px 0;
 }
 
-.add-btn {
+.add-one-btn {
   cursor: pointer;
   padding: 3px;
   background: #5DB89D;
+}
+
+.add-remove-container {
+  -webkit-user-select: none;
+  user-select: none;
+  display: none;
+}
+
+.cart-btn {
+  padding: 3px;
+  cursor: pointer;
+}
+
+.cart-count {
+  vertical-align: top;
+  margin: 0 15px;
+  font-size: 20px;
 }

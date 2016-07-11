@@ -8,13 +8,26 @@ const initialState = [];
 
 const actionHandlers = {
   [ADD_TO_CAR]: (state, action) => {
-    return [
+    const { item } = action;
+    const index = state.findIndex((cartItem) => {
+      return cartItem.productName === item.productName;
+    });
+    return index === -1 ?
+    [
       ...state,
-      action.item
+      item
+    ] :
+    [
+      ...state.slice(0, index),
+      item,
+      ...state.slice(index + 1, state.legth)
     ];
   },
   [REMOVE_FROM_CAR]: (state, action) => {
-    const { index } = action;
+    const { item } = action;
+    const index = state.findIndex((cartItem) => {
+      return cartItem.productName === item.productName;
+    });
     return [
       ...state.slice(0, index),
       ...state.slice(index + 1, state.length)
