@@ -1,0 +1,42 @@
+.title {
+  padding: 50px 0 25px;
+  text-align: center;
+  font-size: 26px;
+}
+
+.item-container {
+  width: 80%;
+  margin: auto;
+}
+
+.item-list {
+  list-style: none;
+}
+
+.col {
+  display: inline-block;
+  padding: 3px;
+}
+
+.product-name {
+  width: 25%;
+}
+
+.count {
+  width: 15%;
+  text-align: center;
+}
+
+.price {
+  width: 20%;
+  text-align: right;
+}
+
+.units {
+  width: 15%;
+}
+
+.total {
+  width: 20%;
+  text-align: right;
+}
