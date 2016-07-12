@@ -12,6 +12,7 @@ import {
 const css = classNames.bind(style);
 
 import Hero from '../Hero/Hero';
+import getCurrency from '../../js/getCurrency';
 
 class Market extends Component {
   constructor (props) {
@@ -72,7 +73,7 @@ class Market extends Component {
                     }) }>
                     <img src={item.imgUrl} className={ css('item-image') } />
                     <p className={ css('item-name') }>{item.productName}</p>
-                    <p className={ css('item-price') }>{`$${item.price.toString().replace(/(\d{3})$/g, '.$1')} ${item.units}`}</p>
+                    <p className={ css('item-price') }>{`$ ${getCurrency(item.price)} ${item.units}`}</p>
                     <div className={ css('add-one-btn') } onClick={ this.addToCarHandler } >Agregar Producto</div>
                     <div className={ css('add-remove-container') }>
                       <i className={ css('material-icons', 'cart-btn') } onClick={ this.removeFromCarHandler } >remove_shopping_cart</i>
