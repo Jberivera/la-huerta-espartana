@@ -15,7 +15,7 @@ import { Login } from '../';
 import Dropdown from './Dropdown';
 import NavBtn from './NavBtn';
 
-import affix from '../../js/affix';
+import affix from '../../js/view/affix';
 
 const menu = [
   {
