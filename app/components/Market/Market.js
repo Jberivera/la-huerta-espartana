@@ -12,7 +12,7 @@ import {
 const css = classNames.bind(style);
 
 import Hero from '../Hero/Hero';
-import getCurrency from '../../js/getCurrency';
+import getCurrency from '../../js/utils/getCurrency';
 
 class Market extends Component {
   constructor (props) {

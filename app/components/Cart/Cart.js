@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 
 const css = classNames.bind(style);
 
-import getCurrency from '../../js/getCurrency';
+import getCurrency from '../../js/utils/getCurrency';
 
 class Cart extends Component {
   constructor (props) {
