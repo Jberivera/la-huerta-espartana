@@ -32,6 +32,9 @@ const actionHandlers = {
       ...state.slice(0, index),
       ...state.slice(index + 1, state.length)
     ];
+  },
+  '@@router/LOCATION_CHANGE': (state, action) => {
+    return action.cart ? [ ...action.cart ] : state;
   }
 };
 
