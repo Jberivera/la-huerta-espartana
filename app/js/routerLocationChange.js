@@ -1,3 +1,4 @@
+import isOnTime from './utils/isOnTime';
 
 export default function routerLocationChange(database, auth) {
   let firstCall = true;
@@ -20,7 +21,8 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
     auth.onAuthStateChanged(function(result) {
       if (result) {
         const { providerData } = result;
-        const cart = localStorage.getItem(result.uid);
+        let storageInfo = localStorage.getItem(result.uid);
+        storageInfo = storageInfo ? JSON.parse(storageInfo) : null;
 
         let newAction = Object.assign({}, action, {
           response: {
@@ -30,7 +32,7 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
           }
         });
         newAction.inventory = snapshot.val();
-        newAction.cart = cart ? JSON.parse(cart) : null;
+        newAction.cart = isOnTime(new Date(storageInfo.date), 60) ? storageInfo.cart : null;
 
         next(newAction);
       } else {

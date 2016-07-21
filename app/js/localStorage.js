@@ -14,7 +14,10 @@ function setLocalStorageCart(next, action, store) {
 
   if (state.user.res) {
     const { uid } = state.user.res;
-    localStorage.setItem(uid, JSON.stringify(state.cart));
+    localStorage.setItem(uid, JSON.stringify({
+      cart: state.cart,
+      date: new Date()
+    }));
   }
 }
 
