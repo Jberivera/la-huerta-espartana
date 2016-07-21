@@ -20,6 +20,7 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
     auth.onAuthStateChanged(function(result) {
       if (result) {
         const { providerData } = result;
+        const cart = localStorage.getItem(result.uid);
 
         let newAction = Object.assign({}, action, {
           response: {
@@ -29,6 +30,7 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
           }
         });
         newAction.inventory = snapshot.val();
+        newAction.cart = cart ? JSON.parse(cart) : null;
 
         next(newAction);
       } else {

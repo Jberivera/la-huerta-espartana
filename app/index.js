@@ -9,6 +9,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import createLogger from 'redux-logger';
 import firebaseMiddleware from './js/api';
+import localStorageMiddleware from './js/localStorage';
 
 // reducers
 import reducers from './reducers';
@@ -22,6 +23,7 @@ const store = createStore(
   applyMiddleware(
     thunk,
     firebaseMiddleware,
+    localStorageMiddleware,
     createLogger()
   )
 );
