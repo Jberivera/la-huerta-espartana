@@ -12,6 +12,8 @@ import {
 const css = classNames.bind(style);
 
 import Hero from '../Hero/Hero';
+import MarketNav from './MarketNav';
+
 import getCurrency from '../../js/utils/getCurrency';
 
 class Market extends Component {
@@ -61,6 +63,7 @@ class Market extends Component {
     return (
       <div className={ css('market') }>
         <Hero backgroundUrl="url(http://artelista.s3.amazonaws.com/obras/big/0/9/7/5913365016626755.jpg)" />
+        <MarketNav />
         <ul className={ css('market-container') }>
           {
             inventory.map((item, i) => {
