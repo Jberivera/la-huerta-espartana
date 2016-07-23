@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 
 const css = classNames.bind(style);
 
-import getCurrency from '../../js/utils/getCurrency';
+import getCurrencyReduceTotal from '../../js/utils/composed/getCurrency-reduceTotal';;
 
 class Cart extends Component {
   constructor (props) {
@@ -45,18 +45,12 @@ class Cart extends Component {
             <span className={ css('count', 'col') }></span>
             <span className={ css('price', 'col') }></span>
             <span className={ css('units', 'col') }></span>
-            <span className={ css('total', 'col') }>{ `$ ${getCurrency(reduceTotal(cart))}` }</span>
+            <span className={ css('total', 'col') }>{ `$ ${getCurrencyReduceTotal(cart)}` }</span>
           </li>
         </ul>
       </div>
     );
   }
-}
-
-function reduceTotal(array) {
-  return array.reduce((a, b) => {
-    return a + b.count * b.price;
-  }, 0);
 }
 
 const mapStateToProps = (state, ownProps) => {
