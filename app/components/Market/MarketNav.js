@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import style from './Market.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router';
@@ -7,13 +8,26 @@ const css = classNames.bind(style);
 
 import ShoppingCartBtn from '../GlobalBtns/ShoppingCartBtn';
 
-function MarketNav () {
+import getTotal from '../../js/utils/composed/getCurrency-reduceTotal';
+
+function MarketNav ({ cart }) {
 
   return (
-    <div className="market-nav">
-      <ShoppingCartBtn />
+    <div className={ css('market-nav') }>
+      <span>{ `$ ${getTotal(cart)}` }</span>
+      <span className={ css('shopping-cart') }>
+        <ShoppingCartBtn />
+      </span>
     </div>
   );
 }
 
-export default MarketNav;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    cart: state.cart.map((item) => {
+      return Object.assign({}, item, state.inventory[item.id]);
+    })
+  };
+};
+
+export default connect(mapStateToProps, null)(MarketNav);
