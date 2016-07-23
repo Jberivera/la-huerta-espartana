@@ -13,9 +13,11 @@ import getTotal from '../../js/utils/composed/getCurrency-reduceTotal';
 function MarketNav ({ cart }) {
 
   return (
-    <div className="market-nav">
-      <ShoppingCartBtn />
+    <div className={ css('market-nav') }>
       <span>{ `$ ${getTotal(cart)}` }</span>
+      <span className={ css('shopping-cart') }>
+        <ShoppingCartBtn />
+      </span>
     </div>
   );
 }

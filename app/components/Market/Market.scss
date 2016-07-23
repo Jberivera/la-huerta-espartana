@@ -67,3 +67,15 @@
   margin: 0 15px;
   font-size: 20px;
 }
+
+.market-nav {
+  position: relative;
+  width: 90%;
+  margin: auto;
+
+  .shopping-cart {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
