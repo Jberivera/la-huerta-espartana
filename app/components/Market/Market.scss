@@ -70,9 +70,13 @@
 
 .market-nav {
   position: relative;
-  width: 90%;
-  margin: auto;
+  width: 100%;
   padding: 5px 0;
+  height: 60px;
+
+  &:global(.affix) + .market-container {
+    margin-top: 80px;
+  }
 
   .filters {
     display: inline-block;
