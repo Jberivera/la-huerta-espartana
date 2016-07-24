@@ -70,12 +70,28 @@
 
 .market-nav {
   position: relative;
-  width: 90%;
-  margin: auto;
+  width: 100%;
+  padding: 5px 0;
+  height: 60px;
+
+  &:global(.affix) + .market-container {
+    margin-top: 80px;
+  }
+
+  .filters {
+    display: inline-block;
+    width: 82%;
+  }
 
   .shopping-cart {
-    position: absolute;
-    right: 0;
-    top: 0;
+    display: inline-block;
+    width: 16%;
+    text-align: right;
+  }
+
+  .total-cart {
+    display: inline-block;
+    vertical-align: top;
+    padding: 6px 5px 0px 5px;
   }
 }

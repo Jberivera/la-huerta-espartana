@@ -7,7 +7,7 @@ import resetInlineStyles from './resetInlineStyles';
  * @param  {Number} top   optional offset top
  * @return {void}
  */
-export default function affix(element, topReset, top) {
+export default function affix(element, top, topReset, fixTop = 0) {
   if (!element) { return };
 
   let toggle = true,
@@ -17,11 +17,13 @@ export default function affix(element, topReset, top) {
 
   window.addEventListener('scroll', function() {
     if (document.body.scrollTop >= offsetTop && toggle) {
+      console.log('true', element);
       toggle = false;
       element.style.position = 'fixed';
-      element.style.top = 0;
+      element.style.top = fixTop;
       element.classList.add('affix');
     } else if (document.body.scrollTop <= topReset && !toggle) {
+      console.log('else', element);
       toggle = true;
       resetInlineStyles(element);
       element.classList.remove('affix');

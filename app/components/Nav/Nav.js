@@ -32,7 +32,7 @@ class Nav extends Component {
 
   affixNav (nav) {
     if (nav) {
-      affix(nav, 1, 63);
+      affix(nav, 63, 1);
     }
   }
 
