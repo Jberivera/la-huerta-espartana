@@ -10,7 +10,7 @@ const css = classNames.bind(style);
 function ShoppingCartBtn ({ cartNumber }) {
 
   return (
-    <Link to="/carrito" className={ css('cart', 'material-icons') }>
+    <Link to="/carrito" className={ css('cart', 'cart-g', 'material-icons') }>
       shopping_cart
       <span className={ css('cart-number') }>{ cartNumber }</span>
     </Link>

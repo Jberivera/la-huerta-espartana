@@ -14,8 +14,11 @@ function MarketNav ({ cart }) {
 
   return (
     <div className={ css('market-nav') }>
-      <span>{ `$ ${getTotal(cart)}` }</span>
+      <span className={ css('filters') }>
+
+      </span>
       <span className={ css('shopping-cart') }>
+        <span className={ css('total-cart') }>{ `$ ${getTotal(cart)}` }</span>
         <ShoppingCartBtn />
       </span>
     </div>

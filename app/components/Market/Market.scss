@@ -72,10 +72,22 @@
   position: relative;
   width: 90%;
   margin: auto;
+  padding: 5px 0;
+
+  .filters {
+    display: inline-block;
+    width: 82%;
+  }
 
   .shopping-cart {
-    position: absolute;
-    right: 0;
-    top: 0;
+    display: inline-block;
+    width: 16%;
+    text-align: right;
+  }
+
+  .total-cart {
+    display: inline-block;
+    vertical-align: top;
+    padding: 6px 5px 0px 5px;
   }
 }
