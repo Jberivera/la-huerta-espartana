@@ -7,7 +7,7 @@ const css = classNames.bind(style);
 const Hero = ({ backgroundUrl }) => {
 
   return (
-    <div className={ css('hero') } style={ { backgroundImage: backgroundUrl || '' } }>
+    <div className={ css('hero', 'hero-g') } style={ { backgroundImage: backgroundUrl || '' } }>
 
     </div>
   );
