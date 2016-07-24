@@ -18,7 +18,7 @@ class MarketNav extends Component {
 
   affixNav (nav) {
     if (nav) {
-      affix(nav, null, null, '55px');
+      affix(nav, 217, null, '60px');
     }
   }
 

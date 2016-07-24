@@ -71,22 +71,25 @@
 .market-nav {
   position: relative;
   width: 100%;
-  padding: 5px 0;
-  height: 60px;
+  height: 50px;
+  text-align: right;
 
   &:global(.affix) + .market-container {
-    margin-top: 80px;
+    margin-top: 70px;
   }
 
   .filters {
     display: inline-block;
-    width: 82%;
+    width: 80%;
+    padding: 5px 0;
   }
 
   .shopping-cart {
     display: inline-block;
-    width: 16%;
+    width: 18%;
     text-align: right;
+    padding: 5px 10px 5px 0;
+    background: #E9E0D6;
   }
 
   .total-cart {
