@@ -17,13 +17,11 @@ export default function affix(element, top, topReset, fixTop = 0) {
 
   window.addEventListener('scroll', function() {
     if (document.body.scrollTop >= offsetTop && toggle) {
-      console.log('true', element);
       toggle = false;
       element.style.position = 'fixed';
       element.style.top = fixTop;
       element.classList.add('affix');
     } else if (document.body.scrollTop <= topReset && !toggle) {
-      console.log('else', element);
       toggle = true;
       resetInlineStyles(element);
       element.classList.remove('affix');
