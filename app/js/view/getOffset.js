@@ -2,15 +2,20 @@ function getPosition(element) {
   return element.style.position || window.getComputedStyle(element).position || 'static';
 }
 
-function setRelative(element) {
-  const position = getPosition(element);
-  if (element.tagName === 'BODY') {
-    return;
+function setRelative(element, callback, offset) {
+
+  return setRelativeRecursion(element);
+
+  function setRelativeRecursion(e) {
+    const position = getPosition(e);
+    if (e.tagName === 'BODY') {
+      return callback(element, offset);
+    }
+    if (position === 'static') {
+      e.style.position = 'relative';
+    }
+    return setRelativeRecursion(e.parentNode);
   }
-  if (position === 'static') {
-    element.style.position = 'relative';
-  }
-  return setRelative(element.parentNode);
 }
 
 function getOffsetTopRecursion(element, offset) {
@@ -29,16 +34,6 @@ function getOffsetLeftRecursion(element, offset) {
   return getOffsetLeftRecursion(element.parentNode, offset);
 }
 
-export function getOffsetTop(element, offset = 0) {
-  setRelative(element);
-  return getOffsetTopRecursion(element, offset);
-}
-
-export function getOffsetLeft(element, offset = 0) {
-  setRelative(element);
-  return getOffsetLeftRecursion(element, offset);
-}
-
 function getOffsetRecursion(element, offset) {
   if (element.tagName === 'BODY') {
     return offset;
@@ -50,7 +45,14 @@ function getOffsetRecursion(element, offset) {
   return getOffsetRecursion(element.parentNode, offset);
 }
 
+export function getOffsetTop(element, offset = 0) {
+  return setRelative(element, getOffsetTopRecursion, offset);
+}
+
+export function getOffsetLeft(element, offset = 0) {
+  return setRelative(element, getOffsetLeftRecursion, offset);
+}
+
 export default function getOffset(element, offset = { left: 0, top: 0 }) {
-  setRelative(element);
-  return getOffsetRecursion(element, offset);
+  return setRelative(element, getOffsetRecursion, offset);
 }
