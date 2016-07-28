@@ -79,7 +79,6 @@
   position: relative;
   width: 100%;
   height: 50px;
-  text-align: right;
   background: #f7f7f4;
 
   // &:global(.affix) {
@@ -93,7 +92,6 @@
   .filters {
     display: inline-block;
     width: 80%;
-    padding: 5px 0;
   }
 
   .shopping-cart {
@@ -108,5 +106,16 @@
     display: inline-block;
     vertical-align: top;
     padding: 6px 5px 0px 5px;
+  }
+
+  .filters-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  .filter {
+    padding: 5px;
   }
 }

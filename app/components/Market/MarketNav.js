@@ -28,7 +28,11 @@ class MarketNav extends Component {
     return (
       <div className={ css('market-nav') } ref={ this.affixNav }>
         <span className={ css('filters') }>
-
+          <div className={ css('filters-container') }>
+            <span className={ css('filter') }>Todos</span>
+            <span className={ css('filter') }>Verduras</span>
+            <span className={ css('filter') }>Granos</span>
+          </div>
         </span>
         <span className={ css('shopping-cart') }>
           <span className={ css('total-cart') }>{ `$ ${getTotal(cart)}` }</span>
