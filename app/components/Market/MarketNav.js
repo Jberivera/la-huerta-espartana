@@ -27,11 +27,11 @@ class MarketNav extends Component {
 
     return (
       <div className={ css('market-nav') } ref={ this.affixNav }>
-        <span className={ css('filters') }>
+        <span className={ css('filters') } onClick={ filterHandler }>
           <div className={ css('filters-container') }>
-            <span className={ css('filter') }>Todos</span>
-            <span className={ css('filter') }>Verduras</span>
-            <span className={ css('filter') }>Granos</span>
+            <span className={ css('filter') } data-filter='all'>Todos</span>
+            <span className={ css('filter') } data-filter='verduras'>Verduras</span>
+            <span className={ css('filter') } data-filter='granos'>Granos</span>
           </div>
         </span>
         <span className={ css('shopping-cart') }>
@@ -41,6 +41,12 @@ class MarketNav extends Component {
       </div>
     );
   }
+}
+
+function filterHandler(e) {
+  const { target } = e;
+  const filterName = target.getAttribute('data-filter');
+  console.log(filterName);
 }
 
 const mapStateToProps = (state, ownProps) => {
