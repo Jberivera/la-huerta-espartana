@@ -58,12 +58,7 @@ class Market extends Component {
   }
 
   render () {
-    const { onClick, cart, filter } = this.props;
-    let { inventory } = this.props;
-
-    if (filter !== 'all') {
-      inventory = inventory.filter((item) => { return item.type === filter });
-    }
+    const { onClick, inventory, cart, filter } = this.props;
 
     return (
       <div className={ css('market') }>
@@ -73,8 +68,8 @@ class Market extends Component {
           {
             inventory.map((item, i) => {
               return (
-                <li key={i} className={ css('market-item') }>
-                  <div className={ css('item-container', cart.some((cartItem) => cartItem.id === i) ? 'added' : '' ) }
+                <li key={i} className={ css('market-item', filter === 'all' || item.type === filter || 'hide') } >
+                  <div className={ css('item-container', cart.some((cartItem) => cartItem.id === i) && 'added') }
                     data-item={ JSON.stringify({
                       productName: item.productName,
                       id: i
