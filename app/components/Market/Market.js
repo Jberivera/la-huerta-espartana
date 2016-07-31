@@ -58,7 +58,12 @@ class Market extends Component {
   }
 
   render () {
-    const { onClick, inventory, cart } = this.props;
+    const { onClick, cart, filter } = this.props;
+    let { inventory } = this.props;
+
+    if (filter !== 'all') {
+      inventory = inventory.filter((item) => { return item.type === filter });
+    }
 
     return (
       <div className={ css('market') }>
@@ -103,7 +108,8 @@ function findCount(cart, i) {
 const mapStateToProps = (state, ownProps) => {
   return {
     inventory: [ ...state.inventory ],
-    cart: [ ...state.cart ]
+    cart: [ ...state.cart ],
+    filter: state.filters
   };
 };
 
