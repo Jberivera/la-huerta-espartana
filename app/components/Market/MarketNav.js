@@ -34,15 +34,15 @@ class MarketNav extends Component {
   }
 
   render () {
-    const { cart, filterChange } = this.props;
+    const { cart, filterChange, filter } = this.props;
 
     return (
       <div className={ css('market-nav') } ref={ this.affixNav }>
         <span className={ css('filters') } onClick={ this.filterHandler }>
           <div className={ css('filters-container') }>
-            <span className={ css('filter') } data-filter='all'>Todos</span>
-            <span className={ css('filter') } data-filter='verduras'>Verduras</span>
-            <span className={ css('filter') } data-filter='granos'>Granos</span>
+            <span className={ css('filter', filter === 'all' && 'active') } data-filter='all'>Todos</span>
+            <span className={ css('filter', filter === 'verduras' && 'active') } data-filter='verduras'>Verduras</span>
+            <span className={ css('filter', filter === 'granos' && 'active') } data-filter='granos'>Granos</span>
           </div>
         </span>
         <span className={ css('shopping-cart') }>
@@ -58,7 +58,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     cart: state.cart.map((item) => {
       return Object.assign({}, item, state.inventory[item.id]);
-    })
+    }),
+    filter: state.filters
   };
 };
 

@@ -133,5 +133,10 @@
     &:first-child {
       margin-left: 3px;
     }
+
+    &.active {
+      background: #555;
+      color: #fff;
+    }
   }
 }
