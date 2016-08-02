@@ -107,15 +107,25 @@
 
   .filters {
     display: inline-block;
-    width: 80%;
+    width: 58%;
+
+    @media (min-width: 640px) {
+      width: 80%;
+    }
   }
 
   .shopping-cart {
     display: inline-block;
-    width: 18%;
+    width: 41%;
     text-align: right;
     padding: 5px 10px 5px 0;
     background: #E9E0D6;
+    float: right;
+
+    @media (min-width: 640px) {
+      width: 18%;
+      float: none;
+    }
   }
 
   .total-cart {
