@@ -41,19 +41,24 @@ $nav-height: 60px;
 .nav-logo {
   display: inline-block;
   height: 100%;
-  max-width: 202px;
+  max-width: 110px;
+
+  @media (min-width: 640px) {
+    max-width: 140px;;
+  }
 
   .logo-img {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    width: 70%;
+    width: 100%;
   }
 }
 
 .nav-title {
   color: #10346b;
   display: inline-block;
+  display: none;
   vertical-align: top;
   position: relative;
   top: 50%;
