@@ -18,22 +18,6 @@ function setRelative(element, callback, offset) {
   }
 }
 
-function getOffsetTopRecursion(element, offset) {
-  if (element.tagName === 'BODY') {
-    return offset;
-  }
-  offset += element.offsetTop;
-  return getOffsetTopRecursion(element.parentNode, offset);
-}
-
-function getOffsetLeftRecursion(element, offset) {
-  if (element.tagName === 'BODY') {
-    return offset;
-  }
-  offset += element.offsetLeft;
-  return getOffsetLeftRecursion(element.parentNode, offset);
-}
-
 function getOffsetRecursion(element, offset) {
   if (element.tagName === 'BODY') {
     return offset;
@@ -46,11 +30,11 @@ function getOffsetRecursion(element, offset) {
 }
 
 export function getOffsetTop(element, offset = 0) {
-  return setRelative(element, getOffsetTopRecursion, offset);
+  return getOffset(element, { left: 0, top: offset }).top;
 }
 
 export function getOffsetLeft(element, offset = 0) {
-  return setRelative(element, getOffsetLeftRecursion, offset);
+  return getOffset(element, { left: offset, top: 0 }).left;
 }
 
 export default function getOffset(element, offset = { left: 0, top: 0 }) {
