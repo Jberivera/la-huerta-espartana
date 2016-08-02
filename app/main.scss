@@ -34,9 +34,8 @@ body {
 
 :global .container {
   position: relative;
-  height: 1000px;
   background: #F7F7F4;
-  min-height: calc(100% - 160px);
+  min-height: 1000px;
 }
 
 :global .btn {
