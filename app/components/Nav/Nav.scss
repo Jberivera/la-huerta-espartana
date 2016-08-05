@@ -67,11 +67,20 @@ $nav-height: 60px;
 }
 
 .menu {
-  display: inline-block;
-  height: 100%;
-  vertical-align: top;
-  width: calc(100% - 355px);
-  padding-left: 30px;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding-left: 0;
+
+  @media (640px) {
+    display: inline-block;
+    position: static;
+    height: 100%;
+    vertical-align: top;
+    width: calc(100% - 355px);
+    padding-left: 30px;
+  }
 }
 
 .menu-item {
