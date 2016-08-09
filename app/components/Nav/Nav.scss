@@ -265,9 +265,9 @@ $nav-height: 60px;
     content: '';
     width: 0;
     height: 2px;
-    top: 50%;
+    top: 100%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     transition: width 0.3s;
     background: #fff;
   }
