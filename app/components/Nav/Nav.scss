@@ -42,7 +42,6 @@ $nav-height: 60px;
   display: inline-block;
   height: 100%;
   max-width: 110px;
-
   @media (min-width: 640px) {
     max-width: 140px;;
   }
@@ -69,10 +68,12 @@ $nav-height: 60px;
 .menu {
   position: absolute;
   width: 100%;
-  top: 0;
+  height: 100vh;
+  top: 100%;
   left: 0;
   padding-left: 0;
-
+  background: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
   @media (min-width: 640px) {
     display: inline-block;
     position: static;
@@ -80,14 +81,18 @@ $nav-height: 60px;
     vertical-align: top;
     width: calc(100% - 355px);
     padding-left: 30px;
+    background: transparent;
   }
 }
 
 .menu-item {
   position: relative;
-  display: inline-block;
-  height: 100%;
   list-style-type: none;
+  text-align: center;
+  @media (min-width: 640px) {
+    display: inline-block;
+    height: 100%;
+  }
 
   input[type='checkbox'], input[type='radio'] {
     display: none;
@@ -95,9 +100,8 @@ $nav-height: 60px;
 }
 
 .active {
-
-  & .menu-label .menu-label-btn {
-    background: #eee;
+  & .label-name:before {
+    width: 50%;
   }
 }
 
@@ -151,23 +155,34 @@ $nav-height: 60px;
 
   &.btn {
     position: relative;
-    margin: 0 5px;
     height: 100%;
+    width: 100%;
     text-align: center;
+    @media (min-width: 640px) {
+      width: auto;
+      margin: 0 5px;
+    }
   }
 }
 
 .menu-label-dropdown, .menu-label-btn {
   display: inline-block;
-  padding: 10px;
-  height: 100%;
-  color: inherit;
-  font-weight: bold;
+  padding: 10px 0;
+  width: 80%;
   text-decoration: none;
+  font-weight: bold;
+  color: inherit;
+  @media (min-width: 640px) {
+    height: 100%;
+    width: auto;
+  }
 }
 
 .menu-label-btn {
-  min-width: 150px;
+
+  @media (min-width: 640px) {
+    min-width: 150px;
+  }
 }
 
 .menu-label-dropdown {
@@ -179,24 +194,30 @@ $nav-height: 60px;
 
 .menu-label-btn:hover {
 
-  & .btn-slide {
-    bottom: calc(100% - 3px);
-    transition: bottom .25s;
-  }
+  @media (min-width: 640px) {
+    & .btn-slide {
+      bottom: calc(100% - 3px);
+      transition: bottom .25s;
+    }
 
-  & .label-name {
-    color: #fff;
+    & .label-name {
+      color: #fff;
+    }
   }
 }
 
 .btn-slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  bottom: 0;
-  left: 0;
-  background: #fff;
-  transition: bottom .1s linear;
+  display: none;
+  @media (min-width: 640px) {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    transition: bottom .1s linear;
+  }
 
   &:before {
     content: '';
@@ -210,18 +231,44 @@ $nav-height: 60px;
 }
 
 .btn-background {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: #AAA;
-  object-fit: cover;
+  display: none;
+  @media (min-width: 640px) {
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #aaa;
+    object-fit: cover;
+  }
 }
 
 .label-name {
   position: relative;
-  transition: color .1s;
-  top: 50%;
-  transform: translateY(-50%);
+  color: #fff;
+  letter-spacing: 1px;
+  @media(min-width: 640px) {
+    color: inherit;
+    letter-spacing: normal;
+    transition: color .1s;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &:before {
+      display: none;
+    }
+  }
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s;
+    background: #fff;
+  }
 }
