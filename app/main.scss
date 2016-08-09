@@ -18,10 +18,6 @@ html, body {
   font-family: 'Oswald' sans-serif;
 }
 
-body {
-  background: #fff;
-}
-
 :global .app {
   height: 100%;
 }
@@ -34,7 +30,7 @@ body {
 
 :global .container {
   position: relative;
-  background: #F7F7F4;
+  background: #fafafa;
   min-height: 1000px;
 }
 
