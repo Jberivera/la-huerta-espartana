@@ -71,7 +71,7 @@ $nav-height: 60px;
   height: 100vh;
   top: 100%;
   left: 0;
-  padding-left: 0;
+  padding: 50px 0 0 0;
   background: rgba(0, 0, 0, 0.6);
   overflow: hidden;
   @media (min-width: 640px) {
@@ -81,6 +81,7 @@ $nav-height: 60px;
     vertical-align: top;
     width: calc(100% - 355px);
     padding-left: 30px;
+    padding: 0 0 0 30px;
     background: transparent;
   }
 }
