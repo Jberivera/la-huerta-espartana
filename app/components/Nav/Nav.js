@@ -12,7 +12,6 @@ import {
 const css = classNames.bind(style);
 
 import { Login } from '../';
-import Dropdown from './Dropdown';
 import NavBtn from './NavBtn';
 
 import affix from '../../js/view/affix';
@@ -49,10 +48,10 @@ class Nav extends Component {
             <img src="/app/assets/img/logo.png" className={ css('logo-img') }></img>
           </Link>
         </div>
+        <Login />
         <ul className={ css('menu') } >
           <NavBtn label="Mercado" to="/mercado" btnBackground="/app/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
         </ul>
-        <Login />
       </div>
     );
   }
