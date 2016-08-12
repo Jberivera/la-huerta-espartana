@@ -48,8 +48,11 @@ class Nav extends Component {
             <img src="/app/assets/img/logo.png" className={ css('logo-img') }></img>
           </Link>
         </div>
-        <Login />
         <ul className={ css('menu') } >
+          {/*<li className={ css('menu-item')} >
+
+          </li>*/}
+          <Login />
           <NavBtn label="Mercado" to="/mercado" btnBackground="/app/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
         </ul>
       </div>

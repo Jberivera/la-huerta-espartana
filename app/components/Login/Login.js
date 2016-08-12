@@ -46,7 +46,7 @@ class Login extends Component {
     }
 
     return (
-      <div className={ css('login') }>
+      <li className={ css('login') }>
         <input type="radio" className={ css('status-check') } name="nav-menu-dropdown" id="status" />
         <label className={ css('status') } htmlFor="status" data-uncheck>
           <i className={ css('account-circle', 'material-icons')}
@@ -63,7 +63,7 @@ class Login extends Component {
                 onFacebookOut={ this.onFacebookOut } />
           }
         </div>
-      </div>
+      </li>
     );
   }
 };
