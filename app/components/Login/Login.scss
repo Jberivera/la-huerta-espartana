@@ -29,8 +29,11 @@
   position: relative;
   cursor: pointer;
   height: 100%;
-  padding: 10px 15% 5px 15%;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0 5px 0;
   @media (min-width: 640px) {
+    width: auto;
     padding: 0;
   }
 }
