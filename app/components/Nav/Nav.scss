@@ -92,6 +92,12 @@ $nav-height: 60px;
     height: 100%;
   }
 
+  &.home-btn {
+    @media (min-width: 640px) {
+      display: none;
+    }
+  }
+
   input[type='checkbox'], input[type='radio'] {
     display: none;
   }

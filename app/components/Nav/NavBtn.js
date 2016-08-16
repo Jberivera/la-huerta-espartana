@@ -5,14 +5,14 @@ import { Link } from 'react-router';
 
 const css = classNames.bind(style);
 
-function NavBtn({ label, checked, to, pathname, btnBackground, onClick }) {
+function NavBtn({ label, checked, to, pathname, btnBackground, onClick, className }) {
 
   function onClickHandler() {
     onClick();
   }
 
   return (
-    <li className={ css('menu-item', pathname ? 'active' : null) } onClick={ onClickHandler }>
+    <li className={ css('menu-item', className, pathname ? 'active' : null) } onClick={ onClickHandler }>
       <label className={ css('menu-label', 'btn') }>
         <Link to={ to } className={ css('menu-label-btn') }>
           { btnBackground ?

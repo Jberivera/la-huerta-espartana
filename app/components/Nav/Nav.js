@@ -18,6 +18,10 @@ import affix from '../../js/view/affix';
 
 const menu = [
   {
+    label: 'Home',
+    to: '/'
+  },
+  {
     label: 'Mercado',
     to: '/mercado',
     btnBackground: '/app/assets/img/aqua.gif'
@@ -49,10 +53,8 @@ class Nav extends Component {
           </Link>
         </div>
         <ul className={ css('menu') } >
-          {/*<li className={ css('menu-item')} >
-
-          </li>*/}
           <Login />
+          <NavBtn label="Home" to="/" btnBackground="" pathname={ pathname === '/' } className="home-btn" />
           <NavBtn label="Mercado" to="/mercado" btnBackground="/app/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
         </ul>
       </div>
