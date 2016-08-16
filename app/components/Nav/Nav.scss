@@ -71,7 +71,7 @@ $nav-height: 60px;
   height: 100vh;
   top: 100%;
   left: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   @media (min-width: 640px) {
     display: inline-block;
     position: static;
@@ -105,7 +105,7 @@ $nav-height: 60px;
 
 .active {
   & .label-name:before {
-    width: 50%;
+    width: 70%;
   }
 }
 
