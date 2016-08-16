@@ -8,7 +8,9 @@ const css = classNames.bind(style);
 function NavBtn({ label, checked, to, pathname, btnBackground, onClick, className }) {
 
   function onClickHandler() {
-    onClick();
+    if (typeof onClick === 'function') {
+      onClick();
+    }
   }
 
   return (

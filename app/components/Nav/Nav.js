@@ -13,6 +13,7 @@ const css = classNames.bind(style);
 
 import { Login } from '../';
 import NavBtn from './NavBtn';
+import Hamburger from './Hamburger';
 
 import affix from '../../js/view/affix';
 
@@ -57,6 +58,7 @@ class Nav extends Component {
           <NavBtn label="Home" to="/" btnBackground="" pathname={ pathname === '/' } className="home-btn" />
           <NavBtn label="Mercado" to="/mercado" btnBackground="/app/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
         </ul>
+        <Hamburger />
       </div>
     );
   }

@@ -71,7 +71,7 @@ $nav-height: 60px;
   height: 100vh;
   top: 100%;
   left: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.8);
   @media (min-width: 640px) {
     display: inline-block;
     position: static;
@@ -274,5 +274,12 @@ $nav-height: 60px;
     transform: translateX(-50%);
     transition: width 0.3s;
     background: #fff;
+  }
+}
+
+.hamburger {
+  float: right;
+  &__lines {
+
   }
 }
