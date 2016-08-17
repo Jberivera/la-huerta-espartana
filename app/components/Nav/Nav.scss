@@ -19,9 +19,12 @@ $nav-height: 60px;
   width: 100%;
   color: #555;
   white-space: nowrap;
-  padding: 0 20px 0 20px;
+  padding: 0 0 0 20px;
   z-index: 10;
   background: #fff;
+  @media (min-width: 640px) {
+    padding: 0 20px 0 20px;
+  }
 
   *, *::before, *::after {
     -webkit-user-select: none;
@@ -279,7 +282,35 @@ $nav-height: 60px;
 
 .hamburger {
   float: right;
-  &__lines {
+  height: 100%;
+  padding: 10px 20px;
+  @media (min-width: 640px) {
+    display: none;
+  }
 
+  &__lines {
+    position: relative;
+    display: inline-block;
+    width: 22px;
+    height: 3px;
+    background: #555;
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      display: inline-block;
+      width: 22px;
+      height: 3px;
+      background: #555;
+    }
+
+    &:before {
+      top: -6px;
+    }
+
+    &:after {
+      top: 6px;
+    }
   }
 }
