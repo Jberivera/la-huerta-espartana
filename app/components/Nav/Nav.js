@@ -53,12 +53,13 @@ class Nav extends Component {
             <img src="/app/assets/img/logo.png" className={ css('logo-img') }></img>
           </Link>
         </div>
+        <input type="checkbox" id="hamburger" className={ css('hamburger-toggle', 'hidden') } />
+        <Hamburger />
         <ul className={ css('menu') } >
           <Login />
           <NavBtn label="Home" to="/" btnBackground="" pathname={ pathname === '/' } className="home-btn" />
           <NavBtn label="Mercado" to="/mercado" btnBackground="/app/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
         </ul>
-        <Hamburger />
       </div>
     );
   }

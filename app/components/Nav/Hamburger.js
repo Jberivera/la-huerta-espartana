@@ -8,9 +8,9 @@ const css = classNames.bind(style);
 function Hamburger() {
 
   return (
-    <button className={ css('hamburger') }>
+    <label className={ css('hamburger') } htmlFor="hamburger">
       <span className={ css('hamburger__lines') }></span>
-    </button>
+    </label>
   );
 }
 

@@ -69,6 +69,7 @@ $nav-height: 60px;
 }
 
 .menu {
+  display: none;
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -99,10 +100,6 @@ $nav-height: 60px;
     @media (min-width: 640px) {
       display: none;
     }
-  }
-
-  input[type='checkbox'], input[type='radio'] {
-    display: none;
   }
 }
 
@@ -311,6 +308,16 @@ $nav-height: 60px;
 
     &:after {
       top: 6px;
+    }
+  }
+}
+
+.hamburger-toggle {
+
+  &:checked ~ {
+
+    & .menu {
+      display: block;
     }
   }
 }

@@ -7,7 +7,7 @@ const css = classNames.bind(style);
 function Dropdown({ label, children }) {
   return (
     <li className={ css('menu-item') }>
-      <input type="radio" className={ css('status-check') } name="nav-menu-dropdown" id={`dropdown-${label}`} />
+      <input type="radio" className={ css('status-check', 'hidden') } name="nav-menu-dropdown" id={`dropdown-${label}`} />
       <label className={ css('menu-label', 'drp') } data-uncheck htmlFor={`dropdown-${label}`}>
         <span className={ css('menu-label-dropdown') }>{ label }</span>
       </label>
