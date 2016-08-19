@@ -291,6 +291,7 @@ $nav-height: 60px;
     width: 22px;
     height: 3px;
     background: #555;
+    transition: background 0.25s;
 
     &:before, &:after {
       content: '';
@@ -300,6 +301,8 @@ $nav-height: 60px;
       width: 22px;
       height: 3px;
       background: #555;
+      transition: transform 0.25s;
+      transform-origin: 10%;
     }
 
     &:before {
@@ -315,6 +318,21 @@ $nav-height: 60px;
 .hamburger-toggle {
 
   &:checked ~ {
+
+    & .hamburger {
+
+      .hamburger__lines {
+        background: transparent;
+
+        &:before {
+          transform: rotate(45deg);
+        }
+
+        &:after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
 
     & .menu {
       display: block;
