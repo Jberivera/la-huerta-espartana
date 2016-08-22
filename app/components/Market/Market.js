@@ -68,7 +68,7 @@ class Market extends Component {
           {
             inventory.map((item, i) => {
               return (
-                <li key={i} className={ css('market__item', filter === 'all' || item.type === filter || 'hide') } >
+                <li key={i} className={ css('market__item', filter === 'all' || item.type === filter || 'market__item--hide') } >
                   <div className={ css('market__item-group', cart.some((cartItem) => cartItem.id === i) && 'added') }
                     data-item={ JSON.stringify({
                       productName: item.productName,

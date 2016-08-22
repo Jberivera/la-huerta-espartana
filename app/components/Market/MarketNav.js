@@ -40,9 +40,9 @@ class MarketNav extends Component {
       <div className={ css('market__nav') } ref={ this.affixNav }>
         <span className={ css('market__filters') } onClick={ this.filterHandler }>
           <div className={ css('market__filters-container') }>
-            <span className={ css('market__filter', filter === 'all' && 'active') } data-filter='all'>Todos</span>
-            <span className={ css('market__filter', filter === 'verduras' && 'active') } data-filter='verduras'>Verduras</span>
-            <span className={ css('market__filter', filter === 'granos' && 'active') } data-filter='granos'>Granos</span>
+            <span className={ css('market__filter', filter === 'all' && 'market__filter--active') } data-filter='all'>Todos</span>
+            <span className={ css('market__filter', filter === 'verduras' && 'market__filter--active') } data-filter='verduras'>Verduras</span>
+            <span className={ css('market__filter', filter === 'granos' && 'market__filter--active') } data-filter='granos'>Granos</span>
           </div>
         </span>
         <span className={ css('market__shopping-cart') }>

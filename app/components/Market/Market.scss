@@ -1,4 +1,5 @@
 .market {
+
   :global(.hero-g) {
     height: 216px;
     padding: 0;
@@ -29,7 +30,7 @@
       width: 25%;
     }
 
-    &.hide {
+    &--hide {
       position: absolute;
       opacity: 0;
       visibility: hidden;
@@ -151,7 +152,7 @@
       margin-left: 3px;
     }
 
-    &.active {
+    &--active {
       background: #555;
       color: #fff;
     }
