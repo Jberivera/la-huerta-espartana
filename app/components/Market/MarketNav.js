@@ -37,16 +37,16 @@ class MarketNav extends Component {
     const { cart, filterChange, filter } = this.props;
 
     return (
-      <div className={ css('market-nav') } ref={ this.affixNav }>
-        <span className={ css('filters') } onClick={ this.filterHandler }>
-          <div className={ css('filters-container') }>
-            <span className={ css('filter', filter === 'all' && 'active') } data-filter='all'>Todos</span>
-            <span className={ css('filter', filter === 'verduras' && 'active') } data-filter='verduras'>Verduras</span>
-            <span className={ css('filter', filter === 'granos' && 'active') } data-filter='granos'>Granos</span>
+      <div className={ css('market__nav') } ref={ this.affixNav }>
+        <span className={ css('market__filters') } onClick={ this.filterHandler }>
+          <div className={ css('market__filters-container') }>
+            <span className={ css('market__filter', filter === 'all' && 'active') } data-filter='all'>Todos</span>
+            <span className={ css('market__filter', filter === 'verduras' && 'active') } data-filter='verduras'>Verduras</span>
+            <span className={ css('market__filter', filter === 'granos' && 'active') } data-filter='granos'>Granos</span>
           </div>
         </span>
-        <span className={ css('shopping-cart') }>
-          <span className={ css('total-cart') }>{ `$ ${getTotal(cart)}` }</span>
+        <span className={ css('market__shopping-cart') }>
+          <span className={ css('market__total-cart') }>{ `$ ${getTotal(cart)}` }</span>
           <ShoppingCartBtn />
         </span>
       </div>
