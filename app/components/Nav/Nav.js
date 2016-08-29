@@ -25,7 +25,7 @@ const menu = [
   {
     label: 'Mercado',
     to: '/mercado',
-    btnBackground: '/app/assets/img/aqua.gif'
+    btnBackground: '/assets/img/aqua.gif'
   }
 ];
 
@@ -50,7 +50,7 @@ class Nav extends Component {
             La Huerta Espartana
           </h1>
           <Link to="/">
-            <img src="/app/assets/img/logo.png" className={ css('logo-img') }></img>
+            <img src="/assets/img/logo.png" className={ css('logo-img') }></img>
           </Link>
         </div>
         <input type="checkbox" id="hamburger" className={ css('hamburger-toggle', 'hidden') } />
@@ -58,7 +58,7 @@ class Nav extends Component {
         <ul className={ css('menu') } >
           <Login />
           <NavBtn label="Home" to="/" btnBackground="" pathname={ pathname === '/' } className="home-btn" />
-          <NavBtn label="Mercado" to="/mercado" btnBackground="/app/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
+          <NavBtn label="Mercado" to="/mercado" btnBackground="/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
         </ul>
       </div>
     );

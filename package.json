@@ -7,7 +7,9 @@
     "test:watch": "karma start karma.config.js --auto-watch --no-single-run",
     "test": "karma start karma.config.js --no-auto-watch --single-run",
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "start": "node server.js",
+    "deploy": "npm run build && npm start"
   },
   "keywords": [
     "webpack",
@@ -26,6 +28,7 @@
     "css-loader": "^0.24.0",
     "enzyme": "^2.4.1",
     "expect": "^1.20.2",
+    "express": "^4.14.0",
     "isparta-instrumenter-loader": "^1.0.1",
     "karma": "^1.2.0",
     "karma-coverage": "^1.1.1",

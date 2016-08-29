@@ -37,7 +37,7 @@ const common = {
 };
 
 module.exports = merge(common, {
-  start: {
+  dev: {
     devtool: 'eval-source-map',
     devServer: {
       historyApiFallback: true,
@@ -53,6 +53,13 @@ module.exports = merge(common, {
     ]
   },
   build: {
-
+    plugins: [
+      new webpack.DefinePlugin({
+          'process.env': {
+            'NODE_ENV': '"production"'
+          }
+      }),
+      new webpack.optimize.UglifyJsPlugin()
+    ]
   }
 }[TARGET]);
