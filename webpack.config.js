@@ -30,10 +30,7 @@ const common = {
         include: PATHS.app
       }
     ]
-  },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin()
-  ]
+  }
 };
 
 module.exports = merge(common, {
