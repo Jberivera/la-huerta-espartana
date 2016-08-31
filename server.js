@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 
 const TEMPLATE = fs.readFileSync('./index.html', { encoding: 'utf8' });
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -14,6 +15,6 @@ app.get('*', function (req, res) {
   );
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(PORT, function () {
+  console.log(`Example app listening on port ${PORT}!`);
 });
