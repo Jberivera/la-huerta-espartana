@@ -7,26 +7,27 @@ const TARGET = process.env.npm_lifecycle_event;
 const DEFAULT_PORT = process.env.PORT || 3000;
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'dist')
+  dist: path.join(__dirname, 'dist'),
+  build: path.join(__dirname, 'build')
 };
 
 const common = {
   entry: PATHS.app,
   output: {
-    path: PATHS.build,
+    path: PATHS.dist,
     filename: 'js/main.js',
     publicPath: '/dist/'
   },
   module: {
     loaders: [
       {
-        test: /\.scss$/,
-        loader: 'style!css?sourceMap&modules!postcss!sass?sourceMap',
+        test: /\.js$/,
+        loaders: ['babel?cacheDirectory'],
         include: PATHS.app
       },
       {
-        test: /\.js$/,
-        loaders: ['babel?cacheDirectory'],
+        test: /\.scss$/,
+        loader: 'style!css?sourceMap&modules!postcss!sass?sourceMap',
         include: PATHS.app
       }
     ]
@@ -51,12 +52,15 @@ module.exports = merge(common, {
   },
   build: {
     plugins: [
-      new webpack.DefinePlugin({
-          'process.env': {
-            'NODE_ENV': '"production"'
-          }
-      }),
+      new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': '"production"' }}),
       new webpack.optimize.UglifyJsPlugin()
     ]
+  },
+  'build:node': {
+    target: 'node',
+    output: {
+      path: PATHS.build,
+      filename: 'js/main.js'
+    },
   }
 }[TARGET]);
