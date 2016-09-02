@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const path = require('path');
 const merge = require('webpack-merge');
@@ -51,8 +52,23 @@ module.exports = merge(common, {
     ]
   },
   build: {
+    module: {
+      loaders: [
+        {
+          test: /\.js$/,
+          loaders: ['babel?cacheDirectory'],
+          include: PATHS.app
+        },
+        {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract('style!css?modules!postcss!sass', 'css?modules!postcss!sass'),
+          include: PATHS.app
+        }
+      ]
+    },
     plugins: [
       new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': '"production"' }}),
+      new ExtractTextPlugin('dist/css/[name].css?[hash]-[chunkhash]-[contenthash]-[name]', { allChunks: true }),
       new webpack.optimize.UglifyJsPlugin()
     ]
   },
