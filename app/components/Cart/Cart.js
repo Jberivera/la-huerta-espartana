@@ -21,31 +21,31 @@ class Cart extends Component {
         <div className={ css('title') }>{ cart.length ? 'Estos son sus articulos' : 'No hay nada en el carrito' }</div>
         <ul className={ css('item-container') }>
           <li className={ css('item-list') }>
-            <span className={ css('product-name', 'col') }>Producto</span>
-            <span className={ css('count', 'col') }>Cantidad</span>
-            <span className={ css('price', 'col') }></span>
-            <span className={ css('units', 'col') }>Precio</span>
-            <span className={ css('total', 'col') }>Total</span>
+            <div className={ css('product-name', 'col') }>Producto</div>
+            <div className={ css('count', 'col') }>Cantidad</div>
+            <div className={ css('price', 'col') }></div>
+            <div className={ css('units', 'col') }>Precio</div>
+            <div className={ css('total', 'col') }>Total</div>
           </li>
           {
             cart.map((item, i) => {
               return (
                 <li key={ i } className={ css('item-list') }>
-                  <span className={ css('product-name', 'col') }>{ item.productName }</span>
-                  <span className={ css('count', 'col') }>{ item.count }</span>
-                  <span className={ css('price', 'col') }>{ `${item.price.toString().replace(/(\d{3})$/g, '.$1')}` }</span>
-                  <span className={ css('units', 'col') }>{ item.units }</span>
-                  <span className={ css('total', 'col') }>{ item.price * item.count }</span>
+                  <div className={ css('product-name', 'col') }>{ item.productName }</div>
+                  <div className={ css('count', 'col') }>{ item.count }</div>
+                  <div className={ css('price', 'col') }>{ `${item.price.toString().replace(/(\d{3})$/g, '.$1')}` }</div>
+                  <div className={ css('units', 'col') }>{ item.units }</div>
+                  <div className={ css('total', 'col') }>{ item.price * item.count }</div>
                 </li>
               );
             })
           }
           <li className={ css('item-list') }>
-            <span className={ css('product-name', 'col') }>Total</span>
-            <span className={ css('count', 'col') }></span>
-            <span className={ css('price', 'col') }></span>
-            <span className={ css('units', 'col') }></span>
-            <span className={ css('total', 'col') }>{ `$ ${getTotal(cart)}` }</span>
+            <div className={ css('product-name', 'col') }>Total</div>
+            <div className={ css('count', 'col') }></div>
+            <div className={ css('price', 'col') }></div>
+            <div className={ css('units', 'col') }></div>
+            <div className={ css('total', 'col') }>{ `$ ${getTotal(cart)}` }</div>
           </li>
         </ul>
       </div>
