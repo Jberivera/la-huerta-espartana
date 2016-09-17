@@ -6,17 +6,18 @@ import { bindActionCreators } from 'redux';
 
 const css = classNames.bind(style);
 
+import MonthTable from './MonthTable';
+
 class DatePick extends Component {
   constructor (props) {
     super(props);
   }
 
   render () {
-    const { cart } = this.props;
 
     return (
       <div className={ css('date') }>
-        Date
+        <MonthTable />
       </div>
     );
   }
