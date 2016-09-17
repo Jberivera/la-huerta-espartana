@@ -17,9 +17,12 @@ class Cart extends Component {
   render () {
     const { cart } = this.props;
 
+    if (!cart.length) return (<div className={ css('cart') }><h1 className={ css('cart__header') }>Carrito</h1></div>);
+
     return (
       <div className={ css('cart') }>
-        <div className={ css('cart__title') }>{ cart.length ? 'Estos son sus articulos' : 'No hay nada en el carrito' }</div>
+        <h1 className={ css('cart__header') }>Carrito</h1>
+        <div className={ css('cart__message') }>{ 'Revise sus articulos y seleccione una fecha de entrega' }</div>
         <ul className={ css('cart__item-container') }>
           <li className={ css('cart__item-list') }>
             <div className={ css('cart__product-name', 'cart--col') }>Producto</div>

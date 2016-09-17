@@ -1,8 +1,29 @@
 .cart {
-  &__title {
-    padding: 50px 0 25px;
+  padding: 1px 0;
+
+  &__header {
+    position: relative;
+    margin-top: 50px;
+    padding-bottom: 20px;
     text-align: center;
-    font-size: 26px;
+    font-size: 30px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 50%;
+      height: 1px;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, .2);
+    }
+  }
+
+  &__message {
+    margin: 20px 0 25px;
+    text-align: center;
+    font-size: 24px;
   }
 
   &__item-container {
