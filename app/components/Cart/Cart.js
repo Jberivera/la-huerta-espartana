@@ -20,9 +20,6 @@ class Cart extends Component {
     return (
       <div className={ css('cart') }>
         <div className={ css('cart__title') }>{ cart.length ? 'Estos son sus articulos' : 'No hay nada en el carrito' }</div>
-        <div className={ css('cart__date-picker') }>
-          <DatePick />
-        </div>
         <ul className={ css('cart__item-container') }>
           <li className={ css('cart__item-list') }>
             <div className={ css('cart__product-name', 'cart--col') }>Producto</div>
@@ -52,6 +49,9 @@ class Cart extends Component {
             <div className={ css('cart__total', 'cart--col') }>{ `$ ${getTotal(cart)}` }</div>
           </li>
         </ul>
+        <div className={ css('cart__date-picker') }>
+          <DatePick />
+        </div>
       </div>
     );
   }
