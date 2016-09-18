@@ -9,7 +9,7 @@ const css = classNames.bind(style);
 import getTotal from '../../js/utils/composed/getCurrency-reduceTotal';
 import DatePick from '../DatePick/DatePick';
 
-import { getDate } from '../../js/view/datepicker';
+import { getDate, setInputValue } from '../../js/view/datepicker';
 
 class Cart extends Component {
   constructor (props) {
@@ -55,7 +55,7 @@ class Cart extends Component {
           <DatePick date={ this.date } />
           <div className={ css('cart__date-mobile') }>
             <label className={ css('cart__date-label') }>Seleccione una fecha de entrega</label>
-            <input className={ css('cart__date-input') } type="date" defaultValue={ this.date.timeString } />
+            <input className={ css('cart__date-input') } type="date" defaultValue={ setInputValue(this.date) } />
           </div>
         </div>
       </div>

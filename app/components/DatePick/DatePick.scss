@@ -6,10 +6,36 @@
   &__month-table {
     display: none;
     width: 210px;
-    height: 130px;
-    background: green;
+    height: 185px;
+    background: #fff;
+    border: solid 1px #dcdcdc;
     @media (min-width: 768px) {
       display: block;
     }
+  }
+
+  &__header {
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    background: #588C73;
+    padding: 5px;
+  }
+
+  &__day {
+    border-bottom: 1px solid #000;
+  }
+
+  &--col {
+    display: inline-block;
+    text-align: center;
+    width: calc(100% / 7);
+    font-size: 14px;
+    list-style-type: none;
+  }
+
+  &--active {
+    color: #fff;
+    background: #588C73;
   }
 }

@@ -7,13 +7,34 @@ import { Link } from 'react-router';
 
 const css = classNames.bind(style);
 
-import { isLeapYear, getNumberOfDays } from '../../js/view/datepicker';
-
-function ShoppingCartBtn () {
+function MonthTable ({ month, year, day, monthDays, startOfWeek }) {
 
   return (
     <div className={ css('date__month-table') }>
-      <div className={ css('cosiaco') }></div>
+      <div className={ css('date__header') }>{ `${month} ${year}` }</div>
+      <ul className={ css('date__day-container') }>
+        <li className={ css('date__day', 'date--col') }>L</li>
+        <li className={ css('date__day', 'date--col') }>M</li>
+        <li className={ css('date__day', 'date--col') }>W</li>
+        <li className={ css('date__day', 'date--col') }>J</li>
+        <li className={ css('date__day', 'date--col') }>V</li>
+        <li className={ css('date__day', 'date--col') }>S</li>
+        <li className={ css('date__day', 'date--col') }>D</li>
+        {
+          Array.apply(null, { length: startOfWeek - 1 }).map((_, i) => {
+            return (
+              <li key={`empty${i}`} className={ css('date--col') }></li>
+            );
+          })
+        }
+        {
+          Array.apply(null, { length: monthDays }).map((_, i) => {
+            return (
+              <li key={i} className={ css('date--col', i === day && 'date--active') }>{ i + 1 }</li>
+            );
+          })
+        }
+      </ul>
     </div>
   );
 }
@@ -24,4 +45,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(null, null)(ShoppingCartBtn);
+export default connect(null, null)(MonthTable);
