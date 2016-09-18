@@ -22,7 +22,13 @@ class DatePick extends Component {
 
     return (
       <div className={ css('date') }>
-        <MonthTable month={ getMonthString(date) } year={ year } day={ day } monthDays={ getNumberOfDays(year, month) } startOfWeek={ getFirstDayOfWeek(year, month) } />
+        <MonthTable
+          month={ month }
+          year={ year }
+          day={ day }
+          monthString={ getMonthString(date) }
+          monthDays={ getNumberOfDays(year, month) }
+          startOfWeek={ getFirstDayOfWeek(year, month) } />
       </div>
     );
   }
