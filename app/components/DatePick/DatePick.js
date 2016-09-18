@@ -14,6 +14,7 @@ class DatePick extends Component {
   }
 
   render () {
+    const { date } = this.props;
 
     return (
       <div className={ css('date') }>

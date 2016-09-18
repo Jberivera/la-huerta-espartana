@@ -7,6 +7,8 @@ import { Link } from 'react-router';
 
 const css = classNames.bind(style);
 
+import { isLeapYear, getNumberOfDays } from '../../js/view/datepicker';
+
 function ShoppingCartBtn () {
 
   return (
