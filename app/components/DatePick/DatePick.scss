@@ -6,8 +6,12 @@
   margin: auto;
 
   &__month-table {
+    display: none;
     width: 100px;
     height: 100px;
     background: green;
+    @media (min-width: 640px) {
+      display: block;
+    }
   }
 }

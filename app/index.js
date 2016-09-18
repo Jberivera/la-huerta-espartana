@@ -34,12 +34,12 @@ const history = syncHistoryWithStore(browserHistory, store);
 import { Root, Home, Market, Cart } from './components';
 
 const App = (props) => (
-  <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={Root}>
-        <IndexRoute component={Home} />
-        <Route path="/mercado" component={Market} />
-        <Route path="/carrito" component={Cart} />
+  <Provider store={ store }>
+    <Router history={ history }>
+      <Route path="/" component={ Root }>
+        <IndexRoute component={ Home } />
+        <Route path="/mercado" component={ Market } />
+        <Route path="/carrito" component={ Cart } />
       </Route>
     </Router>
   </Provider>

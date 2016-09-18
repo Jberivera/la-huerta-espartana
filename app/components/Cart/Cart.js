@@ -27,8 +27,7 @@ class Cart extends Component {
           <li className={ css('cart__item-list') }>
             <div className={ css('cart__product-name', 'cart--col') }>Producto</div>
             <div className={ css('cart__count', 'cart--col') }>Cantidad</div>
-            <div className={ css('cart__price', 'cart--col') }></div>
-            <div className={ css('cart__units', 'cart--col') }>Precio</div>
+            <div className={ css('cart__price-title', 'cart--col') }>Precio</div>
             <div className={ css('cart__total', 'cart--col') }>Total</div>
           </li>
           {
@@ -46,14 +45,15 @@ class Cart extends Component {
           }
           <li className={ css('cart__item-list') }>
             <div className={ css('cart__product-name', 'cart--col') }>Total</div>
-            <div className={ css('cart__count', 'cart--col') }></div>
-            <div className={ css('cart__price', 'cart--col') }></div>
-            <div className={ css('cart__units', 'cart--col') }></div>
-            <div className={ css('cart__total', 'cart--col') }>{ `$ ${getTotal(cart)}` }</div>
+            <div className={ css('cart__total', 'cart--col', 'cart__total-account') }>{ `$ ${getTotal(cart)}` }</div>
           </li>
         </ul>
         <div className={ css('cart__date-picker') }>
           <DatePick />
+          <div className={ css('cart__date-mobile') }>
+            <label className={ css('cart__date-label') }>Seleccione una fecha de entrega</label>
+            <input className={ css('cart__date-input') } type="date" />
+          </div>
         </div>
       </div>
     );
