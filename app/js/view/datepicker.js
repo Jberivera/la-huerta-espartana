@@ -21,9 +21,3 @@ export function getMonthString (date) {
 export function setInputValue (date) {
   return /(?:\w{4})-(?:\w{2})-(?:\w{2})/.exec(date.toISOString())[0];
 }
-
-export function getDate () {
-  const date = new Date();
-  date.setHours(0, 0, 0, 0);
-  return date;
-}

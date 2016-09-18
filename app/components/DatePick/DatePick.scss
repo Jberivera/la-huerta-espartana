@@ -15,6 +15,7 @@
   }
 
   &__header {
+    position: relative;
     font-size: 18px;
     color: #fff;
     text-align: center;
@@ -22,8 +23,67 @@
     padding: 5px;
   }
 
-  &__day {
+  &__day-name {
     border-bottom: 1px solid #000;
+  }
+
+  &__day {
+    cursor: pointer;
+  }
+
+  &__right-arrow,
+  &__left-arrow {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    cursor: pointer;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 2px;
+      top: 50%;
+      left: 50%;
+      background: #fff;
+    }
+  }
+
+  &__right-arrow {
+    right: 0;
+
+    &:before,
+    &:after {
+      transform-origin: right;
+    }
+
+    &:before {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &:after {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+
+  &__left-arrow {
+    left: 0;
+
+    &:before,
+    &:after {
+      transform-origin: left;
+    }
+
+    &:before {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &:after {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
   }
 
   &--col {

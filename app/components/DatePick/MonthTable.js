@@ -11,15 +11,19 @@ function MonthTable ({ month, year, day, monthDays, startOfWeek }) {
 
   return (
     <div className={ css('date__month-table') }>
-      <div className={ css('date__header') }>{ `${month} ${year}` }</div>
+      <div className={ css('date__header') }>
+        <div className={ css('date__right-arrow') }></div>
+        { `${month} ${year}` }
+        <div className={ css('date__left-arrow') }></div>
+      </div>
       <ul className={ css('date__day-container') }>
-        <li className={ css('date__day', 'date--col') }>L</li>
-        <li className={ css('date__day', 'date--col') }>M</li>
-        <li className={ css('date__day', 'date--col') }>W</li>
-        <li className={ css('date__day', 'date--col') }>J</li>
-        <li className={ css('date__day', 'date--col') }>V</li>
-        <li className={ css('date__day', 'date--col') }>S</li>
-        <li className={ css('date__day', 'date--col') }>D</li>
+        <li className={ css('date__day-name', 'date--col') }>L</li>
+        <li className={ css('date__day-name', 'date--col') }>M</li>
+        <li className={ css('date__day-name', 'date--col') }>W</li>
+        <li className={ css('date__day-name', 'date--col') }>J</li>
+        <li className={ css('date__day-name', 'date--col') }>V</li>
+        <li className={ css('date__day-name', 'date--col') }>S</li>
+        <li className={ css('date__day-name', 'date--col') }>D</li>
         {
           Array.apply(null, { length: startOfWeek - 1 }).map((_, i) => {
             return (
@@ -30,7 +34,7 @@ function MonthTable ({ month, year, day, monthDays, startOfWeek }) {
         {
           Array.apply(null, { length: monthDays }).map((_, i) => {
             return (
-              <li key={i} className={ css('date--col', i === day && 'date--active') }>{ i + 1 }</li>
+              <li key={i} className={ css('date__day', 'date--col', i === day && 'date--active') }>{ i + 1 }</li>
             );
           })
         }

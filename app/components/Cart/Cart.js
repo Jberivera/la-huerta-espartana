@@ -9,16 +9,15 @@ const css = classNames.bind(style);
 import getTotal from '../../js/utils/composed/getCurrency-reduceTotal';
 import DatePick from '../DatePick/DatePick';
 
-import { getDate, setInputValue } from '../../js/view/datepicker';
+import { setInputValue } from '../../js/view/datepicker';
 
 class Cart extends Component {
   constructor (props) {
     super(props);
-    this.date = getDate();
   }
 
   render () {
-    const { cart } = this.props;
+    const { cart, date } = this.props;
 
     if (!cart.length) return (<div className={ css('cart') }><h1 className={ css('cart__header') }>Carrito</h1></div>);
 
@@ -52,10 +51,10 @@ class Cart extends Component {
           </li>
         </ul>
         <div className={ css('cart__date-picker') }>
-          <DatePick date={ this.date } />
+          <DatePick date={ date } />
           <div className={ css('cart__date-mobile') }>
             <label className={ css('cart__date-label') }>Seleccione una fecha de entrega</label>
-            <input className={ css('cart__date-input') } type="date" defaultValue={ setInputValue(this.date) } />
+            <input className={ css('cart__date-input') } type="date" defaultValue={ setInputValue(date) } />
           </div>
         </div>
       </div>
@@ -67,7 +66,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     cart: state.cart.map((item) => {
       return Object.assign({}, item, state.inventory[item.id]);
-    })
+    }),
+    date: state.date
   };
 };
 
