@@ -45,19 +45,19 @@ class Nav extends Component {
 
     return (
       <div className={ css('nav') } onClick={ unCheckRadios } ref={ this.affixNav } >
-        <div className={ css('nav-logo') }>
-          <h1 className={ css('nav-title') }>
+        <div className={ css('nav__logo') }>
+          <h1 className={ css('nav__title') }>
             La Huerta Espartana
           </h1>
           <Link to="/">
-            <img src="/assets/img/logo.png" className={ css('logo-img') }></img>
+            <img src="/assets/img/logo.png" className={ css('nav__logo-img') }></img>
           </Link>
         </div>
         <input type="checkbox" id="hamburger" className={ css('hamburger-toggle', 'hidden') } />
         <Hamburger />
-        <ul className={ css('menu') } >
+        <ul className={ css('nav__menu') } >
           <Login />
-          <NavBtn label="Home" to="/" btnBackground="" pathname={ pathname === '/' } className="home-btn" />
+          <NavBtn className="home-btn" label="Home" to="/" btnBackground="" pathname={ pathname === '/' } />
           <NavBtn label="Mercado" to="/mercado" btnBackground="/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
         </ul>
       </div>
