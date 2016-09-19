@@ -103,10 +103,7 @@
     width: 100%;
     height: 50px;
     background: #f7f7f4;
-
-    &:global(.affix) + .market-container {
-      margin-top: 70px;
-    }
+    transform: translate3d(0, 0, 0);
   }
 
   &__filters {

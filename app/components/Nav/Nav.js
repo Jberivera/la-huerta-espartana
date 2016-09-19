@@ -44,22 +44,24 @@ class Nav extends Component {
     const { pathname, getInventoryAsync } = this.props;
 
     return (
-      <div className={ css('nav') } onClick={ unCheckRadios } ref={ this.affixNav } >
-        <div className={ css('nav__logo') }>
-          <h1 className={ css('nav__title') }>
-            La Huerta Espartana
-          </h1>
-          <Link to="/">
-            <img src="/assets/img/logo.png" className={ css('nav__logo-img') }></img>
-          </Link>
+      <div className={ css('nav') }>
+        <div className={ css('nav__wrapper') } onClick={ unCheckRadios } ref={ this.affixNav } >
+          <div className={ css('nav__logo') }>
+            <h1 className={ css('nav__title') }>
+              La Huerta Espartana
+            </h1>
+            <Link to="/">
+              <img src="/assets/img/logo.png" className={ css('nav__logo-img') }></img>
+            </Link>
+          </div>
+          <input type="checkbox" id="hamburger" className={ css('hamburger-toggle', 'hidden') } />
+          <Hamburger />
+          <ul className={ css('nav__menu') } >
+            <Login />
+            <NavBtn className="home-btn" label="Home" to="/" btnBackground="" pathname={ pathname === '/' } />
+            <NavBtn label="Mercado" to="/mercado" btnBackground="/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
+          </ul>
         </div>
-        <input type="checkbox" id="hamburger" className={ css('hamburger-toggle', 'hidden') } />
-        <Hamburger />
-        <ul className={ css('nav__menu') } >
-          <Login />
-          <NavBtn className="home-btn" label="Home" to="/" btnBackground="" pathname={ pathname === '/' } />
-          <NavBtn label="Mercado" to="/mercado" btnBackground="/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
-        </ul>
       </div>
     );
   }
