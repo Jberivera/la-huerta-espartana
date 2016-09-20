@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
-import createLogger from 'redux-logger';
 import firebaseMiddleware from './js/api';
 import localStorageMiddleware from './js/localStorage';
 
@@ -18,14 +17,20 @@ const reducer = combineReducers(Object.assign({}, reducers, {
   routing: routerReducer
 }));
 
+const middlewares = [
+  thunk,
+  firebaseMiddleware,
+  localStorageMiddleware
+];
+
+if (process.env.NODE_ENV === 'development') {
+  const createLogger = require('redux-logger');
+  middlewares.push(createLogger());
+}
+
 const store = createStore(
   reducer,
-  applyMiddleware(
-    thunk,
-    firebaseMiddleware,
-    localStorageMiddleware,
-    createLogger()
-  )
+  applyMiddleware(...middlewares)
 );
 
 const history = syncHistoryWithStore(browserHistory, store);

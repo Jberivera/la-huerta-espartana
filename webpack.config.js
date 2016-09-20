@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const path = require('path');
-const merge = require('webpack-merge');
 
 const TARGET = process.env.npm_lifecycle_event;
 const DEFAULT_PORT = process.env.PORT || 3000;
@@ -48,7 +47,8 @@ module.exports = Object.assign(common, {
       port: process.env.PORT || DEFAULT_PORT
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': '"development"' }})
     ]
   },
   build: {
