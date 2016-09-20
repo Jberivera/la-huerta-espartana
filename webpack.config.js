@@ -76,7 +76,8 @@ module.exports = Object.assign(common, {
     target: 'node',
     output: {
       path: PATHS.build,
-      filename: 'js/main.js'
+      filename: 'js/main.js',
+      libraryTarget: 'commonjs2'
     },
   }
 }[TARGET]);

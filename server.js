@@ -4,8 +4,6 @@ const fs = require('fs');
 const TEMPLATE = fs.readFileSync('./index.html', { encoding: 'utf8' });
 const PORT = process.env.PORT || 3000;
 
-// const APP = require('./app/');
-
 const app = express();
 
 app.use('/dist', express.static('dist'));
@@ -13,7 +11,7 @@ app.use('/assets', express.static('assets'));
 
 app.get('*', function (req, res) {
   res.send(
-    TEMPLATE
+    TEMPLATE.replace('#no-styles', '/dist/css/main.css')
   );
 });
 
