@@ -35,7 +35,7 @@ const common = {
   }
 };
 
-module.exports = merge(common, {
+module.exports = Object.assign(common, {
   dev: {
     devtool: 'eval-source-map',
     devServer: {
@@ -68,7 +68,7 @@ module.exports = merge(common, {
     },
     plugins: [
       new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': '"production"' }}),
-      new ExtractTextPlugin('dist/css/[name].css?[hash]-[chunkhash]-[contenthash]-[name]', { allChunks: true }),
+      new ExtractTextPlugin('css/[name].css?[hash]-[chunkhash]-[contenthash]-[name]', { allChunks: true }),
       new webpack.optimize.UglifyJsPlugin()
     ]
   },
