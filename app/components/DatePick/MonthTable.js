@@ -45,7 +45,7 @@ class MonthTable extends Component {
   }
 
   render () {
-    const { year, day, monthDays, startOfWeek, monthString } = this.props;
+    const { year, day, monthDays, firstDayOfWeek, monthString } = this.props;
 
     return (
       <div className={ css('date__month-table') }>
@@ -63,7 +63,7 @@ class MonthTable extends Component {
           <li className={ css('date__day-name', 'date--col') }>S</li>
           <li className={ css('date__day-name', 'date--col') }>D</li>
           {
-            Array.apply(null, { length: startOfWeek - 1 }).map((_, i) => {
+            Array.apply(null, { length: firstDayOfWeek - 1 }).map((_, i) => {
               return (
                 <li key={`empty${i}`} className={ css('date--col') }></li>
               );

@@ -28,7 +28,7 @@ class DatePick extends Component {
           day={ day }
           monthString={ getMonthString(date) }
           monthDays={ getNumberOfDays(year, month) }
-          startOfWeek={ getFirstDayOfWeek(year, month) } />
+          firstDayOfWeek={ getFirstDayOfWeek(year, month) } />
       </div>
     );
   }
