@@ -44,7 +44,7 @@ class Nav extends Component {
     const { pathname, getInventoryAsync } = this.props;
 
     return (
-      <div className={ css('nav') }>
+      <header className={ css('nav') }>
         <div className={ css('nav__wrapper') } onClick={ unCheckRadios } ref={ this.affixNav } >
           <div className={ css('nav__logo') }>
             <h1 className={ css('nav__title') }>
@@ -62,7 +62,7 @@ class Nav extends Component {
             <NavBtn label="Mercado" to="/mercado" btnBackground="/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
           </ul>
         </div>
-      </div>
+      </header>
     );
   }
 }

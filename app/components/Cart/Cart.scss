@@ -1,5 +1,6 @@
 .cart {
   padding: 1px 0;
+  height: 100%;
 
   &__header {
     position: relative;
@@ -36,7 +37,6 @@
     margin: 0 auto 30px auto;
     padding: 10px 10px 3px;
     background: #ffffff;
-    box-shadow: -3px 5px 6px -3px rgba(0,0,0,.2);
     @media (min-width: 640px) {
       width: 80%;
     }

@@ -7,9 +7,9 @@ const css = classNames.bind(style);
 
 const Footer = () => {
   return (
-    <div className={ css('footer') }>
-      
-    </div>
+    <footer className={ css('footer') }>
+
+    </footer>
   );
 };
 

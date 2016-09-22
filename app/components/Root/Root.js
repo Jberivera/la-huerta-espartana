@@ -11,9 +11,9 @@ class Root extends Component {
     return (
       <div className="main-container">
         <Nav />
-        <div className="container">
+        <main className="container">
           { this.props.children }
-        </div>
+        </main>
         <Footer />
       </div>
     );
