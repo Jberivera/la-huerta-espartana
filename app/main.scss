@@ -13,7 +13,7 @@
 :global .container {
   position: relative;
   background: #fafafa;
-  height: 100%;
+  min-height: calc(100% - 160px);
 }
 
 :global .btn {
