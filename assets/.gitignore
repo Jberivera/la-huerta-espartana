@@ -1,1 +1,8 @@
-img
+# ignore all img files
+
+img/*
+
+# But not these files...
+
+!img/aqua.gif
+!img/logo.png
