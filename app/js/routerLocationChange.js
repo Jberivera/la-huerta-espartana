@@ -33,7 +33,7 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
           }
         });
         newAction.inventory = snapshot.val();
-        newAction.cart = storageInfo && isOnTime(new Date(storageInfo.date), 60) ? storageInfo.cart : null;
+        newAction.cart = storageInfo && isOnTime(new Date(storageInfo.date), 120) ? storageInfo.cart : null;
 
         next(newAction);
       } else {
