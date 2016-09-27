@@ -37,7 +37,7 @@ class Market extends Component {
     let item = itemContainer.getAttribute('data-item');
     item = JSON.parse(item);
 
-    item.count = oneBtn ? 1: findCount(this.props.cart, item.id) + 1;
+    item.count = oneBtn ? 1 : findCount(this.props.cart, item.id) + 1;
 
     this.props.addToCar(item);
   }
