@@ -8,7 +8,7 @@ const initialState = {};
 const actionHandlers = {
   [ADD_NEW_ORDER]: (state, action) => {
     return Object.assign({}, state, {
-      [action.key]: action.order
+      [action.key]: Object.assign({}, action.order)
     });
   },
   '@@router/LOCATION_CHANGE': (state, action) => {

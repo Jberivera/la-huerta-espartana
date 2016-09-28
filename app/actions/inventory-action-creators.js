@@ -20,6 +20,7 @@ export const getInventoryAsync = () => {
 
 export const ADD_NEW_ORDER = 'ADD_NEW_ORDER';
 export const addNewOrderAsync = (order, uid) => (dispatch) => {
+  order.active = true;
   const key = database.ref(`users/${uid}/orders`).push(order).key;
 
   dispatch(addNewOrder(order, key));

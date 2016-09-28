@@ -21,7 +21,11 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
 
     auth.onAuthStateChanged(function(result) {
       if (result) {
-        database.ref(`users/${result.uid}/orders`).once('value').then(function(ordersSnapShot) {
+        database.ref(`users/${result.uid}/orders`)
+                .orderByChild('active')
+                .equalTo(true)
+                .once('value')
+                .then(function(ordersSnapShot) {
           const { providerData } = result;
           let storageInfo = localStorage.getItem(result.uid);
           storageInfo = storageInfo ? JSON.parse(storageInfo) : null;
