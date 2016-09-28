@@ -17,28 +17,33 @@ export default function routerLocationChange(database, auth) {
 function setAuthStateChangeListener({ database, auth, next, action, state }) {
   const inventory = database.ref('inventory');
 
-  inventory.once('value').then(function(snapshot) {
+  inventory.once('value').then(function (inventorySnapShot) {
 
     auth.onAuthStateChanged(function(result) {
       if (result) {
-        const { providerData } = result;
-        let storageInfo = localStorage.getItem(result.uid);
-        storageInfo = storageInfo ? JSON.parse(storageInfo) : null;
+        database.ref(`users/${result.uid}/orders`).once('value').then(function(ordersSnapShot) {
+          const { providerData } = result;
+          let storageInfo = localStorage.getItem(result.uid);
+          storageInfo = storageInfo ? JSON.parse(storageInfo) : null;
 
-        let newAction = Object.assign({}, action, {
-          response: {
-            name: providerData[0].displayName,
-            url: providerData[0].photoURL,
-            uid: result.uid
-          }
+          let newAction = Object.assign({}, action, {
+            response: {
+              name: providerData[0].displayName,
+              url: providerData[0].photoURL,
+              uid: result.uid
+            }
+          });
+          newAction.inventory = inventorySnapShot.val();
+          newAction.orders = ordersSnapShot.val();
+          newAction.cart = storageInfo && isOnTime(new Date(storageInfo.date), 120) ? storageInfo.cart : null;
+
+          next(newAction);
         });
-        newAction.inventory = snapshot.val();
-        newAction.cart = storageInfo && isOnTime(new Date(storageInfo.date), 120) ? storageInfo.cart : null;
-
-        next(newAction);
       } else {
-        next(Object.assign({}, action, { response: null, inventory: snapshot.val() }));
+        next(Object.assign({}, action, { response: null, inventory: inventorySnapShot.val() }));
       }
     });
+  }).catch(function () {
+    next(action);
   });
 }
