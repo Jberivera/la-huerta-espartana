@@ -24,6 +24,7 @@ export const addNewOrderAsync = (order, uid) => (dispatch) => {
   const key = database.ref(`users/${uid}/orders`).push(order).key;
 
   dispatch(addNewOrder(order, key));
+  localStorage.removeItem(uid);
 };
 const addNewOrder = (order, key) => (
   {

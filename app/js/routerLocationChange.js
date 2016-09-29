@@ -28,7 +28,7 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
                 .then(function(ordersSnapShot) {
           const { providerData } = result;
           let storageInfo = localStorage.getItem(result.uid);
-          storageInfo = storageInfo ? JSON.parse(storageInfo) : null;
+          storageInfo = storageInfo && JSON.parse(storageInfo);
 
           let newAction = Object.assign({}, action, {
             response: {
@@ -39,7 +39,7 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
           });
           newAction.inventory = inventorySnapShot.val();
           newAction.orders = ordersSnapShot.val();
-          newAction.cart = storageInfo && isOnTime(new Date(storageInfo.date), 120) ? storageInfo.cart : null;
+          newAction.cart = storageInfo && isOnTime(new Date(storageInfo.date), 120) && storageInfo.cart;
 
           next(newAction);
         });
