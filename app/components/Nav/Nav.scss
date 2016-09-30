@@ -15,6 +15,7 @@ $nav-height: 60px;
 
 .nav {
   height: $nav-height;
+  min-height: $nav-height;
 
   &__wrapper {
     position: relative;
