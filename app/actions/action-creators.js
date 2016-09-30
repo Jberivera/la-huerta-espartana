@@ -14,6 +14,9 @@ export const removeFromCar = (item) => (
   }
 );
 
+// action creator is on inventory-action-creators
+export const ADD_NEW_ORDER = 'ADD_NEW_ORDER';
+
 export const FILTER_CHANGE = 'FILTER_CHANGE';
 export const filterChange = (filter) => (
   {

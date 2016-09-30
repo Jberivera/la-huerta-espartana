@@ -1,7 +1,8 @@
 import createReducer from 'redux-createreducer';
 import {
   ADD_TO_CAR,
-  REMOVE_FROM_CAR
+  REMOVE_FROM_CAR,
+  ADD_NEW_ORDER
 } from '../actions/action-creators';
 
 const initialState = [];
@@ -32,6 +33,9 @@ const actionHandlers = {
       ...state.slice(0, index),
       ...state.slice(index + 1, state.length)
     ];
+  },
+  [ADD_NEW_ORDER]: (state, action) => {
+    return [];
   },
   '@@router/LOCATION_CHANGE': (state, action) => {
     return action.cart ? [ ...action.cart ] : state;
