@@ -9,7 +9,11 @@ const actionHandlers = {
   [ADD_NEW_ORDER]: (state, action) => {
     return {
       type: 'succes',
-      text: 'La orden se realizo con exito'
+      text: 'Pedido realizado con exito, revise el estado',
+      link: {
+        to: '/pedidos',
+        text: 'aqui'
+      }
     };
   },
   '@@router/LOCATION_CHANGE': (state, action) => {
