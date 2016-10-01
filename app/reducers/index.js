@@ -4,6 +4,7 @@ import inventory from './inventory';
 import filters from './filters';
 import date from './date';
 import orders from './orders';
+import message from './message';
 
 export default {
   cart,
@@ -11,5 +12,6 @@ export default {
   inventory,
   filters,
   date,
-  orders
+  orders,
+  message
 };

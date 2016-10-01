@@ -29,9 +29,9 @@ class Cart extends Component {
   }
 
   render () {
-    const { cart, date } = this.props;
+    const { cart, date, message } = this.props;
 
-    if (!cart.length) return (<EmptyCart />);
+    if (!cart.length) return (<EmptyCart message={ message } />);
 
     return (
       <div className={ css('cart') }>
@@ -70,7 +70,8 @@ const mapStateToProps = (state, ownProps) => {
     cart: state.cart.map((item) => {
       return Object.assign({}, item, state.inventory[item.id]);
     }),
-    date: state.date
+    date: state.date,
+    message: state.message
   };
 };
 
