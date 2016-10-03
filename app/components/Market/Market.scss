@@ -108,8 +108,10 @@
 
   &__filters {
     display: inline-block;
+    text-align: right;
+    padding-right: 30px;
     width: 58%;
-
+    vertical-align: super;
     @media (min-width: 640px) {
       width: 80%;
     }
@@ -133,13 +135,6 @@
     display: inline-block;
     vertical-align: top;
     padding: 6px 5px 0px 5px;
-  }
-
-  &__filters-container {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
   }
 
   &__filter {

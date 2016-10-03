@@ -50,10 +50,14 @@ $nav-height: 60px;
 
   &__logo-img {
     position: absolute;
-    width: 210px;
+    width: 140px;
     z-index: 1;
     top: 50%;
-    transform: translate(-12%, -29%);
+    transform: translate(-15%, -44%);
+    @media (min-width: 640px) {
+      width: 210px;
+      transform: translate(-12%, -29%);
+    }
   }
 
   &__title {
