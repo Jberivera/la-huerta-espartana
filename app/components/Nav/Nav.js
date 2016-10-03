@@ -51,7 +51,7 @@ class Nav extends Component {
               La Huerta Espartana
             </h1>
             <Link to="/">
-              <img src="/assets/img/logo.png" className={ css('nav__logo-img') }></img>
+              <img src="/assets/img/huertalogo.png" className={ css('nav__logo-img') }></img>
             </Link>
           </div>
           <input type="checkbox" id="hamburger" className={ css('hamburger-toggle', 'hidden') } />
