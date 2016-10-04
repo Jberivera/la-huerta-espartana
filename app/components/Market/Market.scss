@@ -110,13 +110,13 @@
     position: relative;
     display: inline-block;
     text-align: right;
-    padding-right: 30px;
+    padding-right: 10px;
     width: 58%;
     vertical-align: top;
     height: 100%;
-    background: #f7f7f4;
+    background: #E9E0D6;
     @media (min-width: 640px) {
-      width: calc(85% - 208px);
+      width: calc(85% - 210px);
     }
 
     &:before {
@@ -127,7 +127,7 @@
       height: 0px;
       border-left: 30px solid transparent;
       border-right: 0px solid transparent;
-      border-top: 50px solid #f7f7f4;
+      border-top: 50px solid #E9E0D6;
       right: 100%;
     }
   }
