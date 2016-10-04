@@ -102,19 +102,39 @@
     position: relative;
     width: 100%;
     height: 50px;
-    background: #f7f7f4;
+    text-align: right;
     transform: translate3d(0, 0, 0);
   }
 
   &__filters {
+    position: relative;
     display: inline-block;
     text-align: right;
     padding-right: 30px;
     width: 58%;
-    vertical-align: super;
+    vertical-align: top;
+    height: 100%;
+    background: #f7f7f4;
     @media (min-width: 640px) {
-      width: 80%;
+      width: calc(85% - 208px);
     }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 0;
+      height: 0px;
+      border-left: 30px solid transparent;
+      border-right: 0px solid transparent;
+      border-top: 50px solid #f7f7f4;
+      right: 100%;
+    }
+  }
+
+  &__filters-container {
+    position: relative;
+    top: 15px;
   }
 
   &__shopping-cart {
