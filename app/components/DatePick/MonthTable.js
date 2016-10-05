@@ -22,7 +22,7 @@ class MonthTable extends Component {
   arrowHandler (e) {
     let { target } = e,
       { year, month, day, changeDate } = this.props,
-      right = target.classList.contains(css('date__right-arrow'));
+      right = target.classList.contains('right-arrow');
 
     if (right) {
       month = month < 11 ? month + 2 : (year = year + 1, 1);
@@ -37,7 +37,7 @@ class MonthTable extends Component {
     const { target } = e,
       { year, month, changeDate } = this.props;
 
-    if (target.classList.contains(css('date__day'))) {
+    if (target.classList.contains('day')) {
       let dateDay = Number(target.textContent);
 
       changeDate(`${year}/${month + 1}/${dateDay}`);
@@ -50,9 +50,9 @@ class MonthTable extends Component {
     return (
       <div className={ css('date__month-table') }>
         <div className={ css('date__header') }>
-          <div className={ css('date__right-arrow') } onClick={ this.arrowHandler }></div>
+          <div className={ css('date__right-arrow', 'right-arrow') } onClick={ this.arrowHandler }></div>
           { `${monthString} ${year}` }
-          <div className={ css('date__left-arrow') } onClick={ this.arrowHandler }></div>
+          <div className={ css('date__left-arrow', 'left-arrow') } onClick={ this.arrowHandler }></div>
         </div>
         <ul className={ css('date__day-container') } onClick={ this.dateDayHandler }>
           <li className={ css('date__day-name', 'date--col') }>L</li>
@@ -72,7 +72,7 @@ class MonthTable extends Component {
           {
             Array.apply(null, { length: monthDays }).map((_, i) => {
               return (
-                <li key={i} className={ css('date__day', 'date--col', i === day && 'date--active') }>{ i + 1 }</li>
+                <li key={i} className={ css('date__day', 'day', 'date--col', i === day && 'date--active') }>{ i + 1 }</li>
               );
             })
           }

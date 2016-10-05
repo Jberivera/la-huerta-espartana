@@ -36,7 +36,7 @@ class Cart extends Component {
     return (
       <div className={ css('cart') }>
         <h1 className={ css('cart__header') }>Carrito</h1>
-        <div className={ css('cart__message') }>{ 'Revise sus articulos y seleccione una fecha de entrega' }</div>
+        <div className={ css('cart__message') }>Revise sus articulos y seleccione una fecha de entrega</div>
         <div className={ css('cart__options-menu') } onClick={ this.optionMenuHandler }>
           <label className={ css('cart__option-label', 'cart--label-active') } htmlFor="cart-menu-1">Articulos</label>
           <label className={ css('cart__option-label') } htmlFor="cart-menu-2">Fecha de Entrega</label>
