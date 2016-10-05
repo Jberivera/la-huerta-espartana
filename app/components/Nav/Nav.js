@@ -36,7 +36,10 @@ class Nav extends Component {
 
   affixNav (nav) {
     if (nav) {
-      affix(nav, 63, 1);
+      affix(nav, {
+        offsetTop: 63,
+        topReset: 1
+      });
     }
   }
 
