@@ -8,7 +8,8 @@ import {
   filterChange
 } from '../../actions/action-creators';
 
-const css = classNames.bind(style);
+const css = classNames.bind(style),
+  AFFIX_TOP = 216;
 
 import ShoppingCartBtn from '../GlobalBtns/ShoppingCartBtn';
 
@@ -24,16 +25,22 @@ class MarketNav extends Component {
   affixNav (nav) {
     if (nav) {
       affix(nav, {
-        offsetTop: 217,
+        offsetTop: AFFIX_TOP,
         fixTop: 60
       });
     }
   }
 
   filterHandler (e) {
-    const { target } = e;
-    const filterName = target.getAttribute('data-filter');
+    const { target } = e,
+      scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+      filterName = target.getAttribute('data-filter');
+
     filterName && this.props.filterChange(filterName);
+
+    if (scrollTop > AFFIX_TOP + 50) {
+      window.scrollTo(0, AFFIX_TOP);
+    }
   }
 
   render () {

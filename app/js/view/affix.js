@@ -19,7 +19,7 @@ export default function affix(element, options) {
   window.addEventListener('scroll', affixHandler);
 
   function affixHandler (e) {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
     if (scrollTop >= offsetTop && toggle) {
       toggle = false;
