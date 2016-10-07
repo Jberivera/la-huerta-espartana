@@ -131,55 +131,11 @@
     border-radius: none;
   }
 
-  &__options-menu {
-    width: 80%;
-    margin: 0 auto -1px;
-  }
-
-  &__option-item {
-    display: inline-block;
-  }
-
-  &__option-label {
-    display: inline-block;
-    padding: 10px;
-    margin-right: 5px;
-    border-radius: 4px 4px 0 0;
-    background: #fdfdfd;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-bottom-color: #ddd;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-
-  &__option-radio {
-    display: none;
-
-    &:checked + {
-      .cart__option-wrapper {
-        display: block;
-      }
-    }
-  }
-
-  &__option-wrapper {
-    display: none;
+  &__section-wrapper {
     background: #fff;
     padding: 30px;
-    width: 80%;
+    width: 90%;
     margin: auto;
-    border-radius: 0 4px 4px 4px;
-    border-color: #ddd;
-    border-width: 1px;
-    border-style: solid;
     min-height: 200px;
-    margin-bottom: 20px;
-  }
-
-  &--label-active {
-    border: 1px solid #ddd;
-    border-bottom-color: transparent;
-    background: #fff;
   }
 }
