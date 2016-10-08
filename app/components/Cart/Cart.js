@@ -39,7 +39,7 @@ class Cart extends Component {
             </div>
           </div>
         </div>
-        <div className={ css('cart__section-wrapper', 'cart--order') }>
+        <div className={ css('cart__section-wrapper') }>
           <CartOrder />
         </div>
       </div>
