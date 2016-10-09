@@ -32,12 +32,12 @@ function CartList ({ cart }) {
               </div>
               <div className={ css('cart__price', 'cart--col') }>
                 <div className={ css('cart__group', 'cart--right') }>
-                  { `${item.price.toString().replace(/(\d{3})$/g, '.$1')}` }
+                  { `$${item.price.toString().replace(/(\d{3})$/g, '.$1')}` }
                 </div>
               </div>
               <div className={ css('cart__total', 'cart--col') }>
                 <div className={ css('cart__group', 'cart--right') }>
-                  { item.price * item.count }
+                  { `$${item.price * item.count}` }
                 </div>
               </div>
             </li>
@@ -52,7 +52,7 @@ function CartList ({ cart }) {
         </div>
         <div className={ css('cart__total', 'cart--col', 'cart__total-account') }>
           <div className={ css('cart__group', 'cart--right') }>
-            { `$ ${getTotal(cart)}` }
+            { `$${getTotal(cart)}` }
           </div>
         </div>
       </li>
