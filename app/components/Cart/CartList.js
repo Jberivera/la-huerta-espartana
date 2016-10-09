@@ -50,9 +50,9 @@ function CartList ({ cart }) {
             Total
           </div>
         </div>
-        <div className={ css('cart__total', 'cart--col', 'cart__total-account') }>
+        <div className={ css('cart__total', 'cart--col', 'cart--total-account') }>
           <div className={ css('cart__group', 'cart--right') }>
-            { `$${getTotal(cart)}` }
+            <span className={ css('cart__total-text') }>{ `$${getTotal(cart)}` }</span>
           </div>
         </div>
       </li>
