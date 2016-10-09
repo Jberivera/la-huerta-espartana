@@ -32,12 +32,35 @@
     }
   }
 
+  &__add,
+  &__remove,
+  &__delete {
+    font-size: 22px;
+    color: #588c73;
+    cursor: pointer;
+  }
+
+  &__add {
+    margin-left: 6px;
+  }
+
+  &__remove {
+    margin-right: 6px;
+  }
+
+  &__delete {
+    position: absolute;
+    display: none;
+    left: -25px;
+  }
+
   &__item-container {
     margin-bottom: 30px;
     padding: 10px 10px 3px;
   }
 
   &__item-list {
+    position: relative;
     list-style: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
@@ -153,5 +176,9 @@
 
   &--center {
     justify-content: center;
+  }
+
+  &--delete &__delete {
+    display: inline-block;
   }
 }

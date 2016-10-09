@@ -7,6 +7,10 @@ import { bindActionCreators } from 'redux';
 const css = classNames.bind(style);
 
 import { setInputValue } from '../../js/view/datepicker';
+import {
+  addToCar,
+  removeFromCar
+} from '../../actions/action-creators';
 
 import DatePick from '../DatePick/DatePick';
 import CartList from './CartList';
@@ -16,6 +20,34 @@ import EmptyCart from './EmptyCart';
 class Cart extends Component {
   constructor (props) {
     super(props);
+
+    this.carHandler = this.carHandler.bind(this);
+    this.removeFromCarHandler = this.removeFromCarHandler.bind(this);
+  }
+
+  carHandler (e) {
+    const { target } = e;
+    const itemContainer = target.parentNode;
+    const plus = target.getAttribute('data-handler') === 'add' ? 1 : -1;
+    let item = itemContainer.getAttribute('data-item');
+    item = JSON.parse(item);
+    item.count = findCount(this.props.cart, item.id) + plus;
+
+    if (item.count === 0) {
+      this.props.addToCar(item);
+      itemContainer.classList.add(css('cart--delete'));
+    } else if (item.count > 0) {
+      this.props.addToCar(item);
+      itemContainer.classList.remove(css('cart--delete'));
+    }
+  }
+
+  removeFromCarHandler (e) {
+    const { target } = e;
+    const itemContainer = target.parentNode;
+    let item = itemContainer.getAttribute('data-item');
+    item = JSON.parse(item);
+    this.props.removeFromCar(item);
   }
 
   render () {
@@ -28,7 +60,7 @@ class Cart extends Component {
         <h1 className={ css('cart__header') }>Carrito</h1>
         <div className={ css('cart__message') }>Revise sus articulos y seleccione una fecha de entrega</div>
         <div className={ css('cart__section-wrapper', 'cart--list') }>
-          <CartList cart={ cart } />
+          <CartList cart={ cart } carHandler={ this.carHandler } removeFromCarHandler={ this.removeFromCarHandler }/>
         </div>
         <div className={ css('cart__section-wrapper', 'cart--date') }>
           <DatePick date={ date } />
@@ -47,6 +79,12 @@ class Cart extends Component {
   }
 }
 
+function findCount(cart, i) {
+  const cartItem = cart.find((cartItem) => cartItem.id === i);
+
+  return cartItem ? cartItem.count : 1;
+}
+
 const mapStateToProps = (state, ownProps) => {
   return {
     cart: state.cart.map((item) => {
@@ -57,4 +95,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Cart);
+const mapDispatchToProps = (dispatch, ownProps) => bindActionCreators({
+  addToCar,
+  removeFromCar
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -76,7 +76,7 @@ class Market extends Component {
                     }) }>
                     <img src={item.imgUrl} className={ css('market__item-image') } />
                     <p className={ css('market__item-name') }>{item.productName}</p>
-                    <p className={ css('market__item-price') }>{`$ ${getCurrency(item.price)} ${item.units}`}</p>
+                    <p className={ css('market__item-price') }>{`$${getCurrency(item.price)} ${item.units}`}</p>
                     <div className={ css('market__add-one-btn', 'add-one-btn') } onClick={ this.addToCarHandler } >Agregar Producto</div>
                     <div className={ css('market__add-remove-container') }>
                       <i className={ css('market__cart-btn', 'material-icons') } onClick={ this.removeFromCarHandler } >remove_shopping_cart</i>

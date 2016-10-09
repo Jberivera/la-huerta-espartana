@@ -6,7 +6,7 @@ const css = classNames.bind(style);
 
 import getTotal from '../../js/utils/composed/getCurrency-reduceTotal';
 
-function CartList ({ cart }) {
+function CartList ({ cart, carHandler, removeFromCarHandler }) {
   return (
     <ul className={ css('cart__item-container') }>
       <li className={ css('cart__item-list') }>
@@ -26,8 +26,14 @@ function CartList ({ cart }) {
                 </div>
               </div>
               <div className={ css('cart__count', 'cart--col') }>
-                <div className={ css('cart__group', 'cart--center') }>
-                  { item.count }
+                <div className={ css('cart__group', 'cart--center', !item.count && 'cart--delete') }
+                    data-item={ JSON.stringify({
+                      productName: item.productName,
+                      id: item.id }) }>
+                  <i className={ css('cart__remove', 'material-icons') } data-handler="remove" onClick={ carHandler }>remove_circle_outline</i>
+                  <span className={ css('market__cart-count') }>{ item.count }</span>
+                  <i className={ css('cart__add', 'material-icons') } data-handler="add" onClick={ carHandler }>add_circle_outline</i>
+                  <i className={ css('cart__delete', 'material-icons') } onClick={ removeFromCarHandler }>delete</i>
                 </div>
               </div>
               <div className={ css('cart__price', 'cart--col') }>
