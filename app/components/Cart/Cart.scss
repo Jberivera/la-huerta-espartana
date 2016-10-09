@@ -50,18 +50,23 @@
     }
   }
 
+  &__group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+  }
+
   &__product-name {
     width: 40%;
   }
 
   &__count {
     width: 15%;
-    text-align: center;
   }
 
   &__price {
     width: 35%;
-    text-align: right;
     @media (min-width: 640px) {
       width: 20%;
     }
@@ -73,7 +78,6 @@
 
   &__total {
     width: 20%;
-    text-align: right;
   }
 
   &__total-account {
@@ -84,6 +88,7 @@
     display: inline-block;
     padding: 3px;
     font-size: 16px;
+    vertical-align: top;
   }
 
   &__date-picker {
@@ -124,5 +129,20 @@
   &__order {
     width: 80%;
     margin: auto;
+  }
+
+  &__item-thumbnail {
+    width: 50px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+
+  &--right {
+    justify-content: flex-end;
+  }
+
+  &--center {
+    justify-content: center;
   }
 }
