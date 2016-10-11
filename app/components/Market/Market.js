@@ -66,21 +66,21 @@ class Market extends Component {
         <MarketNav />
         <ul className={ css('market__items-container') }>
           {
-            inventory.map((item, i) => {
+            Object.keys(inventory).map((key) => {
               return (
-                <li key={i} className={ css('market__item', filter === 'all' || item.type === filter || 'market__item--hide') } >
-                  <div className={ css('market__item-group', cart.some((cartItem) => cartItem.id === i) && 'added') }
+                <li key={key} className={ css('market__item', filter === 'all' || inventory[key].type === filter || 'market__item--hide') } >
+                  <div className={ css('market__item-group', cart.some((cartItem) => cartItem.id === key) && 'added') }
                     data-item={ JSON.stringify({
-                      productName: item.productName,
-                      id: i
+                      productName: inventory[key].productName,
+                      id: key
                     }) }>
-                    <img src={item.imgUrl} className={ css('market__item-image') } />
-                    <p className={ css('market__item-name') }>{item.productName}</p>
-                    <p className={ css('market__item-price') }>{`$${getCurrency(item.price)} ${item.units}`}</p>
+                    <img src={inventory[key].imgUrl} className={ css('market__item-image') } />
+                    <p className={ css('market__item-name') }>{inventory[key].productName}</p>
+                    <p className={ css('market__item-price') }>{`$${getCurrency(inventory[key].price)} ${inventory[key].units}`}</p>
                     <div className={ css('market__add-one-btn', 'add-one-btn') } onClick={ this.addToCarHandler } >Agregar Producto</div>
                     <div className={ css('market__add-remove-container') }>
                       <i className={ css('market__cart-btn', 'material-icons') } onClick={ this.removeFromCarHandler } >remove_shopping_cart</i>
-                      <span className={ css('market__cart-count') }>{ findCount(cart, i) }</span>
+                      <span className={ css('market__cart-count') }>{ findCount(cart, key) }</span>
                       <i className={ css('market__cart-btn', 'material-icons') } onClick={ this.addToCarHandler }>add_shopping_cart</i>
                     </div>
                   </div>
