@@ -62,17 +62,15 @@ class Cart extends Component {
         <div className={ css('cart__section-wrapper', 'cart--list') }>
           <CartList cart={ cart } carHandler={ this.carHandler } removeFromCarHandler={ this.removeFromCarHandler }/>
         </div>
-        <div className={ css('cart__section-wrapper', 'cart--date') }>
+        <div className={ css('cart__section-wrapper', 'cart--two-items') }>
           <DatePick date={ date } />
+          <CartOrder />
           <div className={ css('cart__date-picker') }>
             <div className={ css('cart__date-mobile') }>
               <label className={ css('cart__date-label') }>Seleccione una fecha de entrega</label>
               <input className={ css('cart__date-input') } type="date" defaultValue={ setInputValue(date) } />
             </div>
           </div>
-        </div>
-        <div className={ css('cart__section-wrapper') }>
-          <CartOrder />
         </div>
       </div>
     );

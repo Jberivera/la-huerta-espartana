@@ -127,13 +127,13 @@
   &__date-picker {
     width: 80%;
     margin: auto;
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
 
   &__date-mobile {
     text-align: center;
-    @media (min-width: 768px) {
-      display: none;
-    }
   }
 
   &__date-label {
@@ -159,11 +159,6 @@
     min-height: 200px;
   }
 
-  &__order {
-    width: 80%;
-    margin: auto;
-  }
-
   &__item-thumbnail {
     width: 50px;
     height: 40px;
@@ -181,5 +176,22 @@
 
   &--delete &__delete {
     display: inline-block;
+  }
+
+  &--two-items {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+}
+
+.order {
+  flex: 1;
+  margin-left: 40px;
+
+  &__order-wrapper {
+    width: 90%;
+    margin: auto;
   }
 }
