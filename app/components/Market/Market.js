@@ -49,7 +49,7 @@ class Market extends Component {
 
     item.count = findCount(this.props.cart, item.id) - 1;
 
-    if (item.count === 0) {
+    if (item.count < 1) {
       this.props.removeFromCar(item);
       itemContainer.classList.remove('added');
     } else {
