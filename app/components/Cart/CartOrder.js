@@ -34,11 +34,11 @@ class CartOrder extends Component {
     return (
       <div className={ css('order') }>
         <div className={ css('order__wrapper') }>
-          <div>
-            <label htmlFor="direction">Dirección</label>
-            <input id="direction" type="text" />
+          <div className={ css('order__input-container') }>
+            <label className={ css('order__label') } htmlFor="direction">Dirección</label>
+            <input id="direction" className={ css('order__input') } type="text" />
           </div>
-          <button className={ css('') } onClick={ this.addOrderHandler }>Hacer pedido</button>
+          <button className={ css('order__btn') } onClick={ this.addOrderHandler }>Hacer pedido</button>
         </div>
       </div>
     );
