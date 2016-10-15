@@ -201,45 +201,59 @@
     border-radius: 5px;
     background: transparent;
     padding: 10px 40px;
-    margin-top: 40px;
+    margin-top: 20px;
     cursor: pointer;
     color: #555;
   }
 
   &__input-container {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   &__label {
     color: #555;
     position: absolute;
     left: 0;
+    bottom: 5px;
     transition: transform .3s 0s, font-size .3s 0s;
   }
 
   &__input {
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
-    width: 60%;
+    width: 80%;
     font-size: 15px;
     padding: 5px;
     padding-left: 0;
-    transition: border .3s;
+    transition: border .3s, padding .2s;
     color: #555;
 
     &:focus {
+      padding-left: 0;
       border-bottom: 1px solid rgba(0, 0, 0, .4);
+
+      & ~ .order__label {
+        transform: translateY(-150%);
+        font-size: 13px;
+      }
     }
 
-    &:focus ~ .order__label {
-      transform: translateY(-100%);
-      font-size: 13px;
-    }
+    &:invalid {
+      padding-left: 0;
 
-    &:invalid ~ .order__label {
-      transform: translateY(-100%);
-      font-size: 13px;
+      & ~ .order__label {
+        transform: translateY(-150%);
+        font-size: 13px;
+      }
     }
+  }
+
+  &--direction {
+    padding-left: 70px;
+  }
+
+  &--aditional {
+    padding-left: 147px;
   }
 }
