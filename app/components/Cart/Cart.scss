@@ -201,14 +201,45 @@
     border-radius: 5px;
     background: transparent;
     padding: 10px 40px;
-    margin-top: 20px;
+    margin-top: 40px;
     cursor: pointer;
+    color: #555;
+  }
+
+  &__input-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  &__label {
+    color: #555;
+    position: absolute;
+    left: 0;
+    transition: transform .3s 0s, font-size .3s 0s;
   }
 
   &__input {
     border: none;
-    border-bottom: 1px solid #000;
-    margin-left: 10px;
-    width: 50%;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    width: 60%;
+    font-size: 15px;
+    padding: 5px;
+    padding-left: 0;
+    transition: border .3s;
+    color: #555;
+
+    &:focus {
+      border-bottom: 1px solid rgba(0, 0, 0, .4);
+    }
+
+    &:focus ~ .order__label {
+      transform: translateY(-100%);
+      font-size: 13px;
+    }
+
+    &:invalid ~ .order__label {
+      transform: translateY(-100%);
+      font-size: 13px;
+    }
   }
 }
