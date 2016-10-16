@@ -154,6 +154,7 @@
   &__section-wrapper {
     background: #fff;
     padding: 30px;
+    padding-top: 0;
     width: 90%;
     margin: auto;
     min-height: 200px;
@@ -189,6 +190,7 @@
 .order {
   flex: 1;
   margin-left: 40px;
+  padding-top: 10px;
 
   &__order-wrapper {
     width: 90%;
@@ -212,6 +214,7 @@
   }
 
   &__label {
+    font-size: 16px;
     color: #555;
     position: absolute;
     left: 0;
@@ -220,13 +223,13 @@
   }
 
   &__input {
+    font-size: 16px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     width: 80%;
-    font-size: 15px;
     padding: 5px;
     padding-left: 0;
-    transition: border .3s, padding .2s;
+    transition: border .3s, padding .3s;
     color: #555;
 
     &:focus {
@@ -240,8 +243,7 @@
 
     &:focus ~ .order__label,
     &:invalid ~ .order__label {
-      transform: translateY(-150%);
-      font-size: 13px;
+      transform: translateY(-100%);
       color: #588c73;
     }
   }

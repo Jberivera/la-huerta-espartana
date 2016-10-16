@@ -52,7 +52,7 @@ class CartOrder extends Component {
             <input id="direction"
               ref={ (c) => this._inputDirection = c }
               defaultValue={ direction.main }
-              placeholder="Calle, Carrera, Transversal, Circular"
+              placeholder="Carrera, Calle, Transversal, Circular"
               className={ css('order__input', 'order--direction') }
               type="text"
               pattern="\S" />
