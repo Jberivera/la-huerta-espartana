@@ -19,17 +19,19 @@ export const getInventoryAsync = () => {
 };
 
 export const ADD_NEW_ORDER = 'ADD_NEW_ORDER';
-export const addNewOrderAsync = (order, uid) => (dispatch) => {
+export const addNewOrderAsync = (order, uid, direction) => (dispatch) => {
   order.active = true;
   const key = database.ref(`users/${uid}/orders`).push(order).key;
+  !direction.noSet && database.ref(`users/${uid}/direction`).set(direction);
 
-  dispatch(addNewOrder(order, key));
+  dispatch(addNewOrder(order, key, direction));
   localStorage.removeItem(uid);
 };
-const addNewOrder = (order, key) => (
+const addNewOrder = (order, key, direction) => (
   {
     type: ADD_NEW_ORDER,
     order,
-    key
+    key,
+    direction
   }
 );
