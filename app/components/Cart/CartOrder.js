@@ -18,37 +18,55 @@ class CartOrder extends Component {
     this.addOrderHandler = this.addOrderHandler.bind(this);
   }
 
-  addOrderHandler () {
-    const { addNewOrderAsync, cart, uid, date } = this.props;
+  addOrderHandler (e) {
+    const { addNewOrderAsync, cart, user, date } = this.props;
+    let { uid, direction } = user;
     if (!uid) return;
+    if (!this._inputDirection.value) return;
+
+    if (direction && (direction.main === this._inputDirection.value && direction.aditional === this._inputAditional.value)) {
+      direction = { noSet: true };
+    } else {
+      direction = {
+        main: this._inputDirection.value,
+        aditional: this._inputAditional.value
+      };
+    }
 
     addNewOrderAsync({
       total: getTotal(cart),
       date: new Date().toISOString(),
       dateOfDelivery: date,
       list: cart
-    }, uid);
+    }, uid, direction);
   }
 
   render () {
+    let { uid, direction } = this.props.user;
+    direction = direction || {};
+
     return (
       <div className={ css('order') }>
         <div className={ css('order__wrapper') }>
           <div className={ css('order__input-container') }>
             <input id="direction"
+              ref={ (c) => this._inputDirection = c }
+              defaultValue={ direction.main }
               placeholder="Calle, Carrera, Transversal, Circular"
               className={ css('order__input', 'order--direction') }
               type="text"
               pattern="\S" />
-            <label className={ css('order__label') } htmlFor="direction">Dirección :</label>
+            <label className={ css('order__label') } htmlFor="direction">Dirección</label>
           </div>
           <div className={ css('order__input-container') }>
             <input id="adicional"
+              ref={ (c) => this._inputAditional = c }
+              defaultValue={ direction.aditional }
               placeholder="Barrio, Unidad, Edificio, Apartamento"
               className={ css('order__input', 'order--aditional') }
               type="text"
               pattern="\S" />
-            <label className={ css('order__label') } htmlFor="adicional">Información Adicional :</label>
+            <label className={ css('order__label') } htmlFor="adicional">Información Adicional</label>
           </div>
           <button className={ css('order__btn') } onClick={ this.addOrderHandler }>Hacer pedido</button>
         </div>
@@ -63,7 +81,7 @@ const mapStateToProps = (state, ownProps) => {
       return Object.assign({}, item, state.inventory[item.id]);
     }),
     date: state.date.toISOString(),
-    uid: state.user.res && state.user.res.uid
+    user: state.user.res && { uid: state.user.res.uid, direction: state.user.res.direction }
   };
 };
 

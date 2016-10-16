@@ -232,28 +232,25 @@
     &:focus {
       padding-left: 0;
       border-bottom: 1px solid rgba(0, 0, 0, .4);
-
-      & ~ .order__label {
-        transform: translateY(-150%);
-        font-size: 13px;
-      }
     }
 
     &:invalid {
       padding-left: 0;
+    }
 
-      & ~ .order__label {
-        transform: translateY(-150%);
-        font-size: 13px;
-      }
+    &:focus ~ .order__label,
+    &:invalid ~ .order__label {
+      transform: translateY(-150%);
+      font-size: 13px;
+      color: #588c73;
     }
   }
 
   &--direction {
-    padding-left: 70px;
+    padding-left: 65px;
   }
 
   &--aditional {
-    padding-left: 147px;
+    padding-left: 145px;
   }
 }
