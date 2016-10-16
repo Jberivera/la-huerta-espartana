@@ -1,6 +1,7 @@
 import createReducer from 'redux-createreducer';
 import {
-  GET_USER
+  GET_USER,
+  ADD_NEW_ORDER
 } from '../actions/user-action-creators';
 
 const initialState = {};
@@ -10,6 +11,16 @@ const actionHandlers = {
     return Object.assign({}, state, {
       res: action.response
     });
+  },
+  [ADD_NEW_ORDER]: (state, action) => {
+    if (!action.direction.noSet) {
+      return Object.assign({}, state, {
+        res: Object.assign({}, state.res, {
+          direction: action.direction
+        })
+      });
+    }
+    return state;
   },
   'LOGOUT': (state, action) => {
     return {};
