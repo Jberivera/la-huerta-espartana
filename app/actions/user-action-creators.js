@@ -1,6 +1,7 @@
 import { auth, facebook, database } from '../js/api';
 
 export const GET_USER = 'GET_USER';
+export const ADD_NEW_ORDER = 'ADD_NEW_ORDER';
 
 export function logOut() {
   auth.signOut();
