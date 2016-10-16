@@ -21,11 +21,19 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
 
     auth.onAuthStateChanged(function(result) {
       if (result) {
-        database.ref(`users/${result.uid}/orders`)
-                .orderByChild('active')
-                .equalTo(true)
-                .once('value')
-                .then(function(ordersSnapShot) {
+        let dataDir;
+
+        database.ref(`users/${result.uid}/direction`)
+        .once('value')
+        .then(function (snapDataDir) {
+          dataDir = snapDataDir.val();
+
+          return database.ref(`users/${result.uid}/orders`)
+            .orderByChild('active')
+            .equalTo(true)
+            .once('value');
+        })
+        .then(function (ordersSnapShot) {
           const { providerData } = result;
           let storageInfo = localStorage.getItem(result.uid);
           storageInfo = storageInfo && JSON.parse(storageInfo);
@@ -34,7 +42,8 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
             response: {
               name: providerData[0].displayName,
               url: providerData[0].photoURL,
-              uid: result.uid
+              uid: result.uid,
+              direction: dataDir
             }
           });
           newAction.inventory = inventorySnapShot.val();
