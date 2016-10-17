@@ -46,29 +46,29 @@ class CartOrder extends Component {
     direction = direction || {};
 
     return (
-      <div className={ css('order') }>
-        <div className={ css('order__wrapper') }>
-          <div className={ css('order__input-container') }>
+      <div className={ css('cart-order') }>
+        <div className={ css('cart-order__wrapper') }>
+          <div className={ css('cart-order__input-container') }>
             <input id="direction"
               ref={ (c) => this._inputDirection = c }
               defaultValue={ direction.main }
               placeholder="Carrera, Calle, Transversal, Circular"
-              className={ css('order__input', 'order--direction') }
+              className={ css('cart-order__input', 'cart-order--direction') }
               type="text"
               pattern="\S" />
-            <label className={ css('order__label') } htmlFor="direction">Dirección</label>
+            <label className={ css('cart-order__label') } htmlFor="direction">Dirección</label>
           </div>
-          <div className={ css('order__input-container') }>
+          <div className={ css('cart-order__input-container') }>
             <input id="adicional"
               ref={ (c) => this._inputAditional = c }
               defaultValue={ direction.aditional }
               placeholder="Barrio, Unidad, Edificio, Apartamento"
-              className={ css('order__input', 'order--aditional') }
+              className={ css('cart-order__input', 'cart-order--aditional') }
               type="text"
               pattern="\S" />
-            <label className={ css('order__label') } htmlFor="adicional">Información Adicional</label>
+            <label className={ css('cart-order__label') } htmlFor="adicional">Información Adicional</label>
           </div>
-          <button className={ css('order__btn') } onClick={ this.addOrderHandler }>Hacer pedido</button>
+          <button className={ css('cart-order__btn') } onClick={ this.addOrderHandler }>Hacer pedido</button>
         </div>
       </div>
     );
