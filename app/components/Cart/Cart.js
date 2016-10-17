@@ -57,12 +57,12 @@ class Cart extends Component {
 
     return (
       <div className={ css('cart') }>
-        <h1 className={ css('cart__header') }>Carrito</h1>
+        <h1 className={ css('h1', 'cart__header') }>Carrito</h1>
         <div className={ css('cart__message') }>Revise sus articulos y seleccione una fecha de entrega</div>
-        <div className={ css('cart__section-wrapper', 'cart--list') }>
+        <div className={ css('section-wrapper', 'cart__section-wrapper', 'cart--list') }>
           <CartList cart={ cart } carHandler={ this.carHandler } removeFromCarHandler={ this.removeFromCarHandler }/>
         </div>
-        <div className={ css('cart__section-wrapper', 'cart--two-items') }>
+        <div className={ css('section-wrapper', 'cart__section-wrapper', 'cart--two-items') }>
           <DatePick date={ date } />
           <CartOrder />
           <div className={ css('cart__date-picker') }>
