@@ -1,7 +1,5 @@
 export default function resetInlineStyles(...args) {
-  args.forEach(({ style }) => {
-    Object.keys(style).forEach((key) => {
-      style.removeProperty(key);
-    });
+  args.forEach((element) => {
+    element.removeAttribute('style');
   });
 }
