@@ -1,0 +1,16 @@
+.orders {
+  padding: 1px 0;
+  height: 100%;
+
+  &__item-list {
+    list-style: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  &--col {
+    display: inline-block;
+    padding: 10px 5px 10px 10px;
+    font-size: 16px;
+    vertical-align: top;
+  }
+}
