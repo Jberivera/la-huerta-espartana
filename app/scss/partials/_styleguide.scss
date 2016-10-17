@@ -4,3 +4,30 @@ h3,
 p {
   color: #555;
 }
+
+.h1 {
+  position: relative;
+  margin-top: 50px;
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 30px;
+  @media (min-width: 768px) {
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 50%;
+      height: 1px;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, .2);
+    }
+  }
+}
+
+.section-wrapper {
+  padding: 30px;
+  width: 90%;
+  margin: auto;
+  min-height: 200px;
+}
