@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 
 const css = classNames.bind(style);
 
-import { getNumberOfDays, getMonthString, getFirstDayOfWeek } from '../../js/view/datepicker';
+import { getNumberOfDays, getMonthStringES, getFirstDayOfWeek } from '../../js/view/datepicker';
 import MonthTable from './MonthTable';
 
 class DatePick extends Component {
@@ -26,7 +26,7 @@ class DatePick extends Component {
           month={ month }
           year={ year }
           day={ day }
-          monthString={ getMonthString(date) }
+          monthString={ getMonthStringES(date) }
           monthDays={ getNumberOfDays(year, month) }
           firstDayOfWeek={ getFirstDayOfWeek(year, month) } />
       </div>

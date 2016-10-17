@@ -21,3 +21,17 @@ export function getMonthString (date) {
 export function setInputValue (date) {
   return /(?:\w{4})-(?:\w{2})-(?:\w{2})/.exec(date.toISOString())[0];
 }
+
+export function getDateValue (date) {
+  return `${date.getDate()} ${getMonthStringES(date)} - ${date.getFullYear()}`
+}
+
+export function getMonthStringES (date) {
+  const monthString = getMonthString(date);
+  return {
+    'Jan': 'Ene',
+    'Apr': 'Abr',
+    'Aug': 'Ago',
+    'Dec': 'Dic'
+  }[monthString] || monthString;
+}
