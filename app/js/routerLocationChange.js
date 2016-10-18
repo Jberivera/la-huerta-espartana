@@ -4,7 +4,6 @@ export default function routerLocationChange(database, auth) {
   let firstCall = true;
 
   return function (next, action, state) {
-    window.scrollTo(0, 0);
     if (firstCall) {
       setAuthStateChangeListener({ database, auth, next, action, state });
       firstCall = false;
