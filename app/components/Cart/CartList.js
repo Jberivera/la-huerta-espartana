@@ -10,22 +10,22 @@ function CartList ({ cart, carHandler, removeFromCarHandler }) {
   return (
     <ul className={ css('cart__item-container') }>
       <li className={ css('cart__item-list') }>
-        <div className={ css('cart__product-name', 'cart--col') }>Producto</div>
-        <div className={ css('cart__count', 'cart--col') }>Cantidad</div>
-        <div className={ css('cart__price', 'cart--col') }>Precio</div>
-        <div className={ css('cart__total', 'cart--col') }>Total</div>
+        <div className={ css('cart__product-name', 'col') }>Producto</div>
+        <div className={ css('cart__count', 'col') }>Cantidad</div>
+        <div className={ css('cart__price', 'col') }>Precio</div>
+        <div className={ css('cart__total', 'col') }>Total</div>
       </li>
       {
         cart.map((item, i) => {
           return (
             <li key={ i } className={ css('cart__item-list') }>
-              <div className={ css('cart__product-name', 'cart--col') }>
+              <div className={ css('cart__product-name', 'col') }>
                 <div className={ css('cart__group') }>
                   <img className={ css('cart__item-thumbnail') } src={ item.imgUrl }></img>
                   <span>{ `${item.productName} - ${item.units}` }</span>
                 </div>
               </div>
-              <div className={ css('cart__count', 'cart--col') }>
+              <div className={ css('cart__count', 'col') }>
                 <div className={ css('cart__group', 'cart--center', !item.count && 'cart--delete') }
                     data-item={ JSON.stringify({
                       productName: item.productName,
@@ -36,12 +36,12 @@ function CartList ({ cart, carHandler, removeFromCarHandler }) {
                   <i className={ css('cart__delete', 'material-icons') } onClick={ removeFromCarHandler }>delete</i>
                 </div>
               </div>
-              <div className={ css('cart__price', 'cart--col') }>
+              <div className={ css('cart__price', 'col') }>
                 <div className={ css('cart__group', 'cart--right') }>
                   { `$${item.price.toString().replace(/(\d{3})$/g, '.$1')}` }
                 </div>
               </div>
-              <div className={ css('cart__total', 'cart--col') }>
+              <div className={ css('cart__total', 'col') }>
                 <div className={ css('cart__group', 'cart--right') }>
                   { `$${item.price * item.count}` }
                 </div>
@@ -51,12 +51,12 @@ function CartList ({ cart, carHandler, removeFromCarHandler }) {
         })
       }
       <li className={ css('cart__item-list') }>
-        <div className={ css('cart__total-title', 'cart--col') }>
+        <div className={ css('cart__total-title', 'col') }>
           <div className={ css('cart__group') }>
             Total
           </div>
         </div>
-        <div className={ css('cart__total', 'cart--col', 'cart--total-account') }>
+        <div className={ css('cart__total', 'col', 'cart--total-account') }>
           <div className={ css('cart__group', 'cart--right') }>
             <span className={ css('cart__total-text') }>{ `$${getTotal(cart)}` }</span>
           </div>
