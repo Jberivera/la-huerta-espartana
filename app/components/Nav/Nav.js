@@ -53,7 +53,7 @@ class Nav extends Component {
             <h1 className={ css('nav__title') }>
               La Huerta Espartana
             </h1>
-            <Link to="/">
+            <Link to="/" className="link-top">
               <img src="/assets/img/huertalogo.png" className={ css('nav__logo-img') }></img>
             </Link>
           </div>

@@ -24,13 +24,15 @@ function NavBtn({ label, checked, to, pathname, btnBackground, onClick, classNam
   return (
     <li className={ css('nav__menu-item', className, pathname ? 'active' : null) } onClick={ onClickHandler }>
       <label className={ css('nav__menu-label', 'btn') }>
-        <Link to={ to } className={ css('nav__menu-btn') } >
-          { btnBackground ?
-            <img src={ btnBackground } className={ css('nav__btn-background') }></img> :
-            <div className={ css('nav__btn-background') }></div>
+        <Link to={ to } className={ css('nav__menu-btn', 'link-top') } >
+          { btnBackground
+            ?
+            <img src={ btnBackground } className={ css('nav__btn-background', 'link-top') }></img>
+            :
+            <div className={ css('nav__btn-background', 'link-top') }></div>
           }
-          <div className={ css('nav__btn-slide') }></div>
-          <p className={ css('nav__label-name') }>{ label }</p>
+          <div className={ css('nav__btn-slide', 'link-top') }></div>
+          <p className={ css('nav__label-name', 'link-top') }>{ label }</p>
         </Link>
       </label>
     </li>
