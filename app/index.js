@@ -36,7 +36,7 @@ const store = createStore(
 const history = syncHistoryWithStore(browserHistory, store);
 
 // react components
-import { Root, Home, Market, Cart, Orders } from './components';
+import { Root, Home, Market, Cart, Orders, Order } from './components';
 
 const App = (props) => (
   <Provider store={ store }>
@@ -45,13 +45,26 @@ const App = (props) => (
         <IndexRoute component={ Home } />
         <Route path="/mercado" component={ Market } />
         <Route path="/carrito" component={ Cart } />
-        <Route path="/pedidos" component={ Orders } />
+        <Route path="/pedidos" component={ Orders } >
+          <Route path="/pedido/:pedidoId" component={ Order } />
+        </Route>
       </Route>
     </Router>
   </Provider>
 );
 
 ReactDOM.render(<App />, document.querySelector('#app'));
+
+document.addEventListener('click', (function() {
+  const status = document.querySelector('#status');
+  return function (e) {
+    if (e.target.classList.contains('link-top')) {
+      status.checked = false
+      window.scrollTo(0, 0);
+      e.preventDefault();
+    }
+  };
+}()));
 
 // if ('serviceWorker' in navigator) {
 //   navigator.serviceWorker.register('/sw.js', { 'scope': '/' }).then(function(registration) {
