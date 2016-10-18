@@ -6,3 +6,4 @@ export { default as Home } from './Home/Home';
 export { default as Market } from './Market/Market';
 export { default as Cart } from './Cart/Cart';
 export { default as Orders } from './Orders/Orders';
+export { default as Order } from './Orders/Order';

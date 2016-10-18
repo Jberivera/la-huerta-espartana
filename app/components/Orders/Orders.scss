@@ -5,12 +5,49 @@
   &__item-list {
     list-style: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+    &:first-child {
+      padding: 3px;
+      background: #588c73;
+      color: #fff;
+      border: none;
+      margin-bottom: 10px;
+    }
   }
 
-  &--col {
-    display: inline-block;
-    padding: 10px 5px 10px 10px;
-    font-size: 16px;
-    vertical-align: top;
+  &__date {
+    width: 15%;
+  }
+
+  &__direction {
+    width: 40%;
+  }
+
+  &__total {
+    text-align: right;
+    width: calc(20% - 1px);
+  }
+
+  &__detail {
+    width: calc(10% - 1px);
+  }
+
+  &__detail-link {
+    color: #6E9ECF;
+
+    &[href='/pedidos'] {
+      color: #588c73;
+    }
+  }
+
+  &--detail-item {
+    text-align: center;
+    width: calc(33% - 1px);
+  }
+
+  &--detail-item-list:first-child {
+    background: transparent;
+    color: #555;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   }
 }
