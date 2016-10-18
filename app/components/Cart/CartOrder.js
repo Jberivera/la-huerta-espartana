@@ -37,7 +37,11 @@ class CartOrder extends Component {
       total: getTotal(cart),
       date: new Date().toISOString(),
       dateOfDelivery: date,
-      list: cart
+      list: cart,
+      direction: {
+        main: this._inputDirection.value,
+        aditional: this._inputAditional.value
+      }
     }, uid, direction);
   }
 
@@ -55,18 +59,20 @@ class CartOrder extends Component {
               placeholder="Carrera, Calle, Transversal, Circular"
               className={ css('cart-order__input', 'cart-order--direction') }
               type="text"
-              pattern="\S" />
+              pattern="\S"
+              title="Carrera, Calle, Transversal, Circular" />
             <label className={ css('cart-order__label') } htmlFor="direction">Dirección</label>
           </div>
           <div className={ css('cart-order__input-container') }>
-            <input id="adicional"
+            <input id="aditional"
               ref={ (c) => this._inputAditional = c }
               defaultValue={ direction.aditional }
               placeholder="Barrio, Unidad, Edificio, Apartamento"
               className={ css('cart-order__input', 'cart-order--aditional') }
               type="text"
-              pattern="\S" />
-            <label className={ css('cart-order__label') } htmlFor="adicional">Información Adicional</label>
+              pattern="\S"
+              title="Barrio, Unidad, Edificio, Apartamento" />
+            <label className={ css('cart-order__label') } htmlFor="aditional">Información Adicional</label>
           </div>
           <button className={ css('cart-order__btn') } onClick={ this.addOrderHandler }>Hacer pedido</button>
         </div>
@@ -81,7 +87,7 @@ const mapStateToProps = (state, ownProps) => {
       return Object.assign({}, item, state.inventory[item.id]);
     }),
     date: state.date.toISOString(),
-    user: state.user.res && { uid: state.user.res.uid, direction: state.user.res.direction }
+    user: state.user.res && { uid: state.user.res.uid, direction: Object.assign({}, state.user.res.direction) }
   };
 };
 
