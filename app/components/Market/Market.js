@@ -66,9 +66,9 @@ class Market extends Component {
         <MarketNav />
         <ul className={ css('market__items-container') }>
           {
-            Object.keys(inventory).map((key) => {
+            inventory && Object.keys(inventory).map((key) => {
               return (
-                <li key={key} className={ css('market__item', filter === 'all' || inventory[key].type === filter || 'market__item--hide') } >
+                <li key={key} className={ css('market__item', filter === 'todos' || inventory[key].type === filter || 'market__item--hide') } >
                   <div className={ css('market__item-group', cart.some((cartItem) => cartItem.id === key) && 'added') }
                     data-item={ JSON.stringify({
                       productName: inventory[key].productName,
@@ -102,7 +102,7 @@ function findCount(cart, i) {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    inventory: [ ...state.inventory ],
+    inventory: state.inventory.data,
     cart: [ ...state.cart ],
     filter: state.filters
   };

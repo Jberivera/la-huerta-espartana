@@ -86,7 +86,7 @@ function findCount(cart, i) {
 const mapStateToProps = (state, ownProps) => {
   return {
     cart: state.cart.map((item) => {
-      return Object.assign({}, item, state.inventory[item.id]);
+      return Object.assign({}, item, state.inventory.data[item.id]);
     }),
     date: state.date,
     message: state.message

@@ -44,16 +44,20 @@ class MarketNav extends Component {
   }
 
   render () {
-    const { cart, filterChange, filter } = this.props;
+    const { cart, filterChange, filter, filters } = this.props;
 
     return (
       <div className={ css('market__nav-container') }>
         <div className={ css('market__nav') } ref={ this.affixNav }>
           <div className={ css('market__filters') } onClick={ this.filterHandler }>
             <div className={ css('market__filters-container') }>
-              <span className={ css('market__filter', filter === 'all' && 'market__filter--active') } data-filter='all'>Todos</span>
-              <span className={ css('market__filter', filter === 'verduras' && 'market__filter--active') } data-filter='verduras'>Verduras</span>
-              <span className={ css('market__filter', filter === 'granos' && 'market__filter--active') } data-filter='granos'>Granos</span>
+              {
+                filters && Object.keys(filters).map((key, i) => {
+                  return (
+                    <span key={ i } className={ css('market__filter', filter === filters[key] && 'market__filter--active') } data-filter={ filters[key] }>{ filters[key] }</span>
+                  );
+                })
+              }
             </div>
           </div>
           <div className={ css('market__shopping-cart') }>
@@ -69,8 +73,9 @@ class MarketNav extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     cart: state.cart.map((item) => {
-      return Object.assign({}, item, state.inventory[item.id]);
+      return Object.assign({}, item, state.inventory.data[item.id]);
     }),
+    filters: state.inventory.filters,
     filter: state.filters
   };
 };

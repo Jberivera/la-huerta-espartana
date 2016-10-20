@@ -3,7 +3,7 @@ import {
   FILTER_CHANGE
 } from '../actions/action-creators';
 
-const initialState = 'all';
+const initialState = 'todos';
 
 const actionHandlers = {
   [FILTER_CHANGE]: (state, action) => action.filter
