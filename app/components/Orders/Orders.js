@@ -29,7 +29,7 @@ function Orders ({ orders, children }) {
                   <div className={ css('col', 'orders__date') }>{ getDateValue(new Date(orders[key].date)) }</div>
                   <div className={ css('col', 'orders__date') }>{ getDateValue(new Date(orders[key].dateOfDelivery)) }</div>
                   <div className={ css('col', 'orders__direction') }>{ `${orders[key].direction.main} (${orders[key].direction.aditional})` }</div>
-                  <div className={ css('col', 'orders__total') }>{orders[key].total}</div>
+                  <div className={ css('col', 'orders__total') }>{ `$${orders[key].total}` }</div>
                   <div className={ css('col', 'orders__detail') }>
                     <Link to={ children && children.props.params.pedidoId === key ? '/pedidos' : `/pedido/${key}` } className={ css('orders__detail-link') }>Detalle</Link>
                   </div>

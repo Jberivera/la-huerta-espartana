@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 const css = classNames.bind(style);
 
+import getCurrency from '../../js/utils/getCurrency';
+
 function Order ({ order }) {
   const { list } = order;
 
@@ -21,7 +23,7 @@ function Order ({ order }) {
             return (
               <li key={ `detail-${i}` } className={ css('orders__item-list') }>
                 <div className={ css('col', 'orders--detail-item') }>{ item.productName }</div>
-                <div className={ css('col', 'orders--detail-item') }>{ item.price }</div>
+                <div className={ css('col', 'orders--detail-item') }>{ `$${getCurrency(item.price)}` }</div>
                 <div className={ css('col', 'orders--detail-item') }>{ item.count }</div>
               </li>
             );
