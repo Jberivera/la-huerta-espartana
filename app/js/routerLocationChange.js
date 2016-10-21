@@ -20,17 +20,18 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
 
     auth.onAuthStateChanged(function(result) {
       if (result) {
+        const directionPromise = database.ref(`users/${result.uid}/direction`)
+          .once('value');
+        const ordersPromise = database.ref(`users/${result.uid}/orders`)
+          .orderByChild('active')
+          .equalTo(true)
+          .once('value');
         let dataDir;
 
-        database.ref(`users/${result.uid}/direction`)
-        .once('value')
-        .then(function (snapDataDir) {
+        directionPromise.then(function (snapDataDir) {
           dataDir = snapDataDir.val();
 
-          return database.ref(`users/${result.uid}/orders`)
-            .orderByChild('active')
-            .equalTo(true)
-            .once('value');
+          return ordersPromise;
         })
         .then(function (ordersSnapShot) {
           const { providerData } = result;
