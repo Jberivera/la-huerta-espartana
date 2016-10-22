@@ -87,7 +87,7 @@ const mapStateToProps = (state, ownProps) => {
       return Object.assign({}, item, state.inventory.data[item.id]);
     }),
     date: state.date.toISOString(),
-    user: state.user.res && { uid: state.user.res.uid, direction: Object.assign({}, state.user.res.direction) }
+    user: (state.user.res && { uid: state.user.res.uid, direction: Object.assign({}, state.user.res.direction) }) || {}
   };
 };
 
