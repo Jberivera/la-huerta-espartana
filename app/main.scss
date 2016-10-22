@@ -1,21 +1,23 @@
 @import 'scss/style';
 
+$nav-height: 60px;
+$footer-height: 100px;
+$footer-nav-height: $nav-height + $footer-height;
+
 :global .app {
   height: 100%;
 }
 
 :global .main-container {
-  display: flex;
-  flex-direction: column;
   position: relative;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
 }
 
 :global .container {
   position: relative;
   background: #f7f7f7;
-  flex: 1 0 0%;
+  min-height: calc(100% - #{$footer-nav-height});
 }
 
 :global .btn {
