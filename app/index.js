@@ -36,7 +36,7 @@ const store = createStore(
 const history = syncHistoryWithStore(browserHistory, store);
 
 // react components
-import { Root, Home, Market, Cart, Orders, Order } from './components';
+import { Root, Home, Market, Cart, Orders, Order, Admin } from './components';
 
 const App = (props) => (
   <Provider store={ store }>
@@ -48,6 +48,7 @@ const App = (props) => (
         <Route path="/pedidos" component={ Orders } >
           <Route path="/pedido/:pedidoId" component={ Order } />
         </Route>
+        <Route path="/admin" component={ Admin } />
       </Route>
     </Router>
   </Provider>
