@@ -38,3 +38,29 @@ p {
   font-size: 16px;
   vertical-align: top;
 }
+
+.btn {
+  &--primary {
+    background: #337AB7;
+
+    &:hover {
+      background: #286090;
+    }
+  }
+
+  &--danger {
+    background: #D9534F;
+
+    &:hover {
+      background: #c9302c;
+    }
+  }
+
+  &--success {
+    background: #4CAF50;
+
+    &:hover {
+      background: #449d44;
+    }
+  }
+}

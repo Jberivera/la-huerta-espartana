@@ -175,6 +175,10 @@
     margin-top: 20px;
     cursor: pointer;
     color: #555;
+
+    &:hover {
+      background: #e6e6e6;
+    }
   }
 
   &__input-container {

@@ -32,7 +32,11 @@ class Admin extends Component {
   addProduct (e) {
     const { productName } = e.target;
 
-    console.log(productName);
+    e.preventDefault();
+  }
+
+  updateProduct (e) {
+
     e.preventDefault();
   }
 
@@ -79,7 +83,7 @@ class Admin extends Component {
               className={ css('admin__search-input') } />
             <i className={ css('material-icons', 'admin__search-icon') } onClick={ this.searchProduct }>search</i>
           </div>
-          <form id="update-product" noValidate onSubmit={ this.addProduct }>
+          <form id="update-product" noValidate onSubmit={ this.updateProduct }>
             <h2 className={ css('admin__form-header') }>Editar producto</h2>
             <div className={ css('admin__input-container') }>
               <input id="update-product__name"
@@ -132,7 +136,11 @@ class Admin extends Component {
                 }
               </select>
             </div>
-            <input type="submit" className={ css('admin__submit') } value="Agregar"/>
+            <input type="submit" className={ css('admin__submit', 'btn--primary') } value="Actualizar"/>
+            <input type="submit" className={ css('admin__submit', 'btn--danger') } value="Borrar" onClick={(e) => {
+              e.preventDefault();
+              console.log('melo');
+            }}/>
           </form>
         </div>
         <div className={ css('section-wrapper', 'admin__section-wrapper') }>
@@ -185,7 +193,7 @@ class Admin extends Component {
                 }
               </select>
             </div>
-            <input type="submit" className={ css('admin__submit') } value="Agregar"/>
+            <input type="submit" className={ css('admin__submit', 'btn--success') } value="Agregar"/>
           </form>
         </div>
       </div>
