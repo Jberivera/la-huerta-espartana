@@ -12,6 +12,8 @@ import latinize from '../../js/utils/latinize';
 import {
   getInventoryAsync
 } from '../../actions/inventory-action-creators';
+import FindAndEdit from './FindAndEdit';
+import AddProduct from './AddProduct';
 
 class Admin extends Component {
   constructor (props) {
@@ -120,7 +122,9 @@ class Admin extends Component {
     });
 
     resetInputFields(_inputProductName, _inputProductPrice, _inputProductUnits, _inputProductImg, _inputProductType);
-    database.ref(`inventory/data/${search.key}`).remove();
+    database.ref(`inventory/data/${search.key}`).remove().then(() => {
+      this.props.getInventoryAsync();
+    });
     e.preventDefault();
   }
 
@@ -140,128 +144,11 @@ class Admin extends Component {
       ?
       <div className={ css('admin') }>
         <h1 className={ css('h1', 'admin__header') }>Admin</h1>
-
         <div className={ css('section-wrapper', 'admin__section-wrapper') }>
-          <div className={ css('admin__search-wrapper') }>
-            <input type="text"
-              ref={ (c) => this._inputSearch = c }
-              placeholder="Nombre del producto"
-              className={ css('admin__search-input') } />
-            <i className={ css('material-icons', 'admin__search-icon') } onClick={ this.searchProduct }>search</i>
-          </div>
-          <span className={ css('admin__message-wrapper') }>{ (message && <span className={ css('admin__message', message.type) } onClick={ this.hideMessageHandler }>{ message.text }<i className={ css('material-icons', 'admin__message-close') }>backspace</i></span>) || '' }</span>
-          <form id="update-product" noValidate onSubmit={ this.updateProduct }>
-            <h2 className={ css('admin__form-header') }>Editar producto</h2>
-            <div className={ css('admin__input-container') }>
-              <input id="update-product__name"
-                className={ css('admin__input') }
-                ref={ (c) => this._inputProductName = c }
-                type="text"
-                pattern="\S"
-                name="productName"
-                title="Nombre del producto" />
-              <label className={ css('admin__label') } htmlFor="update-product__name">Nombre del producto</label>
-            </div>
-            <div className={ css('admin__input-container') }>
-              <input id="update-product__price"
-                className={ css('admin__input') }
-                ref={ (c) => this._inputProductPrice = c }
-                type="text"
-                pattern="\S"
-                name="price"
-                title="Precio del producto" />
-              <label className={ css('admin__label') } htmlFor="update-product__price">Precio</label>
-            </div>
-            <div className={ css('admin__input-container') }>
-              <input id="update-product__units"
-                className={ css('admin__input') }
-                ref={ (c) => this._inputProductUnits = c }
-                type="text"
-                pattern="\S"
-                name="units"
-                title="Unidades del producto" />
-              <label className={ css('admin__label') } htmlFor="update-product__units">Unidades</label>
-            </div>
-            <div className={ css('admin__input-container') }>
-              <input id="update-product__imgUrl"
-                ref={ (c) => this._inputProductImg = c }
-                className={ css('admin__input') }
-                type="text"
-                pattern="\S"
-                name="imgUrl"
-                title="Imagen del producto" />
-              <label className={ css('admin__label') } htmlFor="update-product__imgUrl">Imagen URL</label>
-            </div>
-            <div className={ css('admin__input-container') }>
-              <select name="type" className={ css('admin__select') } ref={ (c) => this._inputProductType = c }>
-                {
-                  Object.keys(filters).slice(1).map((key) => {
-                    return (
-                      <option key={ `update-${key}` } selected={ search && search.type === filters[key] && 'selected' } value={ filters[key] }>{ filters[key] }</option>
-                    );
-                  })
-                }
-              </select>
-            </div>
-            <div className={ css('admin__submit-wrapper', search && 'admin--show') }>
-              <input type="submit" className={ css('admin__submit', 'btn--primary') } value="Actualizar"/>
-              <input type="submit" className={ css('admin__submit', 'btn--danger') } value="Borrar" onClick={ this.deleteHandler }/>
-            </div>
-          </form>
+          { FindAndEdit.call(this, { search, filters, message }) }
         </div>
-
         <div className={ css('section-wrapper', 'admin__section-wrapper') }>
-          <form id="add-product" noValidate onSubmit={ this.addProduct }>
-            <h2 className={ css('admin__form-header') }>Agregar nuevo producto en el inventario</h2>
-            <div className={ css('admin__input-container') }>
-              <input id="add-product__name"
-                className={ css('admin__input') }
-                type="text"
-                pattern="\S"
-                name="productName"
-                title="Nombre del producto" />
-              <label className={ css('admin__label') } htmlFor="add-product__name">Nombre del producto</label>
-            </div>
-            <div className={ css('admin__input-container') }>
-              <input id="add-product__price"
-                className={ css('admin__input') }
-                type="text"
-                pattern="\S"
-                name="price"
-                title="Precio del producto" />
-              <label className={ css('admin__label') } htmlFor="add-product__price">Precio</label>
-            </div>
-            <div className={ css('admin__input-container') }>
-              <input id="add-product__units"
-                className={ css('admin__input') }
-                type="text"
-                pattern="\S"
-                name="units"
-                title="Unidades del producto" />
-              <label className={ css('admin__label') } htmlFor="add-product__units">Unidades</label>
-            </div>
-            <div className={ css('admin__input-container') }>
-              <input id="add-product__imgUrl"
-                className={ css('admin__input') }
-                type="text"
-                pattern="\S"
-                name="imgUrl"
-                title="Imagen del producto" />
-              <label className={ css('admin__label') } htmlFor="add-product__imgUrl">Imagen URL</label>
-            </div>
-            <div className={ css('admin__input-container') }>
-              <select name="type" className={ css('admin__select') }>
-                {
-                  Object.keys(filters).slice(1).map((key) => {
-                    return (
-                      <option key={ `add-${key}` } value={ filters[key] }>{ filters[key] }</option>
-                    );
-                  })
-                }
-              </select>
-            </div>
-            <input type="submit" className={ css('admin__submit', 'btn--success') } value="Agregar"/>
-          </form>
+          <AddProduct addProduct={ this.addProduct } filters={ filters } />
         </div>
       </div>
       :
