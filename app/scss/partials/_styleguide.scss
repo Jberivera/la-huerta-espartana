@@ -48,6 +48,14 @@ p {
     }
   }
 
+  &--warning {
+    background: #f0ad4e;
+
+    &:hover {
+      background: #ec971f;
+    }
+  }
+
   &--danger {
     background: #D9534F;
 
