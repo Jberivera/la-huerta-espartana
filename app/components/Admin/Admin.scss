@@ -100,4 +100,36 @@
     transform: translateY(-50%);
     cursor: pointer;
   }
+
+  &__message-wrapper {
+    display: inline-block;
+    position: relative;
+    width: 28%;
+  }
+
+  &__message {
+    display: inline-block;
+    padding: 5px;
+    margin-left: 10px;
+    border-radius: 3px;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    cursor: default;
+  }
+
+  &__message-close {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__submit-wrapper {
+    visibility: hidden;
+  }
+
+  &--show {
+    visibility: visible;
+  }
 }

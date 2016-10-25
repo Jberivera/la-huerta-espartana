@@ -10,15 +10,16 @@ import { database } from '../../js/api';
 import latinize from '../../js/utils/latinize';
 
 import {
-  addToCar,
-  removeFromCar
-} from '../../actions/action-creators';
+  getInventoryAsync
+} from '../../actions/inventory-action-creators';
 
 class Admin extends Component {
   constructor (props) {
     super(props);
     this.getAdmin = this.getAdmin.bind(this);
     this.searchProduct = this.searchProduct.bind(this);
+    this.updateProduct = this.updateProduct.bind(this);
+    this.handlerHideMessage = this.handlerHideMessage.bind(this);
 
     this.state = {};
   }
@@ -36,32 +37,57 @@ class Admin extends Component {
   }
 
   updateProduct (e) {
+    const { search } = this.state;
+    const { uid, inventory } = this.props;
+    const { productName, price, units, imgUrl, type } = e.target;
 
+    const inputData = {
+      productName: productName.value,
+      price: price.value,
+      units: units.value,
+      imgUrl: imgUrl.value,
+      type: type.value
+    };
+
+    if (search && search.key) {
+      const changes = whichHasChanged(inventory[search.key], inputData);
+
+      database.ref(`inventory/data/${search.key}`).update(changes.reduce((a, b) => {
+        return a[b] = inputData[b], a;
+      }, {}));
+      this.props.getInventoryAsync();
+    }
+
+    resetInputFields(productName, price, units, imgUrl, type);
     e.preventDefault();
   }
 
   searchProduct (e) {
-    const value = this._inputSearch.value;
+    let value = this._inputSearch.value;
     const { inventory } = this.props;
 
-    const search = Object.keys(inventory).find((key) => {
-      return latinize(inventory[key].productName.toLowerCase()) === latinize(value.toLowerCase());
+    if (!value) return;
+    value = latinize(value.toLowerCase());
+
+    let search = Object.keys(inventory).find((key) => {
+      return latinize(inventory[key].productName.toLowerCase()) === value;
     });
 
+    if (!search) {
+      search = searchByRegex(value, inventory);
+    }
+    setSearch.call(this, search, inventory);
+  }
+
+  handlerHideMessage (e) {
     this.setState({
-      search: {
-        type: inventory[search].type
-      }
+      message: null
     });
-    this._inputProductName.value = inventory[search].productName;
-    this._inputProductPrice.value = inventory[search].price;
-    this._inputProductUnits.value = inventory[search].units;
-    this._inputProductImg.value = inventory[search].imgUrl;
   }
 
   render () {
     const { uid, filters } = this.props;
-    const { admin, search } = this.state;
+    const { admin, search, message } = this.state;
 
     if (uid && !admin) {
       database
@@ -83,6 +109,7 @@ class Admin extends Component {
               className={ css('admin__search-input') } />
             <i className={ css('material-icons', 'admin__search-icon') } onClick={ this.searchProduct }>search</i>
           </div>
+          <span className={ css('admin__message-wrapper') }>{ (message && <span className={ css('admin__message', message.type) } onClick={ this.handlerHideMessage }>{ message.text }<i className={ css('material-icons', 'admin__message-close') }>backspace</i></span>) || '' }</span>
           <form id="update-product" noValidate onSubmit={ this.updateProduct }>
             <h2 className={ css('admin__form-header') }>Editar producto</h2>
             <div className={ css('admin__input-container') }>
@@ -101,7 +128,7 @@ class Admin extends Component {
                 ref={ (c) => this._inputProductPrice = c }
                 type="text"
                 pattern="\S"
-                name="productPrice"
+                name="price"
                 title="Precio del producto" />
               <label className={ css('admin__label') } htmlFor="update-product__price">Precio</label>
             </div>
@@ -111,7 +138,7 @@ class Admin extends Component {
                 ref={ (c) => this._inputProductUnits = c }
                 type="text"
                 pattern="\S"
-                name="productUnits"
+                name="units"
                 title="Unidades del producto" />
               <label className={ css('admin__label') } htmlFor="update-product__units">Unidades</label>
             </div>
@@ -121,12 +148,12 @@ class Admin extends Component {
                 className={ css('admin__input') }
                 type="text"
                 pattern="\S"
-                name="productImageUrl"
+                name="imgUrl"
                 title="Imagen del producto" />
               <label className={ css('admin__label') } htmlFor="update-product__imgUrl">Imagen URL</label>
             </div>
             <div className={ css('admin__input-container') }>
-              <select name="productType" className={ css('admin__select') }>
+              <select name="type" className={ css('admin__select') } ref={ (c) => this._inputProductType = c }>
                 {
                   Object.keys(filters).slice(1).map((key) => {
                     return (
@@ -136,11 +163,13 @@ class Admin extends Component {
                 }
               </select>
             </div>
-            <input type="submit" className={ css('admin__submit', 'btn--primary') } value="Actualizar"/>
-            <input type="submit" className={ css('admin__submit', 'btn--danger') } value="Borrar" onClick={(e) => {
-              e.preventDefault();
-              console.log('melo');
-            }}/>
+            <div className={ css('admin__submit-wrapper', search && 'admin--show') }>
+              <input type="submit" className={ css('admin__submit', 'btn--primary') } value="Actualizar"/>
+              <input type="submit" className={ css('admin__submit', 'btn--danger') } value="Borrar" onClick={(e) => {
+                e.preventDefault();
+                console.log('melo');
+              }}/>
+            </div>
           </form>
         </div>
         <div className={ css('section-wrapper', 'admin__section-wrapper') }>
@@ -160,7 +189,7 @@ class Admin extends Component {
                 className={ css('admin__input') }
                 type="text"
                 pattern="\S"
-                name="productPrice"
+                name="price"
                 title="Precio del producto" />
               <label className={ css('admin__label') } htmlFor="add-product__price">Precio</label>
             </div>
@@ -169,7 +198,7 @@ class Admin extends Component {
                 className={ css('admin__input') }
                 type="text"
                 pattern="\S"
-                name="productUnits"
+                name="units"
                 title="Unidades del producto" />
               <label className={ css('admin__label') } htmlFor="add-product__units">Unidades</label>
             </div>
@@ -178,12 +207,12 @@ class Admin extends Component {
                 className={ css('admin__input') }
                 type="text"
                 pattern="\S"
-                name="productImageUrl"
+                name="imgUrl"
                 title="Imagen del producto" />
               <label className={ css('admin__label') } htmlFor="add-product__imgUrl">Imagen URL</label>
             </div>
             <div className={ css('admin__input-container') }>
-              <select name="productType" className={ css('admin__select') }>
+              <select name="type" className={ css('admin__select') }>
                 {
                   Object.keys(filters).slice(1).map((key) => {
                     return (
@@ -203,6 +232,65 @@ class Admin extends Component {
   }
 }
 
+function whichHasChanged (obj1, obj2) {
+  return Object.keys(obj1).reduce((array, key) => {
+    return obj1[key].toString() !== obj2[key] && array.push(key), array;
+  }, []);
+}
+
+function resetInputFields (...inputs) {
+  inputs.forEach((input) => {
+    input.value = '';
+  });
+}
+
+function searchByRegex (value, inventory) {
+  const regex = new RegExp(`${value}?`);
+
+  const search = Object.keys(inventory).find((key) => {
+    return regex.test(latinize(inventory[key].productName.toLowerCase()));
+  });
+
+  if (search || value.length === 4) {
+    return search;
+  }
+
+  return searchByRegex(value.slice(0, length - 1), inventory);
+}
+
+function setSearch (search, inventory) {
+  const {
+    _inputProductName,
+    _inputProductPrice,
+    _inputProductUnits,
+    _inputProductImg,
+    _inputProductType
+  } = this;
+
+  if (!search) {
+    this.setState({
+      search: null,
+      message: {
+        type: 'btn--warning',
+        text: 'Sin resultados'
+      }
+    });
+    resetInputFields(_inputProductName, _inputProductPrice, _inputProductUnits, _inputProductImg, _inputProductType);
+    return;
+  }
+  this.setState({
+    search: {
+      key: search,
+      type: inventory[search].type
+    },
+    message: null
+  });
+  _inputProductName.value = inventory[search].productName;
+  _inputProductPrice.value = inventory[search].price;
+  _inputProductUnits.value = inventory[search].units;
+  _inputProductImg.value = inventory[search].imgUrl;
+}
+
 const mapStateToProps = (state, ownProps) => {
   return {
     inventory: state.inventory.data,
@@ -212,8 +300,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => bindActionCreators({
-  addToCar,
-  removeFromCar
+  getInventoryAsync
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Admin);
