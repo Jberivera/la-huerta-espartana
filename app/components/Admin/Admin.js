@@ -19,7 +19,8 @@ class Admin extends Component {
     this.getAdmin = this.getAdmin.bind(this);
     this.searchProduct = this.searchProduct.bind(this);
     this.updateProduct = this.updateProduct.bind(this);
-    this.handlerHideMessage = this.handlerHideMessage.bind(this);
+    this.hideMessageHandler = this.hideMessageHandler.bind(this);
+    this.deleteHandler = this.deleteHandler.bind(this);
 
     this.state = {};
   }
@@ -79,10 +80,48 @@ class Admin extends Component {
     setSearch.call(this, search, inventory);
   }
 
-  handlerHideMessage (e) {
+  hideMessageHandler (e) {
     this.setState({
       message: null
     });
+  }
+
+  deleteHandler (e) {
+    const { message, search } = this.state;
+    const {
+      _inputProductName,
+      _inputProductPrice,
+      _inputProductUnits,
+      _inputProductImg,
+      _inputProductType
+    } = this;
+
+    e.preventDefault();
+    if (!search) return;
+
+    if (!message || !message.deleteToggle) {
+      this.setState({
+        message: {
+          type: 'btn--danger',
+          deleteToggle: true,
+          text: ['click de nuevo en el boton para borrar', <br key="br" />, 'click en este mensaje para cancelar']
+        }
+      });
+      return;
+    }
+
+    this.setState({
+      search: null,
+      message: {
+        type: 'btn--success',
+        deleteToggle: false,
+        text: 'Se elimino permanentemente'
+      }
+    });
+
+    resetInputFields(_inputProductName, _inputProductPrice, _inputProductUnits, _inputProductImg, _inputProductType);
+    database.ref(`inventory/data/${search.key}`).remove();
+    e.preventDefault();
   }
 
   render () {
@@ -101,6 +140,7 @@ class Admin extends Component {
       ?
       <div className={ css('admin') }>
         <h1 className={ css('h1', 'admin__header') }>Admin</h1>
+
         <div className={ css('section-wrapper', 'admin__section-wrapper') }>
           <div className={ css('admin__search-wrapper') }>
             <input type="text"
@@ -109,7 +149,7 @@ class Admin extends Component {
               className={ css('admin__search-input') } />
             <i className={ css('material-icons', 'admin__search-icon') } onClick={ this.searchProduct }>search</i>
           </div>
-          <span className={ css('admin__message-wrapper') }>{ (message && <span className={ css('admin__message', message.type) } onClick={ this.handlerHideMessage }>{ message.text }<i className={ css('material-icons', 'admin__message-close') }>backspace</i></span>) || '' }</span>
+          <span className={ css('admin__message-wrapper') }>{ (message && <span className={ css('admin__message', message.type) } onClick={ this.hideMessageHandler }>{ message.text }<i className={ css('material-icons', 'admin__message-close') }>backspace</i></span>) || '' }</span>
           <form id="update-product" noValidate onSubmit={ this.updateProduct }>
             <h2 className={ css('admin__form-header') }>Editar producto</h2>
             <div className={ css('admin__input-container') }>
@@ -157,7 +197,7 @@ class Admin extends Component {
                 {
                   Object.keys(filters).slice(1).map((key) => {
                     return (
-                      <option key={ key } selected={ search && search.type === filters[key] && 'selected' } value={ filters[key] }>{ filters[key] }</option>
+                      <option key={ `update-${key}` } selected={ search && search.type === filters[key] && 'selected' } value={ filters[key] }>{ filters[key] }</option>
                     );
                   })
                 }
@@ -165,13 +205,11 @@ class Admin extends Component {
             </div>
             <div className={ css('admin__submit-wrapper', search && 'admin--show') }>
               <input type="submit" className={ css('admin__submit', 'btn--primary') } value="Actualizar"/>
-              <input type="submit" className={ css('admin__submit', 'btn--danger') } value="Borrar" onClick={(e) => {
-                e.preventDefault();
-                console.log('melo');
-              }}/>
+              <input type="submit" className={ css('admin__submit', 'btn--danger') } value="Borrar" onClick={ this.deleteHandler }/>
             </div>
           </form>
         </div>
+
         <div className={ css('section-wrapper', 'admin__section-wrapper') }>
           <form id="add-product" noValidate onSubmit={ this.addProduct }>
             <h2 className={ css('admin__form-header') }>Agregar nuevo producto en el inventario</h2>
@@ -216,7 +254,7 @@ class Admin extends Component {
                 {
                   Object.keys(filters).slice(1).map((key) => {
                     return (
-                      <option key={ key } value={ filters[key] }>{ filters[key] }</option>
+                      <option key={ `add-${key}` } value={ filters[key] }>{ filters[key] }</option>
                     );
                   })
                 }
