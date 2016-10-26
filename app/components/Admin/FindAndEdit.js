@@ -19,6 +19,7 @@ function FindAndEdit ({ search, filters, message }) {
         <h2 className={ css('admin__form-header') }>Editar producto</h2>
         <div className={ css('admin__input-container') }>
           <input id="update-product__name"
+            autoComplete="off"
             className={ css('admin__input') }
             ref={ (c) => this._inputProductName = c }
             type="text"
@@ -29,6 +30,7 @@ function FindAndEdit ({ search, filters, message }) {
         </div>
         <div className={ css('admin__input-container') }>
           <input id="update-product__price"
+            autoComplete="off"
             className={ css('admin__input') }
             ref={ (c) => this._inputProductPrice = c }
             type="text"
@@ -39,6 +41,7 @@ function FindAndEdit ({ search, filters, message }) {
         </div>
         <div className={ css('admin__input-container') }>
           <input id="update-product__units"
+            autoComplete="off"
             className={ css('admin__input') }
             ref={ (c) => this._inputProductUnits = c }
             type="text"
@@ -49,6 +52,7 @@ function FindAndEdit ({ search, filters, message }) {
         </div>
         <div className={ css('admin__input-container') }>
           <input id="update-product__imgUrl"
+            autoComplete="off"
             ref={ (c) => this._inputProductImg = c }
             className={ css('admin__input') }
             type="text"

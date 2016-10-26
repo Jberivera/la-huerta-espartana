@@ -10,6 +10,7 @@ function AddProduct ({ filters, addProduct }) {
       <h2 className={ css('admin__form-header') }>Agregar nuevo producto en el inventario</h2>
       <div className={ css('admin__input-container') }>
         <input id="add-product__name"
+          autoComplete="off"
           className={ css('admin__input') }
           type="text"
           pattern="\S"
@@ -19,6 +20,7 @@ function AddProduct ({ filters, addProduct }) {
       </div>
       <div className={ css('admin__input-container') }>
         <input id="add-product__price"
+          autoComplete="off"
           className={ css('admin__input') }
           type="text"
           pattern="\S"
@@ -28,6 +30,7 @@ function AddProduct ({ filters, addProduct }) {
       </div>
       <div className={ css('admin__input-container') }>
         <input id="add-product__units"
+          autoComplete="off"
           className={ css('admin__input') }
           type="text"
           pattern="\S"
@@ -37,6 +40,7 @@ function AddProduct ({ filters, addProduct }) {
       </div>
       <div className={ css('admin__input-container') }>
         <input id="add-product__imgUrl"
+          autoComplete="off"
           className={ css('admin__input') }
           type="text"
           pattern="\S"
