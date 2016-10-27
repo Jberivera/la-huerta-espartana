@@ -23,6 +23,7 @@ class Admin extends Component {
     this.updateProduct = this.updateProduct.bind(this);
     this.hideMessageHandler = this.hideMessageHandler.bind(this);
     this.deleteHandler = this.deleteHandler.bind(this);
+    this.addProductFormHandler = this.addProductFormHandler.bind(this);
 
     this.state = {};
   }
@@ -33,15 +34,26 @@ class Admin extends Component {
     });
   }
 
-  addProduct (e) {
-    const { productName } = e.target;
+  addProductFormHandler (e) {
+    const { productName, price, units, imgUrl, type } = e.target;
+    const { getInventoryAsync } = this.props;
+    const data = {
+      productName: productName.value,
+      price: price.value,
+      units: units.value,
+      imgUrl: imgUrl.value,
+      type: type.value
+    };
 
+    database.ref('inventory/data').push(data, getInventoryAsync);
+
+    resetInputFields(productName, price, units, imgUrl, type);
     e.preventDefault();
   }
 
   updateProduct (e) {
     const { search } = this.state;
-    const { uid, inventory } = this.props;
+    const { uid, inventory, getInventoryAsync } = this.props;
     const { productName, price, units, imgUrl, type } = e.target;
 
     const inputData = {
@@ -57,8 +69,7 @@ class Admin extends Component {
 
       database.ref(`inventory/data/${search.key}`).update(changes.reduce((a, b) => {
         return a[b] = inputData[b], a;
-      }, {}));
-      this.props.getInventoryAsync();
+      }, {}), getInventoryAsync);
     }
 
     resetInputFields(productName, price, units, imgUrl, type);
@@ -148,7 +159,7 @@ class Admin extends Component {
           { FindAndEdit.call(this, { search, filters, message }) }
         </div>
         <div className={ css('section-wrapper', 'admin__section-wrapper') }>
-          <AddProduct addProduct={ this.addProduct } filters={ filters } />
+          <AddProduct addProduct={ this.addProductFormHandler } filters={ filters } />
         </div>
       </div>
       :
