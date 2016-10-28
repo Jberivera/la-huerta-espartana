@@ -5,6 +5,23 @@
     margin-bottom: 50px;
   }
 
+  &__menu {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  &__menu-item {
+    display: inline-block;
+    background: #555;
+    color: #fff;
+    padding: 5px 50px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+
   &__form-header {
     color: #555;
     font-size: 20px;
@@ -134,5 +151,13 @@
 
   &--show {
     visibility: visible;
+  }
+
+  &__module {
+    display: none;
+  }
+
+  &--active {
+    display: block;
   }
 }

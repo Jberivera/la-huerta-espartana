@@ -24,8 +24,11 @@ class Admin extends Component {
     this.hideMessageHandler = this.hideMessageHandler.bind(this);
     this.deleteHandler = this.deleteHandler.bind(this);
     this.addProductFormHandler = this.addProductFormHandler.bind(this);
+    this.changeMenuHandler = this.changeMenuHandler.bind(this);
 
-    this.state = {};
+    this.state = {
+      section: 'Pedidos'
+    };
   }
 
   getAdmin (snapshot) {
@@ -139,9 +142,19 @@ class Admin extends Component {
     e.preventDefault();
   }
 
+  changeMenuHandler (e) {
+    const { target } = e;
+
+    if (target.classList.contains('js-menu')) {
+      this.setState({
+        section: target.innerHTML
+      });
+    }
+  }
+
   render () {
     const { uid, filters } = this.props;
-    const { admin, search, message } = this.state;
+    const { admin, search, message, section } = this.state;
 
     if (uid && !admin) {
       database
@@ -155,11 +168,22 @@ class Admin extends Component {
       ?
       <div className={ css('admin') }>
         <h1 className={ css('h1', 'admin__header') }>Admin</h1>
-        <div className={ css('section-wrapper', 'admin__section-wrapper') }>
-          { FindAndEdit.call(this, { search, filters, message }) }
+        <div className={ css('admin__menu') } onClick={ this.changeMenuHandler }>
+          <div className={ css('admin__menu-item', 'js-menu') }>Pedidos</div>
+          <div className={ css('admin__menu-item', 'js-menu') }>Productos</div>
         </div>
-        <div className={ css('section-wrapper', 'admin__section-wrapper') }>
-          <AddProduct addProduct={ this.addProductFormHandler } filters={ filters } />
+        <div className={ css('admin__module', 'admin__orders-module', section === 'Pedidos' && 'admin--active') }>
+          <div className={ css('section-wrapper', 'admin__section-wrapper') }>
+
+          </div>
+        </div>
+        <div className={ css('admin__module', 'admin__products-module', section === 'Productos' && 'admin--active') }>
+          <div className={ css('section-wrapper', 'admin__section-wrapper') }>
+            { FindAndEdit.call(this, { search, filters, message }) }
+          </div>
+          <div className={ css('section-wrapper', 'admin__section-wrapper') }>
+            <AddProduct addProduct={ this.addProductFormHandler } filters={ filters } />
+          </div>
         </div>
       </div>
       :
