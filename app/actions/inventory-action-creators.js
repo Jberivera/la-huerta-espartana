@@ -29,10 +29,8 @@ export const addNewOrderAsync = (order, uid, direction) => (dispatch) => {
 
   !direction.noSet && database.ref(`users/${uid}/direction`).set(direction);
 
-  database.ref(`orders/${key}/date`).once('value').then(function (dataSnapshot) {
-    order.date = dataSnapshot.val();
-    dispatch(addNewOrder(order, key, direction));
-  });
+  order.date = (new Date()).getTime();
+  dispatch(addNewOrder(order, key, direction));
   localStorage.removeItem(uid);
 };
 const addNewOrder = (order, key, direction) => (
