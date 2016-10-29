@@ -1,4 +1,4 @@
-import { auth, facebook, database } from '../js/api';
+import { auth, facebook, database, TIMESTAMP } from '../js/api';
 
 export const GET_INVENTORY = 'GET_INVENTORY';
 export const getInventory = (inventory) => {
@@ -22,12 +22,17 @@ export const GET_ORDERS = 'GET_ORDERS';
 export const ADD_NEW_ORDER = 'ADD_NEW_ORDER';
 export const addNewOrderAsync = (order, uid, direction) => (dispatch) => {
   order.state = 'active';
+  order.owner = uid;
+  order.date = TIMESTAMP;
   const key = database.ref('orders').push(order).key;
   database.ref(`users/${uid}/orders/${key}`).set(true);
 
   !direction.noSet && database.ref(`users/${uid}/direction`).set(direction);
 
-  dispatch(addNewOrder(order, key, direction));
+  database.ref(`orders/${key}/date`).once('value').then(function (dataSnapshot) {
+    order.date = dataSnapshot.val();
+    dispatch(addNewOrder(order, key, direction));
+  });
   localStorage.removeItem(uid);
 };
 const addNewOrder = (order, key, direction) => (

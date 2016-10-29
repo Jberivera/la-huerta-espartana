@@ -35,7 +35,6 @@ class CartOrder extends Component {
 
     addNewOrderAsync({
       total: getTotal(cart),
-      date: new Date().toISOString(),
       dateOfDelivery: date,
       list: cart,
       direction: {
@@ -86,7 +85,7 @@ const mapStateToProps = (state, ownProps) => {
     cart: state.cart.map((item) => {
       return Object.assign({}, item, state.inventory.data[item.id]);
     }),
-    date: state.date.toISOString(),
+    date: state.date.getTime(),
     user: (state.user.res && { uid: state.user.res.uid, direction: Object.assign({}, state.user.res.direction) }) || {}
   };
 };

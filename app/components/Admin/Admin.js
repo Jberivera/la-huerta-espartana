@@ -33,20 +33,29 @@ class Admin extends Component {
 
   getAdmin (snapshot) {
     const admin = snapshot.val();
-    let ordersPromise;
 
     this.setState({
       admin: admin
     });
 
     if (admin) {
-      ordersPromise = database.ref('orders')
+      database.ref('orders')
         .orderByChild('state')
         .equalTo('active')
         .once('value')
-        .then(function (snapshot) {
-          console.log(snapshot.val());
+        .then((snapshot) => {
+          this.setState({
+            activeOrders: snapshot.val()
+          });
         });
+      // ordersPromise = database.ref('orders')
+      //   .orderByChild('state')
+      //   .equalTo('active')
+      //   .on('child_added', (snapshot) => {
+      //     this.setState({
+      //       activeOrders: [ ...this.state.activeOrders, snapshot.val() ]
+      //     });
+      //   });
     }
   }
 

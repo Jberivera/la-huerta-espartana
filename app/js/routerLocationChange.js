@@ -43,7 +43,6 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
             }
           });
           newAction.inventory = inventorySnapShot.val();
-          // newAction.orders = ordersSnapShot.val();
           newAction.cart = storageInfo && isOnTime(new Date(storageInfo.date), 120) && storageInfo.cart;
 
           next(newAction);
@@ -51,6 +50,7 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
 
         ordersPromise.then(function (ordersSnapShot) {
           const data = ordersSnapShot.val();
+          if (!data) throw 'No orders';
           const promises = Object.keys(data).map(function (key) {
             return database.ref(`orders/${key}`).once('value');
           });
@@ -61,6 +61,9 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
             return a[b.key] = b.val(), a;
           }, {});
           next({ type: 'GET_ORDERS', orders });
+        })
+        .catch(function (err) {
+
         });
       } else {
         next(Object.assign({}, action, { response: null, inventory: inventorySnapShot.val() }));

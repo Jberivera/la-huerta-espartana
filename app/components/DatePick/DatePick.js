@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import style from './DatePick.scss';
 import classNames from 'classnames/bind';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 const css = classNames.bind(style);
 
@@ -34,8 +32,4 @@ class DatePick extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => bindActionCreators({
-
-}, dispatch);
-
-export default connect(null, mapDispatchToProps)(DatePick);
+export default DatePick;

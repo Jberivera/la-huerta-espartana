@@ -15,6 +15,7 @@ const firebaseApp = firebase.initializeApp(config);
 const auth = firebase.auth();
 const facebook = new firebase.auth.FacebookAuthProvider();
 const database = firebase.database();
+const TIMESTAMP = firebase.database.ServerValue.TIMESTAMP;
 
 const api = {
   '@@router/LOCATION_CHANGE': routerLocationChange(database, auth)
@@ -30,5 +31,5 @@ const firebaseMiddleware = store => next => {
   };
 };
 
-export { auth, facebook, database };
+export { auth, facebook, database, TIMESTAMP };
 export default firebaseMiddleware;
