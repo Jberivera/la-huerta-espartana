@@ -1,6 +1,7 @@
 import createReducer from 'redux-createreducer';
 import {
-  ADD_NEW_ORDER
+  ADD_NEW_ORDER,
+  GET_ORDERS
 } from '../actions/inventory-action-creators';
 
 const initialState = {};
@@ -10,6 +11,9 @@ const actionHandlers = {
     return Object.assign({}, state, {
       [action.key]: Object.assign({}, action.order)
     });
+  },
+  [GET_ORDERS]: (state, action) => {
+    return action.orders ? action.orders : state;
   },
   '@@router/LOCATION_CHANGE': (state, action) => {
     return action.orders ? action.orders : state;

@@ -32,9 +32,22 @@ class Admin extends Component {
   }
 
   getAdmin (snapshot) {
+    const admin = snapshot.val();
+    let ordersPromise;
+
     this.setState({
-      admin: snapshot.val()
+      admin: admin
     });
+
+    if (admin) {
+      ordersPromise = database.ref('orders')
+        .orderByChild('state')
+        .equalTo('active')
+        .once('value')
+        .then(function (snapshot) {
+          console.log(snapshot.val());
+        });
+    }
   }
 
   addProductFormHandler (e) {
