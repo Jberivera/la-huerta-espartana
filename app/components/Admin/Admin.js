@@ -8,6 +8,7 @@ const css = classNames.bind(style);
 
 import { database } from '../../js/api';
 import latinize from '../../js/utils/latinize';
+import { getDateValue } from '../../js/view/datepicker';
 
 import {
   getInventoryAsync
@@ -49,7 +50,7 @@ class Admin extends Component {
         .once('value')
         .then((snapshot) => {
           this.setState({
-            activeOrders: snapshot.val()
+            orders: snapshot.val()
           });
         });
     }
@@ -172,7 +173,7 @@ class Admin extends Component {
 
   render () {
     const { uid, filters } = this.props;
-    const { admin, search, message, section } = this.state;
+    const { admin, search, message, section, orders } = this.state;
 
     if (uid && !admin) {
       database
@@ -192,7 +193,30 @@ class Admin extends Component {
         </div>
         <div className={ css('admin__module', 'admin__orders-module', section === 'Pedidos' && 'admin--active') }>
           <div className={ css('section-wrapper', 'admin__section-wrapper') }>
-
+            <ul>
+              <li className={ css('admin__item-list') }>
+                <div className={ css('col', 'admin__date') }>Fecha Pedido</div>
+                <div className={ css('col', 'admin__date') }>Fecha Entrega</div>
+                <div className={ css('col', 'admin__direction') }>Dirección</div>
+                <div className={ css('col', 'admin__total') }>Total</div>
+                <div className={ css('col', 'admin__detail') }></div>
+              </li>
+              {
+                orders && Object.keys(orders).map((key, i) => {
+                  return (
+                    <li key={i} className={ css('admin__item-list') }>
+                      <div className={ css('col', 'admin__date') }>{ getDateValue(new Date(orders[key].date)) }</div>
+                      <div className={ css('col', 'admin__date') }>{ getDateValue(new Date(orders[key].dateOfDelivery)) }</div>
+                      <div className={ css('col', 'admin__direction') }>{ `${orders[key].direction.main} (${orders[key].direction.aditional})` }</div>
+                      <div className={ css('col', 'admin__total') }>{ `$${orders[key].total}` }</div>
+                      <div className={ css('col', 'admin__detail') }>
+                        <span className={ css('admin__detail-link') }>Detalle</span>
+                      </div>
+                    </li>
+                  );
+                })
+              }
+            </ul>
           </div>
         </div>
         <div className={ css('admin__module', 'admin__products-module', section === 'Productos' && 'admin--active') }>
