@@ -72,3 +72,9 @@ p {
     }
   }
 }
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+}

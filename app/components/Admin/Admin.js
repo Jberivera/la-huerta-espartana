@@ -15,6 +15,7 @@ import {
 } from '../../actions/inventory-action-creators';
 import FindAndEdit from './FindAndEdit';
 import AddProduct from './AddProduct';
+import Overlay from './Overlay';
 
 class Admin extends Component {
   constructor (props) {
@@ -26,6 +27,8 @@ class Admin extends Component {
     this.deleteHandler = this.deleteHandler.bind(this);
     this.addProductFormHandler = this.addProductFormHandler.bind(this);
     this.changeMenuHandler = this.changeMenuHandler.bind(this);
+    this.detailHandler = this.detailHandler.bind(this);
+    this.closeOverlayHandler = this.closeOverlayHandler.bind(this);
 
     this.state = {
       section: 'Pedidos'
@@ -171,9 +174,26 @@ class Admin extends Component {
     }
   }
 
+  detailHandler (e) {
+    const { target } = e;
+    if (target.classList.contains('admin--detail')) {
+      document.body.classList.add('stop-scrolling');
+      this.setState({
+        overlay: target.getAttribute('data-key')
+      });
+    }
+  }
+
+  closeOverlayHandler (e) {
+    document.body.classList.remove('stop-scrolling');
+    this.setState({
+      overlay: null
+    });
+  }
+
   render () {
     const { uid, filters } = this.props;
-    const { admin, search, message, section, orders } = this.state;
+    const { admin, search, message, section, orders, overlay } = this.state;
 
     if (uid && !admin) {
       database
@@ -193,7 +213,7 @@ class Admin extends Component {
         </div>
         <div className={ css('admin__module', 'admin__orders-module', section === 'Pedidos' && 'admin--active') }>
           <div className={ css('section-wrapper', 'admin__section-wrapper') }>
-            <ul>
+            <ul onClick={ this.detailHandler }>
               <li className={ css('admin__item-list') }>
                 <div className={ css('col', 'admin__date') }>Fecha Pedido</div>
                 <div className={ css('col', 'admin__date') }>Fecha Entrega</div>
@@ -210,7 +230,7 @@ class Admin extends Component {
                       <div className={ css('col', 'admin__direction') }>{ `${orders[key].direction.main} (${orders[key].direction.aditional})` }</div>
                       <div className={ css('col', 'admin__total') }>{ `$${orders[key].total}` }</div>
                       <div className={ css('col', 'admin__detail') }>
-                        <span className={ css('admin__detail-link') }>Detalle</span>
+                        <span className={ css('admin__detail-link', 'admin--detail') } data-key={ key }>Detalle</span>
                       </div>
                     </li>
                   );
@@ -227,6 +247,7 @@ class Admin extends Component {
             <AddProduct addProduct={ this.addProductFormHandler } filters={ filters } />
           </div>
         </div>
+        <Overlay overlay={ overlay } order={ orders && orders[overlay] } closeOverlay={ this.closeOverlayHandler } />
       </div>
       :
       <div></div>

@@ -36,7 +36,7 @@ class CartOrder extends Component {
     addNewOrderAsync({
       total: getTotal(cart),
       dateOfDelivery: date,
-      list: cart,
+      list: removeImgUrl(cart),
       direction: {
         main: this._inputDirection.value,
         aditional: this._inputAditional.value
@@ -78,6 +78,12 @@ class CartOrder extends Component {
       </div>
     );
   }
+}
+
+function removeImgUrl (array) {
+  return array.map((obj) => {
+    return obj.imgUrl = null, obj;
+  });
 }
 
 const mapStateToProps = (state, ownProps) => {
