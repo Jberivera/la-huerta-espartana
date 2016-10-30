@@ -26,9 +26,11 @@ export const filterChange = (filter) => (
 );
 
 export const CHANGE_DATE = 'CHANGE_DATE';
-export const changeDate = (date) => (
-  {
+export const changeDate = (dateString) => {
+  const date = new Date(dateString);
+  date.setHours(0, 0, 0, 0);
+  return {
     type: CHANGE_DATE,
-    date: new Date(date)
-  }
-);
+    date: date
+  };
+};

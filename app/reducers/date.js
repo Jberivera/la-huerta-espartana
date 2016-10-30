@@ -4,6 +4,7 @@ import {
 } from '../actions/action-creators';
 
 const initialState = new Date();
+initialState.setHours(0, 0, 0, 0);
 
 const actionHandlers = {
   [CHANGE_DATE]: (state, action) => {

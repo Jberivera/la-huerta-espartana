@@ -39,23 +39,19 @@ class Admin extends Component {
     });
 
     if (admin) {
+      const date = new Date();
+      date.setHours(0, 0, 0, 0);
+
       database.ref('orders')
-        .orderByChild('state')
-        .equalTo('active')
+        .orderByChild('dateOfDelivery')
+        .equalTo(date.getTime())
+        .limitToFirst(10)
         .once('value')
         .then((snapshot) => {
           this.setState({
             activeOrders: snapshot.val()
           });
         });
-      // ordersPromise = database.ref('orders')
-      //   .orderByChild('state')
-      //   .equalTo('active')
-      //   .on('child_added', (snapshot) => {
-      //     this.setState({
-      //       activeOrders: [ ...this.state.activeOrders, snapshot.val() ]
-      //     });
-      //   });
     }
   }
 
