@@ -82,7 +82,9 @@
     background: transparent;
   }
 
-  &__submit {
+  &__submit,
+  &__btn {
+    display: inline-block;
     font-size: 15px;
     border: 1px solid transparent;
     border-radius: 5px;
@@ -215,6 +217,10 @@
     margin: auto;
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  &__orders-menu {
+    margin-bottom: 10px;
   }
 
   // overlay

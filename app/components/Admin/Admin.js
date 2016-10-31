@@ -8,7 +8,6 @@ const css = classNames.bind(style);
 
 import { database } from '../../js/api';
 import latinize from '../../js/utils/latinize';
-import { getDateValue } from '../../js/view/datepicker';
 
 import {
   getInventoryAsync
@@ -16,6 +15,7 @@ import {
 import FindAndEdit from './FindAndEdit';
 import AddProduct from './AddProduct';
 import Overlay from './Overlay';
+import AdminOrders from './AdminOrders';
 
 class Admin extends Component {
   constructor (props) {
@@ -29,10 +29,43 @@ class Admin extends Component {
     this.changeMenuHandler = this.changeMenuHandler.bind(this);
     this.detailHandler = this.detailHandler.bind(this);
     this.closeOverlayHandler = this.closeOverlayHandler.bind(this);
+    setOrder = setOrder.bind(this);
 
     this.state = {
       section: 'Pedidos'
     };
+  }
+
+  menuHandler (e) {
+    const { target } = e;
+
+    if (target.classList.contains('js-btn')) {
+      const dataBtn = Number(target.getAttribute('data-btn'));
+
+      setOrder(dataBtn);
+    }
+
+    if (target.classList.contains('js-search')) {
+      const value = target.parentNode.querySelector('.js-input').value.replace(/-/g, '/');
+      if (value) {
+        const date = new Date(value);
+        date.setHours(0, 0, 0, 0);
+        setOrder(date.getTime());
+      }
+    }
+  }
+
+  setOrder (value) {
+    database.ref('orders')
+      .orderByChild('dateOfDelivery')
+      .equalTo(value)
+      .limitToFirst(20)
+      .once('value')
+      .then((snapshot) => {
+        this.setState({
+          orders: snapshot.val()
+        });
+      });
   }
 
   getAdmin (snapshot) {
@@ -49,7 +82,7 @@ class Admin extends Component {
       database.ref('orders')
         .orderByChild('dateOfDelivery')
         .equalTo(date.getTime())
-        .limitToFirst(10)
+        .limitToFirst(20)
         .once('value')
         .then((snapshot) => {
           this.setState({
@@ -212,32 +245,7 @@ class Admin extends Component {
           <div className={ css('admin__menu-item', 'js-menu') }>Productos</div>
         </div>
         <div className={ css('admin__module', 'admin__orders-module', section === 'Pedidos' && 'admin--active') }>
-          <div className={ css('section-wrapper', 'admin__section-wrapper') }>
-            <ul onClick={ this.detailHandler }>
-              <li className={ css('admin__item-list') }>
-                <div className={ css('col', 'admin__date') }>Fecha Pedido</div>
-                <div className={ css('col', 'admin__date') }>Fecha Entrega</div>
-                <div className={ css('col', 'admin__direction') }>Dirección</div>
-                <div className={ css('col', 'admin__total') }>Total</div>
-                <div className={ css('col', 'admin__detail') }></div>
-              </li>
-              {
-                orders && Object.keys(orders).map((key, i) => {
-                  return (
-                    <li key={i} className={ css('admin__item-list') }>
-                      <div className={ css('col', 'admin__date') }>{ getDateValue(new Date(orders[key].date)) }</div>
-                      <div className={ css('col', 'admin__date') }>{ getDateValue(new Date(orders[key].dateOfDelivery)) }</div>
-                      <div className={ css('col', 'admin__direction') }>{ `${orders[key].direction.main} (${orders[key].direction.aditional})` }</div>
-                      <div className={ css('col', 'admin__total') }>{ `$${orders[key].total}` }</div>
-                      <div className={ css('col', 'admin__detail') }>
-                        <span className={ css('admin__detail-link', 'admin--detail') } data-key={ key }>Detalle</span>
-                      </div>
-                    </li>
-                  );
-                })
-              }
-            </ul>
-          </div>
+          <AdminOrders detailHandler={ this.detailHandler } orders={ orders } menuHandler={ this.menuHandler } />
         </div>
         <div className={ css('admin__module', 'admin__products-module', section === 'Productos' && 'admin--active') }>
           <div className={ css('section-wrapper', 'admin__section-wrapper') }>
@@ -312,6 +320,19 @@ function setSearch (search, inventory) {
   _inputProductPrice.value = inventory[search].price;
   _inputProductUnits.value = inventory[search].units;
   _inputProductImg.value = inventory[search].imgUrl;
+}
+
+let setOrder = function (value) {
+  database.ref('orders')
+    .orderByChild('dateOfDelivery')
+    .equalTo(value)
+    .limitToFirst(20)
+    .once('value')
+    .then((snapshot) => {
+      this.setState({
+        orders: snapshot.val()
+      });
+    });
 }
 
 const mapStateToProps = (state, ownProps) => {
