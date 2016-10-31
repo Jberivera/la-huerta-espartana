@@ -237,12 +237,16 @@
     font-size: 30px;
   }
 
-  &--overlay-first {
-    margin-bottom: 40px;
+  &__user-name {
+    padding: 5px;
   }
 
   &__detail-wrapper {
     max-height: 60vh;
     overflow-x: hidden;
+  }
+
+  &--overlay-first {
+    margin-bottom: 40px;
   }
 }

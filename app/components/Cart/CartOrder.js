@@ -20,7 +20,7 @@ class CartOrder extends Component {
 
   addOrderHandler (e) {
     const { addNewOrderAsync, cart, user, date } = this.props;
-    let { uid, direction } = user;
+    let { uid, direction, name } = user;
     if (!uid) return;
     if (!this._inputDirection.value) return;
 
@@ -36,6 +36,7 @@ class CartOrder extends Component {
     addNewOrderAsync({
       total: getTotal(cart),
       dateOfDelivery: date,
+      userName: name,
       list: removeImgUrl(cart),
       direction: {
         main: this._inputDirection.value,
@@ -92,7 +93,7 @@ const mapStateToProps = (state, ownProps) => {
       return Object.assign({}, item, state.inventory.data[item.id]);
     }),
     date: state.date.getTime(),
-    user: (state.user.res && { uid: state.user.res.uid, direction: Object.assign({}, state.user.res.direction) }) || {}
+    user: (state.user.res && { uid: state.user.res.uid, name: state.user.res.name, direction: Object.assign({}, state.user.res.direction) }) || {}
   };
 };
 

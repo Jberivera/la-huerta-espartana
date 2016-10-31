@@ -16,6 +16,7 @@ function Overlay ({ overlay, order, closeOverlay }) {
     <div className={ css('admin__overlay') }>
       <i className={ css('material-icons', 'admin__close-detail') } onClick={ closeOverlay }>highlight_off</i>
       <div className={ css('admin__overlay-container') }>
+        <div className={ css('admin__user-name') }>Cliente: { order.userName }</div>
         <ul className={ css('admin__items-container', 'admin--overlay-first') }>
           <li className={ css('admin__item-list') }>
             <div className={ css('col', 'admin__date') }>Fecha Pedido</div>
