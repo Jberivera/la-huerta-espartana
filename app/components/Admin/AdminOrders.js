@@ -15,7 +15,7 @@ tomorrow.setDate(today.getDate() + 1);
 
 function AdminOrders ({ detailHandler, orders, menuHandler }) {
   return (
-    <div className={ css('section-wrapper', 'admin__section-wrapper') }>
+    <div className={ css('section-wrapper', 'admin__section-wrapper', 'admin--order-section') }>
       <div className={ css('admin__orders-menu') } onClick={ menuHandler }>
         <div className={ css('admin__btn', 'btn--primary', 'js-btn') } data-btn={ today.getTime() }>Hoy</div>
         <div className={ css('admin__btn', 'btn--primary', 'js-btn') } data-btn={ tomorrow.getTime() }>Mañana</div>

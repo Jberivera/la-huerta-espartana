@@ -24,12 +24,13 @@ class CartOrder extends Component {
     if (!uid) return;
     if (!this._inputDirection.value) return;
 
-    if (direction && (direction.main === this._inputDirection.value && direction.aditional === this._inputAditional.value)) {
+    if (direction && (direction.main === this._inputDirection.value && direction.aditional === this._inputAditional.value && direction.tel === this._inputTel.value)) {
       direction = { noSet: true };
     } else {
       direction = {
         main: this._inputDirection.value,
-        aditional: this._inputAditional.value
+        aditional: this._inputAditional.value,
+        tel: this._inputTel.value
       };
     }
 
@@ -40,7 +41,8 @@ class CartOrder extends Component {
       list: removeImgUrl(cart),
       direction: {
         main: this._inputDirection.value,
-        aditional: this._inputAditional.value
+        aditional: this._inputAditional.value,
+        tel: this._inputTel.value
       }
     }, uid, direction);
   }
@@ -73,6 +75,16 @@ class CartOrder extends Component {
               pattern="\S"
               title="Barrio, Unidad, Edificio, Apartamento" />
             <label className={ css('cart-order__label') } htmlFor="aditional">Información Adicional</label>
+          </div>
+          <div className={ css('cart-order__input-container') }>
+            <input id="tel"
+              ref={ (c) => this._inputTel = c }
+              defaultValue={ direction.tel }
+              className={ css('cart-order__input') }
+              type="text"
+              pattern="\S"
+              title="Teléfono" />
+            <label className={ css('cart-order__label') } htmlFor="tel">Teléfono</label>
           </div>
           <button className={ css('cart-order__btn') } onClick={ this.addOrderHandler }>Hacer pedido</button>
         </div>

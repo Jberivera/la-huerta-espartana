@@ -12,6 +12,8 @@ import {
 
 const css = classNames.bind(style);
 
+import { getNumberOfDays } from '../../js/view/datepicker';
+
 class MonthTable extends Component {
   constructor (props) {
     super(props);
@@ -22,7 +24,8 @@ class MonthTable extends Component {
   arrowHandler (e) {
     let { target } = e,
       { year, month, day, changeDate } = this.props,
-      right = target.classList.contains('right-arrow');
+      right = target.classList.contains('right-arrow'),
+      date;
 
     if (right) {
       month = month < 11 ? month + 2 : (year = year + 1, 1);
@@ -30,7 +33,8 @@ class MonthTable extends Component {
       month = month > 0 ? month : (year = year - 1, 12);
     }
 
-    changeDate(`${year}/${month}/${day + 1}`);
+    date = new Date(`${year}/${month}/${right ? 1 : getNumberOfDays(year, month + 1) }`);
+    changeDate(date);
   }
 
   dateDayHandler (e) {
