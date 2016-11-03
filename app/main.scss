@@ -16,7 +16,6 @@ $footer-nav-height: $nav-height + $footer-height;
 
 :global .container {
   position: relative;
-  background: #f7f7f7;
   min-height: calc(100% - #{$footer-nav-height});
 }
 

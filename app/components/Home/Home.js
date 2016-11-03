@@ -5,12 +5,22 @@ import classNames from 'classnames/bind';
 const css = classNames.bind(style);
 
 import Hero from '../Hero/Hero';
+import StoryTelling from './StoryTelling';
 
 const Home = () => {
 
   return (
     <div className={ css('home') }>
-      <Hero backgroundUrl="url(http://artelista.s3.amazonaws.com/obras/big/0/9/7/5913365016626755.jpg)" />
+      <Hero backgroundUrl="url(http://i.imgur.com/BxLwxuf.jpg)" />
+      <h1 className={ css('h1', 'home__h1') }>¿Cómo Funciona?</h1>
+      <div className={ css('section-wrapper', 'home__main-wrapper') }>
+        <StoryTelling
+          title="Compras desde tu casa"
+          imgUrl="http://i.imgur.com/ipCp7ez.jpg" />
+        <StoryTelling
+          title="Pagas cuándo recibas tus compras"
+          imgUrl="http://i.imgur.com/q5FvfPm.jpg" />
+      </div>
     </div>
   );
 };
