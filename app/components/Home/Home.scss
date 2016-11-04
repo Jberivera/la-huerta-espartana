@@ -15,10 +15,10 @@
   justify-content: space-between;
   margin-bottom: 50px;
 
-  &:nth-child(n+2) {
+  &:nth-child(2n+2) {
     flex-direction: row-reverse;
 
-    & .story-telling__title:before {
+    & .story-telling__title-box {
       right: 20px;
       left: auto;
     }
@@ -32,20 +32,20 @@
   &__title {
     position: relative;
     font-size: 24px;
+    color: #444;
     z-index: 1;
+  }
 
-    &:before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 20px;
-      width: 45%;
-      height: 0;
-      padding-bottom: 40%;
-      background: #f0ad4e;
-      z-index: -1;
-      transform: translateY(-49%);
-    }
+  &__title-box {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    width: 45%;
+    height: 0;
+    padding-bottom: 40%;
+    background: #f0ad4e;
+    z-index: -1;
+    transform: translateY(-49%);
   }
 
   &__img-container {

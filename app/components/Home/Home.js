@@ -18,8 +18,12 @@ const Home = () => {
           title="Compras desde tu casa"
           imgUrl="http://i.imgur.com/ipCp7ez.jpg" />
         <StoryTelling
-          title="Pagas cuándo recibas tus compras"
+          title="Pagas cuándo recibes tus compras"
           imgUrl="http://i.imgur.com/q5FvfPm.jpg" />
+        <StoryTelling
+          title="Crea una cuenta, es fácil y seguro"
+          boxColor="#588c73"
+          imgUrl="http://i.imgur.com/iDsPQL5.jpg" />
       </div>
     </div>
   );
