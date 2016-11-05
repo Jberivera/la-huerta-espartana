@@ -12,10 +12,10 @@ function FindAndEdit ({ search, filters, message }) {
           ref={ (c) => this._inputSearch = c }
           placeholder="Nombre del producto"
           className={ css('admin__search-input') } />
-        <i className={ css('material-icons', 'admin__search-icon') } onClick={ this.searchProduct }>search</i>
+        <i className={ css('material-icons', 'admin__search-icon') } onClick={ this.searchProductHandler }>search</i>
       </div>
       <span className={ css('admin__message-wrapper') }>{ (message && <span className={ css('admin__message', message.type) } onClick={ this.hideMessageHandler }>{ message.text }<i className={ css('material-icons', 'admin__message-close') }>backspace</i></span>) || '' }</span>
-      <form id="update-product" noValidate onSubmit={ this.updateProduct }>
+      <form id="update-product" noValidate onSubmit={ this.updateProductHandler }>
         <h2 className={ css('admin__form-header') }>Editar producto</h2>
         <div className={ css('admin__input-container') }>
           <input id="update-product__name"
