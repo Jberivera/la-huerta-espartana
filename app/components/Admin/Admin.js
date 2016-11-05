@@ -16,19 +16,21 @@ import FindAndEdit from './FindAndEdit';
 import AddProduct from './AddProduct';
 import Overlay from './Overlay';
 import AdminOrders from './AdminOrders';
+import AdminFilters from './AdminFilters';
 
 class Admin extends Component {
   constructor (props) {
     super(props);
     this.getAdmin = this.getAdmin.bind(this);
-    this.searchProduct = this.searchProduct.bind(this);
-    this.updateProduct = this.updateProduct.bind(this);
+    this.searchProductHandler = this.searchProductHandler.bind(this);
+    this.updateProductHandler = this.updateProductHandler.bind(this);
     this.hideMessageHandler = this.hideMessageHandler.bind(this);
     this.deleteHandler = this.deleteHandler.bind(this);
     this.addProductFormHandler = this.addProductFormHandler.bind(this);
     this.changeMenuHandler = this.changeMenuHandler.bind(this);
     this.detailHandler = this.detailHandler.bind(this);
     this.closeOverlayHandler = this.closeOverlayHandler.bind(this);
+    this.saveFiltersHandler = this.saveFiltersHandler.bind(this);
     setOrder = setOrder.bind(this);
 
     this.state = {
@@ -53,19 +55,6 @@ class Admin extends Component {
         setOrder(date.getTime());
       }
     }
-  }
-
-  setOrder (value) {
-    database.ref('orders')
-      .orderByChild('dateOfDelivery')
-      .equalTo(value)
-      .limitToFirst(20)
-      .once('value')
-      .then((snapshot) => {
-        this.setState({
-          orders: snapshot.val()
-        });
-      });
   }
 
   getAdmin (snapshot) {
@@ -109,7 +98,7 @@ class Admin extends Component {
     e.preventDefault();
   }
 
-  updateProduct (e) {
+  updateProductHandler (e) {
     const { search } = this.state;
     const { uid, inventory, getInventoryAsync } = this.props;
     const { productName, price, units, imgUrl, type } = e.target;
@@ -134,7 +123,7 @@ class Admin extends Component {
     e.preventDefault();
   }
 
-  searchProduct (e) {
+  searchProductHandler (e) {
     let value = this._inputSearch.value;
     const { inventory } = this.props;
 
@@ -224,6 +213,15 @@ class Admin extends Component {
     });
   }
 
+  saveFiltersHandler (e) {
+    const { target } = e;
+    const { getInventoryAsync } = this.props;
+    const textarea = target.parentNode.querySelector('.js-textarea');
+    const valueArray = textAreaValueToArray(textarea.value);
+
+    database.ref(`inventory/filters`).set(valueArray, getInventoryAsync);
+  }
+
   render () {
     const { uid, filters } = this.props;
     const { admin, search, message, section, orders, overlay } = this.state;
@@ -253,6 +251,9 @@ class Admin extends Component {
           </div>
           <div className={ css('section-wrapper', 'admin__section-wrapper') }>
             <AddProduct addProduct={ this.addProductFormHandler } filters={ filters } />
+          </div>
+          <div className={ css('section-wrapper', 'admin__section-wrapper') }>
+            <AdminFilters filters={ filters } saveFilters={ this.saveFiltersHandler } />
           </div>
         </div>
         <Overlay overlay={ overlay } order={ orders && orders[overlay] } closeOverlay={ this.closeOverlayHandler } />
@@ -333,6 +334,12 @@ let setOrder = function (value) {
         orders: snapshot.val()
       });
     });
+}
+
+function textAreaValueToArray (value) {
+  return [ 'todos', ...value.split('\n')
+    .map((val) => val.trim())
+    .filter((val) => val)];
 }
 
 const mapStateToProps = (state, ownProps) => {
