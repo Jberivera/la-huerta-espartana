@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs');
 
 const TEMPLATE = fs.readFileSync('./index.html', { encoding: 'utf8' })
-                   .replace('#styles', '/dist/css/main.css');
+  .replace('#styles', '/dist/css/main.css');
 const COMODO = fs.readFileSync('./F0158D48347E1C0C779EE51A7420584D.txt', { encoding: 'utf8' });
 const PORT = process.env.PORT || 3000;
 
