@@ -123,10 +123,11 @@
 
   &__message-wrapper {
     display: inline-block;
-    position: absolute;
-    width: 50%;
+    position: fixed;
+    width: 45%;
+    top: 80px;
     right: 20px;
-    top: 32px;
+    z-index: 1;
   }
 
   &__message {

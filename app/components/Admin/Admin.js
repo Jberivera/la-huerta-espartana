@@ -92,7 +92,24 @@ class Admin extends Component {
       type: type.value
     };
 
-    database.ref('inventory/data').push(data, getInventoryAsync);
+    database.ref('inventory/data').push(data, () => {
+      this.setState({
+        message: {
+          type: 'btn--success',
+          deleteToggle: false,
+          text: `Se agrego el producto ${productName.value}`
+        }
+      });
+      getInventoryAsync();
+    });
+
+    this.setState({
+      message: {
+        type: 'btn--warning',
+        deleteToggle: false,
+        text: `Agregando espere...`
+      }
+    });
 
     resetInputFields(productName, price, units, imgUrl, type);
     e.preventDefault();
@@ -116,10 +133,26 @@ class Admin extends Component {
 
       database.ref(`inventory/data/${search.key}`).update(changes.reduce((a, b) => {
         return a[b] = inputData[b], a;
-      }, {}), getInventoryAsync);
+      }, {}), () => {
+        this.setState({
+          message: {
+            type: 'btn--success',
+            deleteToggle: false,
+            text: `Se actualizo el producto ${productName.value}`
+          }
+        });
+        getInventoryAsync();
+      });
     }
 
     resetInputFields(productName, price, units, imgUrl, type);
+    this.setState({
+      message: {
+        type: 'btn--warning',
+        deleteToggle: false,
+        text: `Actualizando espere...`
+      }
+    });
     e.preventDefault();
   }
 
@@ -218,8 +251,24 @@ class Admin extends Component {
     const { getInventoryAsync } = this.props;
     const textarea = target.parentNode.querySelector('.js-textarea');
     const valueArray = textAreaValueToArray(textarea.value);
+    database.ref(`inventory/filters`).set(valueArray, () => {
+      this.setState({
+        message: {
+          type: 'btn--success',
+          deleteToggle: false,
+          text: `Categorias guardadas`
+        }
+      });
+      getInventoryAsync();
+    });
 
-    database.ref(`inventory/filters`).set(valueArray, getInventoryAsync);
+    this.setState({
+      message: {
+        type: 'btn--warning',
+        deleteToggle: false,
+        text: `Actualizando espere...`
+      }
+    });
   }
 
   render () {
@@ -247,7 +296,7 @@ class Admin extends Component {
         </div>
         <div className={ css('admin__module', 'admin__products-module', section === 'Productos' && 'admin--active') }>
           <div className={ css('section-wrapper', 'admin__section-wrapper') }>
-            { FindAndEdit.call(this, { search, filters, message }) }
+            { FindAndEdit.call(this, { search, filters }) }
           </div>
           <div className={ css('section-wrapper', 'admin__section-wrapper') }>
             <AddProduct addProduct={ this.addProductFormHandler } filters={ filters } />
@@ -256,6 +305,17 @@ class Admin extends Component {
             <AdminFilters filters={ filters } saveFilters={ this.saveFiltersHandler } />
           </div>
         </div>
+        <span className={ css('admin__message-wrapper') }>
+          {
+            (
+              message
+              &&
+              <span className={ css('admin__message', message.type) } onClick={ this.hideMessageHandler }>
+                { message.text }<i className={ css('material-icons', 'admin__message-close') }>backspace</i>
+              </span>
+            ) || ''
+          }
+        </span>
         <Overlay overlay={ overlay } order={ orders && orders[overlay] } closeOverlay={ this.closeOverlayHandler } />
       </div>
       :
