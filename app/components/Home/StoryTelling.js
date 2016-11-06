@@ -6,18 +6,31 @@ const css = classNames.bind(style);
 
 import Hero from '../Hero/Hero';
 
-const StoryTelling = ({ title, imgUrl, boxColor }) => {
+const StoryTelling = ({ title, boxColor, img, video }) => {
 
   return (
-    <div className={ css('story-telling') }>
+    <div className={ css('story-telling') } style={{ background: boxColor }}>
       <div className={ css('story-telling__title-container') }>
         <h2 className={ css('story-telling__title') }>
-          <div className={ css('story-telling__title-box') } style={{ background: boxColor }}></div>
           { title }
         </h2>
       </div>
       <div className={ css('story-telling__img-container') }>
-        <img className={ css('story-telling__img') } src={ imgUrl } />
+        {
+          img && <img className={ css('story-telling__img') } style={ img.style } src={ img.url } />
+        }
+        {
+          video
+          &&
+          <div className={ css('story-telling__video-wrapper') }>
+            <video
+              className={ css('story-telling__video') }
+              loop="loop"
+              autoPlay="autoplay"
+              src={ video.url }>
+            </video>
+          </div>
+        }
       </div>
     </div>
   );
