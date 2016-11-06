@@ -54,7 +54,7 @@ class Nav extends Component {
               La Huerta Espartana
             </h1>
             <Link to="/" className="link-top">
-              <img src="/assets/img/huertalogo.png" className={ css('nav__logo-img') }></img>
+              <img src="http://i.imgur.com/x58U7tC.png" className={ css('nav__logo-img') }></img>
             </Link>
           </div>
           <input type="checkbox" id="hamburger" className={ css('hamburger-toggle', 'hidden') } />
@@ -62,7 +62,7 @@ class Nav extends Component {
           <ul className={ css('nav__menu') } >
             <Login />
             <NavBtn className="home-btn" label="Home" to="/" btnBackground="" pathname={ pathname === '/' } />
-            <NavBtn label="Mercado" to="/mercado" btnBackground="/assets/img/aqua.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
+            <NavBtn label="Mercado" to="/mercado" btnBackground="http://i.imgur.com/SQjmig8.gif" pathname={ pathname === '/mercado' } onClick={ getInventoryAsync } />
           </ul>
         </div>
       </header>
