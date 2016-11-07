@@ -37,11 +37,10 @@ const Home = () => {
           title="Pagas cuándo recibas tus compras"
           boxColor="#66CAC9"
           img={{
-            url: "https://i.imgur.com/q5FvfPm.jpg"
+            url: "https://i.imgur.com/Z3OKfEW.jpg"
           }} />
         <StoryTelling
           title="Crea una cuenta, es fácil y seguro"
-          boxColor="#588c73"
           video={{
             url: "/assets/video/huerta_signup.mp4"
           }} />
