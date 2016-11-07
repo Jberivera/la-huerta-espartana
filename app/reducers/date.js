@@ -3,8 +3,7 @@ import {
   CHANGE_DATE
 } from '../actions/action-creators';
 
-const initialState = new Date();
-initialState.setHours(0, 0, 0, 0);
+const initialState = TIMESTAMP ? new Date(TIMESTAMP) : new Date();
 
 const actionHandlers = {
   [CHANGE_DATE]: (state, action) => {
