@@ -4,11 +4,11 @@ import classNames from 'classnames/bind';
 
 const css = classNames.bind(style);
 
-const Hero = ({ backgroundUrl }) => {
+const Hero = ({ backgroundUrl, title }) => {
 
   return (
-    <div className={ css('hero', 'hero-g') } style={ { backgroundImage: backgroundUrl || '' } }>
-
+    <div className={ css('hero', 'hero-g') } style={ { backgroundImage: backgroundUrl } }>
+      <h2 className={ css('hero__title') }>{ title }</h2>
     </div>
   );
 };

@@ -62,7 +62,9 @@ class Market extends Component {
 
     return (
       <div className={ css('market') }>
-        <Hero backgroundUrl="url(https://artelista.s3.amazonaws.com/obras/big/0/9/7/5913365016626755.jpg)" />
+        <Hero
+          backgroundUrl="url(https://i.imgur.com/BxLwxuf.jpg)"
+          title="El Mercado" />
         <MarketNav />
         <ul className={ css('market__items-container') }>
           {

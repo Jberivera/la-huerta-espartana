@@ -11,7 +11,9 @@ const Home = () => {
 
   return (
     <div className={ css('home') }>
-      <Hero backgroundUrl="url(https://i.imgur.com/BxLwxuf.jpg)" />
+      <Hero
+        backgroundUrl="url(https://i.imgur.com/BxLwxuf.jpg)"
+        title="Productos Organicos" />
       <div className={ css('section-wrapper', 'home__main-wrapper') }>
         <StoryTelling
           title="¿Cómo Funciona?"
