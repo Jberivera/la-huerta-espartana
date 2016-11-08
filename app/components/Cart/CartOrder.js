@@ -19,7 +19,7 @@ class CartOrder extends Component {
   }
 
   addOrderHandler (e) {
-    const { addNewOrderAsync, cart, user, date } = this.props;
+    const { addNewOrderAsync, cart, user, date, validDate } = this.props;
     let { uid, direction, name } = user;
     if (!uid) return;
     if (!this._inputDirection.value) return;
@@ -34,17 +34,26 @@ class CartOrder extends Component {
       };
     }
 
-    addNewOrderAsync({
-      total: getTotal(cart),
-      dateOfDelivery: date,
-      userName: name,
-      list: removeImgUrl(cart),
-      direction: {
-        main: this._inputDirection.value,
-        aditional: this._inputAditional.value,
-        tel: this._inputTel.value
-      }
-    }, uid, direction);
+    if (validDate) {
+      addNewOrderAsync({
+        total: getTotal(cart),
+        dateOfDelivery: date,
+        userName: name,
+        list: removeImgUrl(cart),
+        direction: {
+          main: this._inputDirection.value,
+          aditional: this._inputAditional.value,
+          tel: this._inputTel.value
+        }
+      }, uid, direction);
+    } else {
+      this.setState({
+        message: {
+          type: 'btn--warning',
+          text: ['Seleccione una de las', <br key="br" />, 'fechas validas en azul']
+        }
+      });
+    }
   }
 
   render () {
@@ -104,6 +113,7 @@ const mapStateToProps = (state, ownProps) => {
     cart: state.cart.map((item) => {
       return Object.assign({}, item, state.inventory.data[item.id]);
     }),
+    validDate: state.date.valid,
     date: state.date.delivery.getTime(),
     user: (state.user.res && { uid: state.user.res.uid, name: state.user.res.name, direction: Object.assign({}, state.user.res.direction) }) || {}
   };
