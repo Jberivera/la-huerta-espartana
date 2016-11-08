@@ -17,6 +17,7 @@ import AddProduct from './AddProduct';
 import Overlay from './Overlay';
 import AdminOrders from './AdminOrders';
 import AdminFilters from './AdminFilters';
+import Message from '../Message/Message';
 
 class Admin extends Component {
   constructor (props) {
@@ -91,6 +92,21 @@ class Admin extends Component {
       imgUrl: imgUrl.value,
       type: type.value
     };
+    e.preventDefault();
+
+    const valid = Object.keys(data).every((key) => {
+      return data[key];
+    });
+
+    if (!valid) {
+      return this.setState({
+        message: {
+          type: 'btn--danger',
+          deleteToggle: false,
+          text: 'Llene todos los campos'
+        }
+      });
+    }
 
     database.ref('inventory/data').push(data, () => {
       this.setState({
@@ -107,12 +123,11 @@ class Admin extends Component {
       message: {
         type: 'btn--warning',
         deleteToggle: false,
-        text: `Agregando espere...`
+        text: 'Agregando espere...'
       }
     });
 
     resetInputFields(productName, price, units, imgUrl, type);
-    e.preventDefault();
   }
 
   updateProductHandler (e) {
@@ -305,17 +320,7 @@ class Admin extends Component {
             <AdminFilters filters={ filters } saveFilters={ this.saveFiltersHandler } />
           </div>
         </div>
-        <span className={ css('admin__message-wrapper') }>
-          {
-            (
-              message
-              &&
-              <span className={ css('admin__message', message.type) } onClick={ this.hideMessageHandler }>
-                { message.text }<i className={ css('material-icons', 'admin__message-close') }>backspace</i>
-              </span>
-            ) || ''
-          }
-        </span>
+        <Message message={ message } messageHandler={ this.hideMessageHandler } />
         <Overlay overlay={ overlay } order={ orders && orders[overlay] } closeOverlay={ this.closeOverlayHandler } />
       </div>
       :

@@ -12,17 +12,40 @@ const css = classNames.bind(style);
 
 import getTotal from '../../js/utils/composed/getCurrency-reduceTotal';
 
+import Message from '../Message/Message';
+
 class CartOrder extends Component {
   constructor (props) {
     super(props);
     this.addOrderHandler = this.addOrderHandler.bind(this);
+    this.hideMessageHandler = this.hideMessageHandler.bind(this);
+
+    this.state = {
+      message: null
+    };
   }
 
   addOrderHandler (e) {
     const { addNewOrderAsync, cart, user, date, validDate } = this.props;
     let { uid, direction, name } = user;
-    if (!uid) return;
-    if (!this._inputDirection.value) return;
+
+    if (!uid) {
+      return this.setState({
+        message: {
+          type: 'btn--warning',
+          text: 'Necesita crear una cuenta primero'
+        }
+      });
+    }
+
+    if (!this._inputDirection.value || !this._inputTel.value) {
+      return this.setState({
+        message: {
+          type: 'btn--warning',
+          text: 'La dirección y el telefono son campos necesarios'
+        }
+      });
+    }
 
     if (direction && (direction.main === this._inputDirection.value && direction.aditional === this._inputAditional.value && direction.tel === this._inputTel.value)) {
       direction = { noSet: true };
@@ -50,14 +73,21 @@ class CartOrder extends Component {
       this.setState({
         message: {
           type: 'btn--warning',
-          text: ['Seleccione una de las', <br key="br" />, 'fechas validas en azul']
+          text: 'Seleccione una de las fechas validas en azul'
         }
       });
     }
   }
 
+  hideMessageHandler (e) {
+    this.setState({
+      message: null
+    });
+  }
+
   render () {
     let { uid, direction } = this.props.user;
+    const { message } = this.state;
     direction = direction || {};
 
     return (
@@ -97,6 +127,7 @@ class CartOrder extends Component {
           </div>
           <button className={ css('cart-order__btn') } onClick={ this.addOrderHandler }>Hacer pedido</button>
         </div>
+        <Message message={ message } messageHandler={ this.hideMessageHandler } />
       </div>
     );
   }

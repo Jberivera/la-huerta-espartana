@@ -1,0 +1,26 @@
+.message {
+  display: inline-block;
+  position: fixed;
+  width: 45%;
+  top: 80px;
+  right: 20px;
+  z-index: 1;
+
+  &__text {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 3px;
+    padding-right: 45px;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    cursor: default;
+  }
+
+  &__close {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
