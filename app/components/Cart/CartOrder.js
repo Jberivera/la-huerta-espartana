@@ -104,7 +104,7 @@ const mapStateToProps = (state, ownProps) => {
     cart: state.cart.map((item) => {
       return Object.assign({}, item, state.inventory.data[item.id]);
     }),
-    date: state.date.getTime(),
+    date: state.date.delivery.getTime(),
     user: (state.user.res && { uid: state.user.res.uid, name: state.user.res.name, direction: Object.assign({}, state.user.res.direction) }) || {}
   };
 };

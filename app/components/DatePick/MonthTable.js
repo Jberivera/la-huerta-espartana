@@ -13,6 +13,7 @@ import {
 const css = classNames.bind(style);
 
 import { getNumberOfDays } from '../../js/view/datepicker';
+import isValidDate from '../../js/utils/isValidDate';
 
 class MonthTable extends Component {
   constructor (props) {
@@ -28,12 +29,12 @@ class MonthTable extends Component {
       date;
 
     if (right) {
-      month = month < 11 ? month + 2 : (year = year + 1, 1);
+      month = month < 11 ? month + 2 : (year += 1, 1);
     } else {
-      month = month > 0 ? month : (year = year - 1, 12);
+      month = month > 0 ? month : (year -= 1, 12);
     }
 
-    date = new Date(`${year}/${month}/${right ? 1 : getNumberOfDays(year, month + 1) }`);
+    date = `${year}/${month}/${right ? 1 : getNumberOfDays(year, month - 1) }`;
     changeDate(date);
   }
 
@@ -49,7 +50,7 @@ class MonthTable extends Component {
   }
 
   render () {
-    const { year, day, monthDays, firstDayOfWeek, monthString } = this.props;
+    const { year, day, month, monthDays, firstDayOfWeek, monthString, serverDate } = this.props;
 
     return (
       <div className={ css('date__month-table') }>
@@ -76,7 +77,7 @@ class MonthTable extends Component {
           {
             Array.apply(null, { length: monthDays }).map((_, i) => {
               return (
-                <li key={i} className={ css('date__day', 'day', 'date--col', i === day && 'date--active') }>{ i + 1 }</li>
+                <li key={i} className={ css('date__day', 'day', 'date--col', i === day && 'date--active', isValidDate(serverDate, new Date(`${year}/${month + 1}/${i + 1} 00:00:00`)) && 'date--valid') }>{ i + 1 }</li>
               );
             })
           }
@@ -86,8 +87,14 @@ class MonthTable extends Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    serverDate: state.date.server
+  };
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => bindActionCreators({
   changeDate
 }, dispatch);
 
-export default connect(null, mapDispatchToProps)(MonthTable);
+export default connect(mapStateToProps, mapDispatchToProps)(MonthTable);
