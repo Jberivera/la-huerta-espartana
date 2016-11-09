@@ -5,7 +5,8 @@ import {
 
 import isValidDate from '../js/utils/isValidDate';
 
-let date = TIMESTAMP ? new Date(TIMESTAMP) : (date = new Date(), date.setHours(0,0,0,0), date);
+const date = TIMESTAMP ? new Date(TIMESTAMP) : new Date();
+date.setHours(0, 0, 0, 0);
 
 const initialState = {
   server: new Date(date),
