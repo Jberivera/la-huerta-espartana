@@ -30,10 +30,23 @@ class CartOrder extends Component {
     let { uid, direction, name } = user;
 
     if (!uid) {
+      const account = document.querySelector('.js-account');
+      let count = 0, interval;
+
+      account.classList.add('active-account');
+      interval = setInterval(() => {
+        if (count === 4) {
+          count = 0;
+          clearInterval(interval);
+        }
+        account.classList.toggle('active-account');
+        count += 1;
+      }, 150);
+
       return this.setState({
         message: {
           type: 'btn--warning',
-          text: 'Necesita crear una cuenta primero'
+          text: 'Necesitas crear una cuenta primero'
         }
       });
     }
