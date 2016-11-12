@@ -1,5 +1,6 @@
 function isOnTime(dateArg, minuts) {
-  var cureentDate = new Date();
+  const cureentDate = new Date();
+  dateArg = new Date(dateArg);
 
   dateArg.setMinutes(dateArg.getMinutes() + minuts);
   return !!(dateArg > cureentDate);

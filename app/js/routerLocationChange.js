@@ -31,8 +31,6 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
         })
         .then(function () {
           const { providerData } = result;
-          let storageInfo = localStorage.getItem(result.uid);
-          storageInfo = storageInfo && JSON.parse(storageInfo);
 
           let newAction = Object.assign({}, action, {
             response: {
@@ -40,10 +38,10 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
               url: providerData[0].photoURL,
               uid: result.uid,
               direction: dataDir
-            }
+            },
+            inventory: inventorySnapShot.val(),
+            cart: getCartFromLocalStorage()
           });
-          newAction.inventory = inventorySnapShot.val();
-          newAction.cart = storageInfo && isOnTime(new Date(storageInfo.date), 120) && storageInfo.cart;
 
           next(newAction);
         });
@@ -62,14 +60,24 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
           }, {});
           next({ type: 'GET_ORDERS', orders });
         })
-        .catch(function (err) {
-
-        });
+        .catch(function (err) {});
       } else {
-        next(Object.assign({}, action, { response: null, inventory: inventorySnapShot.val() }));
+        const newAction = Object.assign({}, action, {
+          cart: getCartFromLocalStorage()
+        });
+
+        next(Object.assign({}, newAction, { response: null, inventory: inventorySnapShot.val() }));
       }
     });
   }).catch(function () {
     next(action);
   });
+}
+
+function getCartFromLocalStorage () {
+  let storageInfo = localStorage.getItem('huerta-user');
+  storageInfo = storageInfo && JSON.parse(storageInfo);
+  storageInfo = storageInfo && isOnTime(new Date(storageInfo.date), 120) && storageInfo.cart;
+
+  return storageInfo;
 }

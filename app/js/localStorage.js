@@ -12,13 +12,10 @@ function setLocalStorageCart(next, action, store) {
   next(action);
   const state = store.getState();
 
-  if (state.user.res) {
-    const { uid } = state.user.res;
-    localStorage.setItem(uid, JSON.stringify({
-      cart: state.cart,
-      date: new Date()
-    }));
-  }
+  localStorage.setItem('huerta-user', JSON.stringify({
+    cart: state.cart,
+    date: new Date().getTime()
+  }));
 }
 
 const localStorageMiddleware = store => next => {
