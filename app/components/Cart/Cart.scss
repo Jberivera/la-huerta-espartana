@@ -225,8 +225,7 @@
 
     &:focus ~ .cart-order__label,
     &:invalid ~ .cart-order__label {
-      font-size: 14px;
-      transform: translateY(-130%);
+      transform: translateY(-105%);
       color: #588c73;
     }
   }
