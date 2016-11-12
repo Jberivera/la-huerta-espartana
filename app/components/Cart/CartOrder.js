@@ -104,6 +104,7 @@ class CartOrder extends Component {
               pattern="\S"
               title="Carrera, Calle, Transversal, Circular" />
             <label className={ css('cart-order__label') } htmlFor="direction">Dirección</label>
+            <span className={ css('cart-order__input-line') }></span>
           </div>
           <div className={ css('cart-order__input-container') }>
             <input id="aditional"
@@ -115,6 +116,7 @@ class CartOrder extends Component {
               pattern="\S"
               title="Barrio, Unidad, Edificio, Apartamento" />
             <label className={ css('cart-order__label') } htmlFor="aditional">Información Adicional</label>
+            <span className={ css('cart-order__input-line') }></span>
           </div>
           <div className={ css('cart-order__input-container') }>
             <input id="tel"
@@ -125,8 +127,9 @@ class CartOrder extends Component {
               pattern="\S"
               title="Teléfono" />
             <label className={ css('cart-order__label') } htmlFor="tel">Teléfono</label>
+            <span className={ css('cart-order__input-line') }></span>
           </div>
-          <button className={ css('cart-order__btn') } onClick={ this.addOrderHandler }>Hacer pedido</button>
+          <button className={ css('btn--primary', 'cart-order__btn') } onClick={ this.addOrderHandler }>Hacer pedido</button>
         </div>
         <Message message={ message } messageHandler={ this.hideMessageHandler } />
       </div>
