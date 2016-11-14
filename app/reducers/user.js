@@ -25,7 +25,7 @@ const actionHandlers = {
   'LOGOUT': (state, action) => {
     return {};
   },
-  '@@router/LOCATION_CHANGE': (state, action) => {
+  'DATA_ENTRY': (state, action) => {
     if (action.response) {
       return Object.assign({}, state, {
         res: action.response

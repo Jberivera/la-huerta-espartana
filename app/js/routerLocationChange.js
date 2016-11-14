@@ -33,6 +33,7 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
           const { providerData } = result;
 
           let newAction = Object.assign({}, action, {
+            type: 'DATA_ENTRY',
             response: {
               name: providerData[0].displayName,
               url: providerData[0].photoURL,
@@ -42,7 +43,6 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
             inventory: inventorySnapShot.val(),
             cart: getCartFromLocalStorage()
           });
-
           next(newAction);
         });
 
@@ -63,9 +63,9 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
         .catch(function (err) {});
       } else {
         const newAction = Object.assign({}, action, {
+          type: 'DATA_ENTRY',
           cart: getCartFromLocalStorage()
         });
-
         next(Object.assign({}, newAction, { response: null, inventory: inventorySnapShot.val() }));
       }
     });

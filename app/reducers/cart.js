@@ -37,7 +37,7 @@ const actionHandlers = {
   [ADD_NEW_ORDER]: (state, action) => {
     return [];
   },
-  '@@router/LOCATION_CHANGE': (state, action) => {
+  'DATA_ENTRY': (state, action) => {
     return action.cart ? [ ...action.cart ] : state;
   }
 };

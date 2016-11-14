@@ -9,7 +9,7 @@ const actionHandlers = {
   [GET_INVENTORY]: (state, action) => {
     return action.inventory ? Object.assign(action.inventory) : state;
   },
-  '@@router/LOCATION_CHANGE': (state, action) => {
+  'DATA_ENTRY': (state, action) => {
     return action.inventory ? Object.assign(action.inventory) : state;
   }
 };

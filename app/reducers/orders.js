@@ -15,7 +15,7 @@ const actionHandlers = {
   [GET_ORDERS]: (state, action) => {
     return action.orders ? action.orders : state;
   },
-  '@@router/LOCATION_CHANGE': (state, action) => {
+  'DATA_ENTRY': (state, action) => {
     return action.orders ? action.orders : state;
   }
 };
