@@ -24,16 +24,14 @@ app.get('/F0158D48347E1C0C779EE51A7420584D.txt', function (req, res) {
   res.send(COMODO);
 });
 
-app.get('/getdate', function (req, res) {
-  res.send(COMODO);
-});
-
-app.get('*', function (req, res) {
-  const date = new Date();
-  date.setHours(0, 0, 0, 0);
-
+app.get([
+  '/',
+  '/mercado',
+  '/carrito',
+  '/pedidos',
+  '/admin'], function (req, res) {
   res.send(
-    TEMPLATE.replace('undefined', date.getTime())
+    TEMPLATE
   );
 });
 
