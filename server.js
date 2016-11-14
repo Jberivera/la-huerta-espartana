@@ -12,7 +12,7 @@ const app = express();
 router.get('/date', function (req, res) {
   const date = new Date();
   date.setHours(0, 0, 0, 0);
-  res.json({ date: date.getTime() });
+  res.send(date.getTime().toString());
 });
 
 app.use('/api', router);
@@ -29,6 +29,7 @@ app.get([
   '/mercado',
   '/carrito',
   '/pedidos',
+  '/pedido/*',
   '/admin'], function (req, res) {
   res.send(
     TEMPLATE

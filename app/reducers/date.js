@@ -5,7 +5,7 @@ import {
 
 import isValidDate from '../js/utils/isValidDate';
 
-const date = TIMESTAMP ? new Date(TIMESTAMP) : new Date();
+const date = new Date();
 date.setHours(0, 0, 0, 0);
 
 const initialState = {
@@ -20,6 +20,13 @@ const actionHandlers = {
       delivery: action.date,
       valid: isValidDate(state.server, action.date)
     });
+  },
+  'DATA_ENTRY': (state, action) => {
+    let date;
+
+    return action.date && typeof action.date === 'number' ? Object.assign({}, state, {
+      server: (date = new Date(action.date), date.setHours(0, 0, 0, 0), date)
+    }) : state;
   }
 };
 

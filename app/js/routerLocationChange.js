@@ -1,4 +1,5 @@
 import isOnTime from './utils/isOnTime';
+import fetchData from './utils/fetchData';
 
 export default function routerLocationChange(database, auth) {
   let firstCall = true;
@@ -15,6 +16,7 @@ export default function routerLocationChange(database, auth) {
 
 function setAuthStateChangeListener({ database, auth, next, action, state }) {
   const inventory = database.ref('inventory');
+  const datePromise = fetchData('/api/date');
 
   inventory.once('value').then(function (inventorySnapShot) {
 
@@ -28,12 +30,14 @@ function setAuthStateChangeListener({ database, auth, next, action, state }) {
 
         directionPromise.then(function (snapDataDir) {
           dataDir = snapDataDir.val();
+          return datePromise;
         })
-        .then(function () {
+        .then(function (serverDate) {
           const { providerData } = result;
 
           let newAction = Object.assign({}, action, {
             type: 'DATA_ENTRY',
+            date: Number(serverDate),
             response: {
               name: providerData[0].displayName,
               url: providerData[0].photoURL,
