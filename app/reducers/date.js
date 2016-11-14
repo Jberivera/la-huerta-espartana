@@ -22,10 +22,12 @@ const actionHandlers = {
     });
   },
   'DATA_ENTRY': (state, action) => {
-    let date;
+    const date = new Date(action.date);
+    date.setHours(0, 0, 0, 0);
 
     return action.date && typeof action.date === 'number' ? Object.assign({}, state, {
-      server: (date = new Date(action.date), date.setHours(0, 0, 0, 0), date)
+      server: new Date(date),
+      delivery: new Date(date)
     }) : state;
   }
 };

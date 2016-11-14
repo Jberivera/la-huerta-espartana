@@ -11,7 +11,6 @@ const app = express();
 
 router.get('/date', function (req, res) {
   const date = new Date();
-  date.setHours(0, 0, 0, 0);
   res.send(date.getTime().toString());
 });
 
