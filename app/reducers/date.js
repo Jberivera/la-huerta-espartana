@@ -25,7 +25,7 @@ const actionHandlers = {
     const date = new Date(action.date);
     date.setHours(0, 0, 0, 0);
 
-    return typeof action.date === 'number' ? Object.assign({}, state, {
+    return action.date && typeof action.date === 'number' ? Object.assign({}, state, {
       server: new Date(date),
       delivery: new Date(date)
     }) : state;
