@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const transporter = nodemailer.createTransport('smtps://huertaespartana%40gmail.com:paula,210395@smtp.gmail.com');
+const transporter = nodemailer.createTransport('smtps://huertaespartana%40gmail.com:h#]Y5qt<dXyDV*KA@smtp.gmail.com');
 
 const mailOptions = {
   to: 'jberivera@gmail.com, Hamsterventrilocuo@hotmail.com', // list of receivers
