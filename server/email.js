@@ -1,9 +1,11 @@
 const sendMail = require('./sendMail');
+const renderTemplate = require('./renderTemplate');
+const emailTemplate = require('./emailTemplate');
+
 const mailOptions = {
   from: 'huertaespartana@gmail.com',
   to: 'jberivera@gmail.com, Hamsterventrilocuo@hotmail.com', // list of receivers
   subject: 'Nueva orden ✔', // Subject line
-  text: 'Hello world ?', // plaintext body
   html: '<b>Hello world ?</b>' // html body
 };
 
